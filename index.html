@@ -1,0 +1,989 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Tutor Experiment & Feedback Dashboard</title>
+<style>
+:root { --bg:#f6f8fb; --card:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --us:#2563eb; --non:#f97316; --green:#16a34a; --red:#dc2626; --shadow:0 18px 50px rgba(15,23,42,.08); }
+* { box-sizing:border-box; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Arial,sans-serif; background:radial-gradient(circle at top left,#e0ecff 0,#f6f8fb 32%,#f8fafc 100%); color:var(--ink); }
+.container { max-width:1440px; margin:0 auto; padding:36px 28px 64px; }
+.hero { display:grid; grid-template-columns:1fr 280px; gap:24px; align-items:stretch; margin-bottom:22px; }
+.hero h1 { font-size:46px; line-height:1.02; margin:8px 0 12px; letter-spacing:-.04em; }
+.hero p { max-width:820px; color:var(--muted); font-size:16px; line-height:1.65; margin:0; }
+.eyebrow { text-transform:uppercase; letter-spacing:.14em; color:var(--us); font-weight:800; font-size:12px; }
+code { background:#e2e8f0; padding:2px 6px; border-radius:6px; }
+.hero-card { background:linear-gradient(135deg,#0f172a,#1e3a8a); color:#fff; border-radius:28px; padding:26px; box-shadow:var(--shadow); display:flex; flex-direction:column; justify-content:center; }
+.big-number { font-size:56px; font-weight:900; letter-spacing:-.05em; }
+.small-label { font-weight:700; opacity:.92; }
+.mini-note { color:#cbd5e1; margin-top:8px; }
+.metric-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin:20px 0 24px; }
+.metric { background:rgba(255,255,255,.82); backdrop-filter:blur(10px); border:1px solid rgba(226,232,240,.9); border-radius:20px; padding:18px; box-shadow:0 8px 30px rgba(15,23,42,.05); }
+.metric span { color:var(--muted); font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+.metric strong { display:block; font-size:28px; margin:8px 0 2px; letter-spacing:-.03em; }
+.metric em { color:var(--muted); font-style:normal; font-size:13px; }
+.metric.blue strong { color:var(--us); } .metric.orange strong { color:var(--non); } .metric.red strong { color:var(--red); }
+.side-cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:22px 0; }
+.region-card { background:var(--card); border-radius:24px; padding:22px; box-shadow:var(--shadow); border:1px solid var(--line); }
+.region-card h3 { margin:0 0 16px; font-size:24px; }
+.region-card.us h3 { color:var(--us); } .region-card.nonus h3 { color:var(--non); }
+.score-row { display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding:10px 0; color:var(--muted); }
+.score-row strong { color:var(--ink); font-size:20px; }
+.progress { height:10px; background:#e2e8f0; border-radius:999px; overflow:hidden; margin-top:16px; }
+.region-card.us .progress div { background:var(--us); height:100%; } .region-card.nonus .progress div { background:var(--non); height:100%; }
+.region-card p { color:var(--muted); margin-bottom:0; }
+.panel { background:rgba(255,255,255,.9); border:1px solid rgba(226,232,240,.95); border-radius:28px; box-shadow:var(--shadow); padding:24px; margin:22px 0; }
+.panel-head { display:flex; justify-content:space-between; gap:20px; align-items:flex-start; margin-bottom:18px; }
+.panel h2 { margin:0; font-size:26px; letter-spacing:-.03em; }
+.panel p { margin:6px 0 0; color:var(--muted); line-height:1.55; }
+.legend { display:flex; gap:16px; font-size:13px; color:var(--muted); font-weight:700; }
+.dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px; } .us-dot { background:var(--us); } .nonus-dot { background:var(--non); }
+.table-scroll { overflow:auto; }
+table { width:100%; border-collapse:separate; border-spacing:0; }
+th { text-align:left; color:#475569; font-size:12px; text-transform:uppercase; letter-spacing:.08em; padding:12px; border-bottom:1px solid var(--line); background:#f8fafc; }
+td { padding:12px; border-bottom:1px solid #edf2f7; vertical-align:middle; }
+.dim-name { font-weight:750; min-width:190px; }
+.bar-wrap { height:10px; background:#e2e8f0; border-radius:999px; overflow:hidden; min-width:180px; }
+.bar { height:100%; border-radius:999px; } .bar.us { background:linear-gradient(90deg,#60a5fa,var(--us)); } .bar.nonus { background:linear-gradient(90deg,#fdba74,var(--non)); }
+.cell-meta { color:var(--muted); font-size:13px; margin-top:6px; }
+.delta { font-weight:900; font-size:18px; } .delta.pos { color:var(--green); } .delta.neg { color:var(--red); }
+.chip-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; }
+.chip { border:1px solid var(--line); border-radius:18px; padding:14px; background:#f8fafc; }
+.chip span { display:block; font-weight:800; } .chip b { font-size:24px; display:inline-block; margin:8px 8px 0 0; } .chip em { color:var(--muted); font-style:normal; }
+.subhead { margin:22px 0 12px; }
+.quote-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+.quote-card { border:1px solid var(--line); border-radius:22px; padding:18px; background:linear-gradient(180deg,#fff,#f8fafc); }
+.quote-card.praise { border-color:#bbf7d0; background:linear-gradient(180deg,#f0fdf4,#fff); }
+.quote-top { display:flex; justify-content:space-between; gap:10px; align-items:center; }
+.quote-top span { color:#eab308; letter-spacing:1px; } .quote-top em { font-style:normal; color:var(--muted); font-size:12px; text-align:right; }
+.quote-card p { color:var(--ink); font-size:16px; line-height:1.5; margin:14px 0; }
+.quote-translation { color:#475569; font-size:14px; line-height:1.5; margin-top:-6px; padding:10px 12px; border-radius:12px; background:#f8fafc; border:1px solid var(--line); }
+.quote-card footer { color:var(--muted); font-size:12px; }
+.footer { color:var(--muted); text-align:center; margin-top:32px; font-size:13px; }
+@media (max-width: 980px) { .hero { grid-template-columns:1fr; } .metric-grid { grid-template-columns:repeat(2,1fr); } .side-cards { grid-template-columns:1fr; } .hero h1 { font-size:34px; } }
+
+.story-hero { margin-bottom: 26px; padding: 30px; border-radius: 32px; background: linear-gradient(135deg,#111827,#1d4ed8 58%,#f97316); color: #fff; box-shadow: var(--shadow); }
+.story-hero .eyebrow { color:#bfdbfe; }
+.story-hero h1 { margin: 8px 0 12px; font-size: 44px; line-height: 1.04; letter-spacing:-.04em; max-width: 980px; }
+.story-hero p { margin:0; color:#dbeafe; font-size:16px; line-height:1.65; max-width: 980px; }
+.section-kicker { margin: 34px 0 12px; display:flex; align-items:center; gap:12px; color:#475569; font-size:13px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+.section-kicker:before { content:""; width:36px; height:3px; border-radius:999px; background:linear-gradient(90deg,var(--us),var(--non)); }
+.insight-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:18px 0 24px; }
+.insight-card { background:rgba(255,255,255,.92); border:1px solid var(--line); border-radius:22px; padding:18px; box-shadow:0 8px 28px rgba(15,23,42,.06); }
+.insight-card span { display:block; color:var(--muted); font-size:12px; font-weight:900; text-transform:uppercase; letter-spacing:.08em; }
+.insight-card strong { display:block; margin:8px 0 2px; font-size:30px; letter-spacing:-.04em; }
+.insight-card em { color:var(--muted); font-style:normal; font-size:13px; }
+.split-panel { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:22px 0; }
+.rich-card { background:#fff; border:1px solid var(--line); border-radius:26px; box-shadow:var(--shadow); padding:22px; }
+.rich-card h3 { margin:0 0 14px; font-size:22px; letter-spacing:-.02em; }
+.kv { display:flex; justify-content:space-between; gap:16px; padding:10px 0; border-bottom:1px solid #edf2f7; color:var(--muted); }
+.kv b { color:var(--ink); }
+.funnel { display:grid; gap:10px; margin-top:12px; }
+.funnel-step { display:grid; grid-template-columns:160px 1fr 90px; align-items:center; gap:12px; }
+.funnel-label { font-weight:800; color:#334155; font-size:13px; }
+.funnel-bar { height:16px; background:#e2e8f0; border-radius:999px; overflow:hidden; }
+.funnel-fill { height:100%; background:linear-gradient(90deg,#60a5fa,#2563eb); border-radius:999px; }
+.funnel-val { text-align:right; font-weight:900; }
+.bullet-note { margin:14px 0 0; padding-left:18px; color:#475569; line-height:1.55; }
+.bullet-note li { margin:6px 0; }
+.compact-table td, .compact-table th { padding:10px; font-size:13px; }
+.phase-divider { margin: 36px 0 22px; padding: 20px 24px; border-radius: 24px; background: #0f172a; color:#fff; box-shadow: var(--shadow); }
+.phase-divider h2 { margin:0 0 6px; font-size:26px; }
+.phase-divider p { margin:0; color:#cbd5e1; }
+@media (max-width: 980px) { .insight-grid { grid-template-columns:repeat(2,1fr); } .split-panel { grid-template-columns:1fr; } .story-hero h1 { font-size:32px; } .funnel-step { grid-template-columns:1fr; } .funnel-val { text-align:left; } }
+
+
+.full-funnel { display:grid; gap:14px; margin-top:16px; }
+.funnel-node { display:grid; grid-template-columns: 210px 1fr 120px; align-items:center; gap:14px; padding:14px; border:1px solid var(--line); border-radius:18px; background:#fff; }
+.funnel-node.primary { border-color:#bfdbfe; background:linear-gradient(90deg,#eff6ff,#fff); }
+.funnel-node.branch { margin-left:34px; background:#fafafa; }
+.funnel-title { font-weight:900; color:#0f172a; }
+.funnel-sub { display:block; margin-top:3px; color:var(--muted); font-size:12px; font-weight:600; }
+.funnel-track-row { display:grid; grid-template-columns:1fr 112px; align-items:center; gap:12px; }
+.funnel-track { height:18px; background:#e2e8f0; border-radius:999px; overflow:hidden; }
+.funnel-track > div { height:100%; border-radius:999px; background:linear-gradient(90deg,#60a5fa,#2563eb); }
+.funnel-node.branch .funnel-track > div { background:linear-gradient(90deg,#fdba74,#f97316); }
+.funnel-rate { font-size:18px; font-weight:950; color:#1d4ed8; text-align:left; white-space:nowrap; }
+.funnel-node.branch .funnel-rate { color:#ea580c; }
+.funnel-num { text-align:right; font-weight:900; color:#0f172a; }
+.funnel-connector { margin-left:118px; height:18px; border-left:2px dashed #cbd5e1; }
+.duration-chart { display:grid; gap:12px; margin-top:18px; }
+.duration-row { display:grid; grid-template-columns:110px 1fr 120px; align-items:center; gap:14px; }
+.duration-label { font-weight:800; color:#334155; font-size:13px; }
+.duration-bar { height:24px; background:#e2e8f0; border-radius:999px; overflow:hidden; position:relative; }
+.duration-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#22c55e,#2563eb); }
+.duration-val { font-weight:900; color:#0f172a; text-align:right; }
+.duration-summary { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:18px; }
+.duration-summary .mini { background:#f8fafc; border:1px solid var(--line); border-radius:16px; padding:14px; }
+.duration-summary .mini span { display:block; color:var(--muted); font-size:12px; font-weight:800; text-transform:uppercase; }
+.duration-summary .mini b { display:block; margin-top:6px; font-size:22px; }
+@media (max-width: 980px) { .funnel-node, .duration-row { grid-template-columns:1fr; } .funnel-node.branch { margin-left:0; } .funnel-track-row { grid-template-columns:1fr; } .funnel-num, .duration-val { text-align:left; } .duration-summary { grid-template-columns:repeat(2,1fr); } }
+
+
+.donut-layout { display:grid; grid-template-columns: 340px 1fr; gap:24px; align-items:center; margin-top:20px; }
+.donut { width:320px; height:320px; border-radius:50%; background: conic-gradient(#2563eb 0 10.6%, #60a5fa 10.6% 31.9%, #93c5fd 31.9% 41.9%, #bfdbfe 41.9% 51.9%, #22c55e 51.9% 70.0%, #86efac 70.0% 84.4%, #f97316 84.4% 95.0%, #fed7aa 95.0% 100%); position:relative; box-shadow: inset 0 0 0 1px rgba(15,23,42,.06), var(--shadow); margin:auto; }
+.donut:after { content:""; position:absolute; inset:72px; border-radius:50%; background:#fff; box-shadow: inset 0 0 0 1px var(--line); }
+.donut-center { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:2; text-align:center; }
+.donut-center b { font-size:34px; letter-spacing:-.04em; }
+.donut-center span { color:var(--muted); font-size:12px; font-weight:800; text-transform:uppercase; margin-top:4px; }
+.donut-legend { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; }
+.legend-item { display:grid; grid-template-columns:14px 1fr auto; gap:9px; align-items:center; padding:10px 12px; border:1px solid var(--line); border-radius:14px; background:#f8fafc; }
+.legend-swatch { width:14px; height:14px; border-radius:4px; }
+.legend-name { font-weight:800; color:#334155; }
+.legend-pct { font-weight:900; color:#0f172a; }
+.legend-sub { grid-column:2 / 4; color:var(--muted); font-size:12px; margin-top:-4px; }
+@media (max-width: 980px) { .donut-layout { grid-template-columns:1fr; } .donut { width:260px; height:260px; } .donut:after { inset:58px; } .donut-legend { grid-template-columns:1fr; } }
+
+.subject-layout { display:grid; grid-template-columns: minmax(0,1.2fr) 360px; gap:24px; align-items:start; }
+.subject-pie-card { border:1px solid var(--line); border-radius:24px; background:linear-gradient(180deg,#fff,#f8fafc); padding:20px; box-shadow:0 10px 32px rgba(15,23,42,.06); }
+.subject-pie { width:320px; height:320px; border-radius:50%; background: conic-gradient(#2563eb 0 36.5%, #f97316 36.5% 48.3%, #16a34a 48.3% 58.9%, #8b5cf6 58.9% 68.3%, #06b6d4 68.3% 75.4%, #f59e0b 75.4% 82.5%, #ec4899 82.5% 88.4%, #64748b 88.4% 93.1%, #cbd5e1 93.1% 100%); position:relative; margin:0 auto 18px; box-shadow:var(--shadow); }
+.subject-pie:after { content:""; position:absolute; inset:92px; border-radius:50%; background:#fff; box-shadow: inset 0 0 0 1px var(--line); }
+.subject-pie .donut-center b { font-size:28px; }
+.subject-pie-label { position:absolute; z-index:3; padding:5px 8px; border-radius:999px; background:rgba(255,255,255,.9); border:1px solid rgba(226,232,240,.9); box-shadow:0 8px 18px rgba(15,23,42,.12); font-size:11px; font-weight:900; color:#0f172a; white-space:nowrap; transform:translate(-50%,-50%); }
+.subject-pie-label b { color:#475569; margin-left:3px; }
+.subject-pie-label.algebra { left:78%; top:29%; }
+.subject-pie-label.others { left:66%; top:82%; }
+.subject-pie-label.bio { left:43%; top:88%; }
+.subject-pie-label.chem { left:25%; top:75%; }
+.subject-pie-label.health { left:12%; top:57%; }
+.subject-pie-label.stats { left:13%; top:38%; }
+.subject-pie-label.calc { left:24%; top:23%; }
+.subject-pie-label.physics { left:38%; top:12%; }
+.subject-note { margin:16px 0 0; padding:14px 16px; border-radius:16px; background:#eff6ff; border:1px solid #bfdbfe; color:#1e3a8a; line-height:1.55; font-weight:750; }
+@media (max-width: 980px) { .subject-layout { grid-template-columns:1fr; } .subject-pie { width:300px; height:300px; } .subject-pie:after { inset:86px; } }
+
+
+.stacked-duration { margin-top:22px; }
+.stacked-bar { display:flex; height:42px; width:100%; overflow:hidden; border-radius:18px; border:1px solid var(--line); box-shadow: inset 0 0 0 1px rgba(255,255,255,.5); background:#e2e8f0; }
+.stack-seg { height:100%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:900; white-space:nowrap; text-shadow:0 1px 8px rgba(15,23,42,.28); }
+.stack-seg.short { background:#2563eb; }
+.stack-seg.midshort { background:#60a5fa; }
+.stack-seg.minute { background:#93c5fd; color:#0f172a; text-shadow:none; }
+.stack-seg.two { background:#bfdbfe; color:#0f172a; text-shadow:none; }
+.stack-seg.deep { background:#22c55e; }
+.stack-seg.deeper { background:#16a34a; }
+.stack-seg.long { background:#f97316; }
+.stack-seg.verylong { background:#ea580c; }
+.duration-callouts { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+.duration-callout { border-radius:18px; border:1px solid var(--line); padding:16px; background:#f8fafc; }
+.duration-callout b { display:block; font-size:28px; letter-spacing:-.04em; margin-bottom:4px; }
+.duration-callout span { color:var(--muted); font-weight:700; }
+.duration-callout.deep b { color:#16a34a; }
+.duration-callout.short b { color:#2563eb; }
+.duration-breakdown { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:16px; }
+.duration-pill { border:1px solid var(--line); background:#fff; border-radius:16px; padding:12px; }
+.duration-pill i { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+.duration-pill strong { display:block; margin-top:8px; font-size:20px; }
+.duration-pill em { display:block; color:var(--muted); font-style:normal; font-size:12px; margin-top:2px; }
+@media (max-width: 980px) { .duration-callouts { grid-template-columns:1fr; } .duration-breakdown { grid-template-columns:repeat(2,1fr); } .stack-seg { font-size:0; } }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+  <section class="story-hero">
+    <div class="eyebrow">Tutor Experiment New Users · 421 On1 + 424 On</div>
+    <h1>AI Tutor 新用户使用分析与反馈质量看板</h1>
+    <p>前半部分聚焦 421 TEST_G_Tutor_On1 与 424 TEST_G_Tutor_On 实验组新用户，从渗透、学段、国家、渠道和互动深度解释 Tutor 使用情况；后半部分接入现有反馈分析，反馈样本为使用过 Tutor 的新老用户合并反馈。</p>
+  </section>
+
+  <div class="section-kicker">Experiment Adoption</div>
+  <section class="insight-grid">
+    <div class="insight-card"><span>On 组新用户</span><strong>2,799</strong><em>421 On1 1,360 + 424 On 1,439</em></div>
+    <div class="insight-card"><span>Tutor UV</span><strong>85</strong><em>触发 tutor_session_start</em></div>
+    <div class="insight-card"><span>全量渗透</span><strong>3.04%</strong><em>85 / 2,799</em></div>
+    <div class="insight-card"><span>基于解题渗透</span><strong>6.78%</strong><em>宽口径：85 / 1,254 Solve UV</em></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <h2>渗透率双口径</h2>
+        <p>全量口径看 On 组整体触达；解题口径看有 Solve 行为用户中的 Tutor 使用率。</p>
+      </div>
+    </div>
+    <table class="compact-table">
+      <thead><tr><th>口径</th><th>定义</th><th>分子</th><th>分母</th><th>渗透率</th></tr></thead>
+      <tbody>
+        <tr><td><b>全量 On 组</b></td><td>tutor_session_start / On 组新用户</td><td>85</td><td>2,799</td><td><b>3.04%</b></td></tr>
+        <tr><td><b>严口径</b></td><td>tutor_session_start ∩ Solve_Success / Solve UV</td><td>59</td><td>1,254</td><td><b>4.70%</b></td></tr>
+        <tr><td><b>宽口径</b></td><td>tutor_session_start / Solve UV</td><td>85</td><td>1,254</td><td><b>6.78%</b></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="split-panel">
+    <section class="rich-card">
+      <h3>核心指标：Tutor 用户 vs 非 Tutor On 组</h3>
+      <div class="kv"><span>订阅率</span><b>14.12% vs 9.99%（+4.13pp）</b></div>
+      <div class="kv"><span>人均解题</span><b>14.84 vs 6.30（+135.6%）</b></div>
+      <div class="kv"><span>正反馈率</span><b>21.18% vs 10.43%（+10.75pp）</b></div>
+      <div class="kv"><span>负反馈率</span><b>0.00% vs 0.92%</b></div>
+      <div class="kv"><span>D1 留存</span><b>16.47% vs 5.20%（+11.27pp）</b></div>
+      <div class="kv"><span>人均活跃天数</span><b>1.22 vs 1.05</b></div>
+      <ul class="bullet-note"><li>注意：Tutor 用户是更活跃人群，指标差异不完全代表因果效应。</li></ul>
+    </section>
+
+    <section class="rich-card">
+      <h3>国家差异：NonUS 渗透更高</h3>
+      <div class="kv"><span>NonUS</span><b>50 / 1,083 = 4.62%</b></div>
+      <div class="kv"><span>US</span><b>35 / 1,716 = 2.04%</b></div>
+      <div class="kv"><span>相对差异</span><b>NonUS 是 US 的 2.3 倍</b></div>
+      <ul class="bullet-note"><li>NonUS 占 Tutor 用户 59%，是当前新用户 Tutor 使用的主力区域。</li><li>后半部分反馈数据中，NonUS 的 5 星占比低于 US，说明“使用意愿更高”和“反馈质量更低”同时存在。</li></ul>
+    </section>
+  </div>
+
+  <div class="split-panel">
+    <section class="panel">
+      <div class="panel-head"><div><h2>学段渗透差异</h2><p>高中生渗透率最高，也是最大 Tutor 用户群体。</p></div></div>
+      <table class="compact-table">
+        <thead><tr><th>年级</th><th>Tutor 用户</th><th>On 组总人数</th><th>渗透率</th></tr></thead>
+        <tbody>
+          <tr><td>highSchool</td><td>28</td><td>657</td><td><b>4.26%</b></td></tr>
+          <tr><td>others</td><td>6</td><td>167</td><td>3.59%</td></tr>
+          <tr><td>middleSchool</td><td>4</td><td>113</td><td>3.54%</td></tr>
+          <tr><td>null</td><td>9</td><td>289</td><td>3.11%</td></tr>
+          <tr><td>university</td><td>23</td><td>832</td><td>2.76%</td></tr>
+          <tr><td>communityCollege</td><td>6</td><td>266</td><td>2.26%</td></tr>
+          <tr><td>unknown</td><td>9</td><td>475</td><td>1.89%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><h2>渠道渗透差异</h2><p>organic 贡献最多 Tutor 用户；小渠道样本少但渗透高。</p></div></div>
+      <table class="compact-table">
+        <thead><tr><th>渠道</th><th>Tutor 用户</th><th>On 组总人数</th><th>渗透率</th></tr></thead>
+        <tbody>
+          <tr><td>organic</td><td>33</td><td>892</td><td><b>3.70%</b></td></tr>
+          <tr><td>apple search ads</td><td>15</td><td>466</td><td>3.22%</td></tr>
+          <tr><td>sem</td><td>23</td><td>990</td><td>2.32%</td></tr>
+          <tr><td>null</td><td>10</td><td>387</td><td>2.58%</td></tr>
+          <tr><td>web to app</td><td>2</td><td>32</td><td>6.25%</td></tr>
+          <tr><td>facebook installs</td><td>1</td><td>20</td><td>5.00%</td></tr>
+          <tr><td>instagram installs</td><td>1</td><td>3</td><td>33.33%</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <section class="panel">
+    <div class="panel-head"><div><h2>使用互动漏斗</h2><p>以 tutor_loading_start 为入口，展示从加载到开启 session，以及 session 内关键行为的完整路径。</p></div></div>
+    <div class="full-funnel">
+      <div class="funnel-node primary">
+        <div><span class="funnel-title">1. Loading Start</span><span class="funnel-sub">tutor_loading_start · 入口基准</span></div>
+        <div class="funnel-track-row"><div class="funnel-track"><div style="width:100%"></div></div><div class="funnel-rate">100%</div></div>
+        <div class="funnel-num">101 UV</div>
+      </div>
+      <div class="funnel-connector"></div>
+      <div class="funnel-node primary">
+        <div><span class="funnel-title">2. Session Start</span><span class="funnel-sub">85 / 101 from loading · 220 events</span></div>
+        <div class="funnel-track-row"><div class="funnel-track"><div style="width:84.2%"></div></div><div class="funnel-rate">84.2%</div></div>
+        <div class="funnel-num">85 UV</div>
+      </div>
+      <div class="funnel-connector"></div>
+      <div class="funnel-node branch">
+        <div><span class="funnel-title">Replay Completed</span><span class="funnel-sub">21 / 85 from session · 相对入口 20.8%</span></div>
+        <div class="funnel-track-row"><div class="funnel-track"><div style="width:24.7%"></div></div><div class="funnel-rate">24.7%</div></div>
+        <div class="funnel-num">21 UV</div>
+      </div>
+      <div class="funnel-node branch">
+        <div><span class="funnel-title">Feedback Popup Show</span><span class="funnel-sub">75 / 85 from session · 相对入口 74.3%</span></div>
+        <div class="funnel-track-row"><div class="funnel-track"><div style="width:88.2%"></div></div><div class="funnel-rate">88.2%</div></div>
+        <div class="funnel-num">75 UV</div>
+      </div>
+      <div class="funnel-node branch">
+        <div><span class="funnel-title">Feedback Submit</span><span class="funnel-sub">21 / 75 from popup · 相对 Session 24.7%</span></div>
+        <div class="funnel-track-row"><div class="funnel-track"><div style="width:28.0%"></div></div><div class="funnel-rate">28.0%</div></div>
+        <div class="funnel-num">21 UV</div>
+      </div>
+      <div class="funnel-node branch">
+        <div><span class="funnel-title">Example Click</span><span class="funnel-sub">13 / 85 from session · 相对入口 12.9%</span></div>
+        <div class="funnel-track-row"><div class="funnel-track"><div style="width:15.3%"></div></div><div class="funnel-rate">15.3%</div></div>
+        <div class="funnel-num">13 UV</div>
+      </div>
+      <div class="funnel-node branch">
+        <div><span class="funnel-title">Interrupt</span><span class="funnel-sub">29 / 85 from session · 相对入口 28.7%</span></div>
+        <div class="funnel-track-row"><div class="funnel-track"><div style="width:34.1%"></div></div><div class="funnel-rate">34.1%</div></div>
+        <div class="funnel-num">29 UV</div>
+      </div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><span>人均 session</span><strong>2.59</strong><em>220 sessions / 85 users</em></div>
+      <div class="insight-card"><span>Interrupt 使用率</span><strong>34.1%</strong><em>29 / 85 users</em></div>
+      <div class="insight-card"><span>Voice interrupt</span><strong>8.84</strong><em>168 events / 19 users</em></div>
+      <div class="insight-card"><span>Text interrupt</span><strong>3.19</strong><em>51 events / 16 users</em></div>
+    </div>
+    <ul class="bullet-note">
+      <li>16 人在 loading 阶段流失，loading 到 session 的转化率为 84.2%。</li>
+      <li>34.1% 用户使用 interrupt，说明用户有主动追问/打断互动意愿。</li>
+      <li>voice interrupt 使用更频繁，触发用户人均 8.84 次。</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><div><h2>Session 平均停留时长分布</h2><p>基于 session_start → session_exit 的 160 次完整配对 session；典型 session 中位数约 2 分钟，分布长尾明显。</p></div></div>
+    <div class="duration-summary">
+      <div class="mini"><span>平均时长</span><b>7分22秒</b></div>
+      <div class="mini"><span>去极值平均</span><b>4分00秒</b></div>
+      <div class="mini"><span>中位数</span><b>1分57秒</b></div>
+      <div class="mini"><span>超过 2 分钟</span><b>48.1%</b></div>
+    </div>
+    <div class="stacked-duration">
+      <div class="stacked-bar" aria-label="Session duration percentage distribution">
+        <div class="stack-seg short" style="width:10.6%">10.6%</div>
+        <div class="stack-seg midshort" style="width:21.3%">21.3%</div>
+        <div class="stack-seg minute" style="width:10.0%">10.0%</div>
+        <div class="stack-seg two" style="width:10.0%">10.0%</div>
+        <div class="stack-seg deep" style="width:18.1%">18.1%</div>
+        <div class="stack-seg deeper" style="width:14.4%">14.4%</div>
+        <div class="stack-seg long" style="width:10.6%">10.6%</div>
+        <div class="stack-seg verylong" style="width:5.0%">5.0%</div>
+      </div>
+      <div class="duration-callouts">
+        <div class="duration-callout short"><b>51.9%</b><span>0-2 分钟内结束：83 / 160 sessions</span></div>
+        <div class="duration-callout deep"><b>48.1%</b><span>大于 2 分钟：77 / 160 sessions</span></div>
+      </div>
+      <div class="duration-breakdown">
+        <div class="duration-pill"><i style="background:#2563eb"></i>0-10秒<strong>10.6%</strong><em>17 sessions · 14 users</em></div>
+        <div class="duration-pill"><i style="background:#60a5fa"></i>10-30秒<strong>21.3%</strong><em>34 sessions · 29 users</em></div>
+        <div class="duration-pill"><i style="background:#93c5fd"></i>30-60秒<strong>10.0%</strong><em>16 sessions · 14 users</em></div>
+        <div class="duration-pill"><i style="background:#bfdbfe"></i>1-2分钟<strong>10.0%</strong><em>16 sessions · 12 users</em></div>
+        <div class="duration-pill"><i style="background:#22c55e"></i>2-5分钟<strong>18.1%</strong><em>29 sessions · 15 users</em></div>
+        <div class="duration-pill"><i style="background:#16a34a"></i>5-10分钟<strong>14.4%</strong><em>23 sessions · 11 users</em></div>
+        <div class="duration-pill"><i style="background:#f97316"></i>10-30分钟<strong>10.6%</strong><em>17 sessions · 8 users</em></div>
+        <div class="duration-pill"><i style="background:#ea580c"></i>30分钟+<strong>5.0%</strong><em>8 sessions · 4 users</em></div>
+      </div>
+    </div>
+    <ul class="bullet-note">
+      <li>P25 为 20 秒，P75 为 6 分 01 秒，P90 为 15 分 54 秒。</li>
+      <li>25% session 超过 5 分钟，说明存在一批深度使用者。</li>
+      <li>均值被极端长 session 拉高，中位数更能代表典型体验。</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><div><h2>Tutor 用户解题学科</h2><p>algebra 覆盖最广，整体主要集中在数理化 + 医学相关用户；health sciences 人均解题极高，可能存在少数重度用户。</p></div></div>
+    <div class="subject-layout">
+      <table class="compact-table">
+        <thead><tr><th>学科</th><th>解题次数</th><th>用户数</th><th>人均解题</th></tr></thead>
+        <tbody>
+          <tr><td>algebra</td><td>545</td><td>31</td><td>17.6</td></tr>
+          <tr><td>health sciences</td><td>406</td><td>6</td><td>67.7</td></tr>
+          <tr><td>biological sciences</td><td>196</td><td>9</td><td>21.8</td></tr>
+          <tr><td>physics</td><td>181</td><td>4</td><td>45.3</td></tr>
+          <tr><td>chemistry</td><td>106</td><td>8</td><td>13.3</td></tr>
+          <tr><td>others</td><td>98</td><td>10</td><td>9.8</td></tr>
+          <tr><td>prob & statistics</td><td>57</td><td>6</td><td>9.5</td></tr>
+          <tr><td>calculus</td><td>39</td><td>5</td><td>7.8</td></tr>
+        </tbody>
+      </table>
+      <div class="subject-pie-card">
+        <div class="subject-pie">
+          <span class="subject-pie-label algebra">Algebra <b>36.5%</b></span>
+          <span class="subject-pie-label others">Others <b>11.8%</b></span>
+          <span class="subject-pie-label bio">Bio <b>10.6%</b></span>
+          <span class="subject-pie-label chem">Chem <b>9.4%</b></span>
+          <span class="subject-pie-label health">Health <b>7.1%</b></span>
+          <span class="subject-pie-label stats">Stats <b>7.1%</b></span>
+          <span class="subject-pie-label calc">Calc <b>5.9%</b></span>
+          <span class="subject-pie-label physics">Physics <b>4.7%</b></span>
+          <div class="donut-center"><b>81.3%</b><span>STEM + medical</span></div>
+        </div>
+        <div class="subject-note">主要使用人群集中在数理化与医学相关场景：algebra、physics、chemistry、prob & statistics、calculus、biological sciences、health sciences 合计约 81.3%。</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="phase-divider">
+    <h2>Feedback Quality Analysis</h2>
+    <p>以下为现有反馈分析：样本是使用过 Tutor 的新老用户合并反馈，不限于上方实验组新用户。</p>
+  </div>
+
+  
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Used Tutor Feedback · New + Old Users</div>
+        <h1>US vs NonUS Feedback Quality</h1>
+        <p>2026-06-19 至 2026-06-25，修正口径：年级用 <code>dim.user_grade</code> 优先，渠道用 GA <code>event_params.channel</code>，学科用反馈前最近一次 <code>Solve_Success.subject</code>。</p>
+      </div>
+      <div class="hero-card">
+        <div class="big-number">76.1%</div>
+        <div class="small-label">整体 5 星好评率</div>
+        <div class="mini-note">245 / 322 feedback</div>
+      </div>
+    </section>
+
+    <section class="metric-grid">
+      <div class="metric"><span>Total Feedback</span><strong>322</strong><em>180 users</em></div>
+      <div class="metric"><span>Avg Rating</span><strong>4.24</strong><em>1-5 scale</em></div>
+      <div class="metric blue"><span>US 5-Star</span><strong>81.5%</strong><em>185 / 227</em></div>
+      <div class="metric orange"><span>NonUS 5-Star</span><strong>63.2%</strong><em>60 / 95</em></div>
+      <div class="metric red"><span>5-Star Gap</span><strong>18.3pp</strong><em>US - NonUS</em></div>
+      <div class="metric"><span>Text Feedback</span><strong>23</strong><em>tagged: 64</em></div>
+    </section>
+    
+  <section class="side-cards">
+        <div class="region-card us">
+          <h3>US</h3>
+          <div class="score-row"><span>Feedback</span><strong>227</strong></div>
+          <div class="score-row"><span>Users</span><strong>108</strong></div>
+          <div class="score-row"><span>Avg rating</span><strong>4.43</strong></div>
+          <div class="score-row"><span>5-star rate</span><strong>81.5%</strong></div>
+          <div class="progress"><div style="width:81.5%"></div></div>
+          <p>185 five-star ratings · 11 text comments</p>
+        </div>
+        
+        <div class="region-card nonus">
+          <h3>NonUS</h3>
+          <div class="score-row"><span>Feedback</span><strong>95</strong></div>
+          <div class="score-row"><span>Users</span><strong>72</strong></div>
+          <div class="score-row"><span>Avg rating</span><strong>3.80</strong></div>
+          <div class="score-row"><span>5-star rate</span><strong>63.2%</strong></div>
+          <div class="progress"><div style="width:63.2%"></div></div>
+          <p>60 five-star ratings · 12 text comments</p>
+        </div>
+        </section>
+  
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Grade-Level Rating Comparison</h2>
+          <p>按年级比较 US 与 NonUS 的反馈量、平均评分和 5 星数量。</p>
+        </div>
+        <div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div>
+      </div>
+      <div class="table-scroll">
+        <table class="compare-table">
+          <thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead>
+          <tbody>
+        <tr>
+          <td class="dim-name">university</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:100.0%"></div></div>
+            <div class="cell-meta"><b>111</b> feedback · avg 4.60 · 5★ 98</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:12.6%"></div></div>
+            <div class="cell-meta"><b>14</b> feedback · avg 3.29 · 5★ 8</div>
+          </td>
+          <td class="delta pos">+1.32</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">communityCollege</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:53.2%"></div></div>
+            <div class="cell-meta"><b>59</b> feedback · avg 4.76 · 5★ 51</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:2.7%"></div></div>
+            <div class="cell-meta"><b>3</b> feedback · avg 3.67 · 5★ 2</div>
+          </td>
+          <td class="delta pos">+1.10</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">highSchool</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:20.7%"></div></div>
+            <div class="cell-meta"><b>23</b> feedback · avg 3.70 · 5★ 13</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:29.7%"></div></div>
+            <div class="cell-meta"><b>33</b> feedback · avg 4.12 · 5★ 24</div>
+          </td>
+          <td class="delta neg">-0.43</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">Unknown</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:9.9%"></div></div>
+            <div class="cell-meta"><b>11</b> feedback · avg 3.91 · 5★ 8</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:18.0%"></div></div>
+            <div class="cell-meta"><b>20</b> feedback · avg 4.20 · 5★ 14</div>
+          </td>
+          <td class="delta neg">-0.29</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">middleSchool</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:8.1%"></div></div>
+            <div class="cell-meta"><b>9</b> feedback · avg 3.00 · 5★ 4</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:16.2%"></div></div>
+            <div class="cell-meta"><b>18</b> feedback · avg 3.17 · 5★ 8</div>
+          </td>
+          <td class="delta neg">-0.17</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">others</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:12.6%"></div></div>
+            <div class="cell-meta"><b>14</b> feedback · avg 4.14 · 5★ 11</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:4.5%"></div></div>
+            <div class="cell-meta"><b>5</b> feedback · avg 3.40 · 5★ 2</div>
+          </td>
+          <td class="delta pos">+0.74</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">primaryMiddleSchool</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:1.8%"></div></div>
+            <div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        </tbody>
+        </table>
+      </div>
+    </section>
+    
+  
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Channel Rating Comparison</h2>
+          <p>按渠道比较 US 与 NonUS 的反馈表现。</p>
+        </div>
+        <div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div>
+      </div>
+      <div class="table-scroll">
+        <table class="compare-table">
+          <thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead>
+          <tbody>
+        <tr>
+          <td class="dim-name">Organic</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:71.4%"></div></div>
+            <div class="cell-meta"><b>65</b> feedback · avg 4.20 · 5★ 48</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:49.5%"></div></div>
+            <div class="cell-meta"><b>45</b> feedback · avg 3.69 · 5★ 28</div>
+          </td>
+          <td class="delta pos">+0.51</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">Google Ads Search</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:100.0%"></div></div>
+            <div class="cell-meta"><b>91</b> feedback · avg 4.66 · 5★ 80</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:13.2%"></div></div>
+            <div class="cell-meta"><b>12</b> feedback · avg 4.00 · 5★ 8</div>
+          </td>
+          <td class="delta pos">+0.66</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">Apple Search Ads</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:58.2%"></div></div>
+            <div class="cell-meta"><b>53</b> feedback · avg 4.26 · 5★ 41</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:12.1%"></div></div>
+            <div class="cell-meta"><b>11</b> feedback · avg 3.91 · 5★ 8</div>
+          </td>
+          <td class="delta pos">+0.36</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">Google-W2A-DTS-2023-09-06</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:18.7%"></div></div>
+            <div class="cell-meta"><b>17</b> feedback · avg 4.53 · 5★ 15</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:1.1%"></div></div>
+            <div class="cell-meta"><b>1</b> feedback · avg 4.00 · 5★ 0</div>
+          </td>
+          <td class="delta pos">+0.53</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">Unknown</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:17.6%"></div></div>
+            <div class="cell-meta"><b>16</b> feedback · avg 3.81 · 5★ 9</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">Facebook Installs</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:7.7%"></div></div>
+            <div class="cell-meta"><b>7</b> feedback · avg 5.00 · 5★ 7</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">web to app_solve times_0827</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:2.2%"></div></div>
+            <div class="cell-meta"><b>2</b> feedback · avg 1.50 · 5★ 0</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">Unattributed</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:1.1%"></div></div>
+            <div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">firebase_referral-finals</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:1.1%"></div></div>
+            <div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        </tbody>
+        </table>
+      </div>
+    </section>
+    
+  
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Subject Rating Comparison</h2>
+          <p>按反馈前最近一次 Solve_Success.subject 补充的学科比较。</p>
+        </div>
+        <div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div>
+      </div>
+      <div class="table-scroll">
+        <table class="compare-table">
+          <thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead>
+          <tbody>
+        <tr>
+          <td class="dim-name">algebra</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:90.0%"></div></div>
+            <div class="cell-meta"><b>45</b> feedback · avg 3.78 · 5★ 27</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:44.0%"></div></div>
+            <div class="cell-meta"><b>22</b> feedback · avg 3.77 · 5★ 14</div>
+          </td>
+          <td class="delta pos">+0.01</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">Unknown</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:36.0%"></div></div>
+            <div class="cell-meta"><b>18</b> feedback · avg 4.06 · 5★ 13</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:74.0%"></div></div>
+            <div class="cell-meta"><b>37</b> feedback · avg 3.57 · 5★ 23</div>
+          </td>
+          <td class="delta pos">+0.49</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">biological sciences</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:100.0%"></div></div>
+            <div class="cell-meta"><b>50</b> feedback · avg 4.92 · 5★ 49</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:4.0%"></div></div>
+            <div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div>
+          </td>
+          <td class="delta neg">-0.08</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">calculus</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:46.0%"></div></div>
+            <div class="cell-meta"><b>23</b> feedback · avg 4.52 · 5★ 19</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:14.0%"></div></div>
+            <div class="cell-meta"><b>7</b> feedback · avg 3.57 · 5★ 3</div>
+          </td>
+          <td class="delta pos">+0.95</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">chemistry</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:60.0%"></div></div>
+            <div class="cell-meta"><b>30</b> feedback · avg 4.60 · 5★ 25</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">physics</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:42.0%"></div></div>
+            <div class="cell-meta"><b>21</b> feedback · avg 5.00 · 5★ 21</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:8.0%"></div></div>
+            <div class="cell-meta"><b>4</b> feedback · avg 3.50 · 5★ 1</div>
+          </td>
+          <td class="delta pos">+1.50</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">geometry</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:26.0%"></div></div>
+            <div class="cell-meta"><b>13</b> feedback · avg 5.00 · 5★ 13</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:14.0%"></div></div>
+            <div class="cell-meta"><b>7</b> feedback · avg 5.00 · 5★ 7</div>
+          </td>
+          <td class="delta pos">+0.00</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">probability &amp; statistics</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:18.0%"></div></div>
+            <div class="cell-meta"><b>9</b> feedback · avg 3.56 · 5★ 5</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:10.0%"></div></div>
+            <div class="cell-meta"><b>5</b> feedback · avg 5.00 · 5★ 5</div>
+          </td>
+          <td class="delta neg">-1.44</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">health sciences &amp; professions</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:12.0%"></div></div>
+            <div class="cell-meta"><b>6</b> feedback · avg 4.33 · 5★ 5</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:4.0%"></div></div>
+            <div class="cell-meta"><b>2</b> feedback · avg 4.00 · 5★ 1</div>
+          </td>
+          <td class="delta pos">+0.33</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">history</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:4.0%"></div></div>
+            <div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:2.0%"></div></div>
+            <div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div>
+          </td>
+          <td class="delta pos">+4.00</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">others</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:6.0%"></div></div>
+            <div class="cell-meta"><b>3</b> feedback · avg 3.67 · 5★ 2</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">business</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:2.0%"></div></div>
+            <div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:2.0%"></div></div>
+            <div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div>
+          </td>
+          <td class="delta pos">+4.00</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">engineering</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:2.0%"></div></div>
+            <div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:2.0%"></div></div>
+            <div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div>
+          </td>
+          <td class="delta pos">+0.00</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">financial mathematics</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:4.0%"></div></div>
+            <div class="cell-meta"><b>2</b> feedback · avg 1.50 · 5★ 0</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">linguistics</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:4.0%"></div></div>
+            <div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        
+
+        <tr>
+          <td class="dim-name">advanced math</td>
+          <td>
+            <div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+            <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div>
+          </td>
+          <td>
+            <div class="bar-wrap"><div class="bar nonus" style="width:2.0%"></div></div>
+            <div class="cell-meta"><b>1</b> feedback · avg 4.00 · 5★ 0</div>
+          </td>
+          <td class="delta ">—</td>
+        </tr>
+        </tbody>
+        </table>
+      </div>
+    </section>
+    
+  
+    <section class="panel compact">
+      <div class="panel-head"><div><h2>Feedback Tags</h2><p>标签反馈集中在 Hard to follow、Slow response、Misunderstands me 等低分问题。</p></div></div>
+      <div class="chip-grid">
+        <div class="chip"><span>Unknown</span><b>258</b><em>avg 4.85</em></div><div class="chip"><span>Hard to follow</span><b>15</b><em>avg 1.40</em></div><div class="chip"><span>Slow response</span><b>11</b><em>avg 1.18</em></div><div class="chip"><span>Misunderstands me</span><b>10</b><em>avg 1.90</em></div><div class="chip"><span>Wrong explanation</span><b>8</b><em>avg 1.62</em></div><div class="chip"><span>Got stuck</span><b>6</b><em>avg 2.33</em></div><div class="chip"><span>Graph errors</span><b>5</b><em>avg 2.20</em></div><div class="chip"><span>Messy whiteboard</span><b>5</b><em>avg 2.60</em></div><div class="chip"><span>Too fast</span><b>4</b><em>avg 2.50</em></div>
+      </div>
+    </section>
+    
+  
+    <section class="panel">
+      <div class="panel-head"><div><h2>5-Star Text Feedback</h2><p>用户主动留下文本的 5 星反馈。</p></div></div>
+      <h3 class="subhead">5 星带文本评价 (4)</h3>
+      <div class="quote-grid">
+            <article class="quote-card ">
+              <div class="quote-top"><span>★★★★★</span><em>NonUS · Unknown · algebra</em></div>
+              <p>“질문에 대한 완벽한 답변, 깔끔한 설명”</p>
+              <div class="quote-translation">中文翻译：对问题的回答很完美，解释也很清晰简洁。</div>
+              <footer>2026-06-23T00:10:07 · Unknown</footer>
+            </article>
+            
+            <article class="quote-card ">
+              <div class="quote-top"><span>★★★★★</span><em>NonUS · highSchool · geometry</em></div>
+              <p>“رائع”</p>
+              <div class="quote-translation">中文翻译：很棒。</div>
+              <footer>2026-06-21T17:55:25 · Organic</footer>
+            </article>
+            
+            <article class="quote-card ">
+              <div class="quote-top"><span>★★★★★</span><em>US · university · physics</em></div>
+              <p>“This is cool feature”</p>
+              <footer>2026-06-21T12:03:30 · Google-W2A-DTS-2023-09-06</footer>
+            </article>
+            
+            <article class="quote-card ">
+              <div class="quote-top"><span>★★★★★</span><em>US · middleSchool · algebra</em></div>
+              <p>“Made sure it made sense”</p>
+              <footer>2026-06-21T02:08:52 · Organic</footer>
+            </article>
+            </div>
+    </section>
+    
+  <div class="footer">Generated from corrected AI Tutor feedback dataset · 322 feedback · 180 users · ai_tutor_feedback_us_nonus_dashboard.html</div>
+</div>
+</body>
+</html>
