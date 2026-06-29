@@ -183,310 +183,84 @@ td { padding:12px; border-bottom:1px solid #edf2f7; vertical-align:middle; }
 <body>
 
 <div class="container">
-  <section class="story-hero"><div class="eyebrow">Tutor Experiment New Users · 421 On1 + 424 On</div><h1>AI Tutor 新用户使用分析与反馈质量看板</h1><p>前半部分更新至 2026-06-29，聚焦 421 TEST_G_Tutor_On1 与 424 TEST_G_Tutor_On 实验组新用户；后半部分接入 2026-06-19 至 2026-06-29 的最新 AI Tutor feedback 明细。</p></section>
+  <section class="story-hero"><div class="eyebrow">Tutor Experiment New Users · 421 On1 + 424 On</div><h1>AI Tutor 新用户使用分析与反馈质量看板</h1><p>前半部分更新至 2026-06-29，已排除测试账号 U6QmQ4vVv8QCG5HriPDFJBb4efs1；后半部分接入 2026-06-19 至 2026-06-29 的最新 AI Tutor feedback 明细，同样排除该测试账号。</p></section>
   <div class="section-kicker">Experiment Adoption</div>
-  <section class="insight-grid">
-    <div class="insight-card"><span>On 组新用户</span><strong>7,970</strong><em>421 On1 1,360 + 424 On 6,610</em></div>
-    <div class="insight-card"><span>Tutor UV</span><strong>334</strong><em>触发 tutor_session_start</em></div>
-    <div class="insight-card"><span>全量渗透</span><strong>4.19%</strong><em>334 / 7,970</em></div>
-    <div class="insight-card"><span>基于解题渗透</span><strong>8.07%</strong><em>宽口径：334 / 4,138 Solve UV</em></div>
-  </section>
-  <section class="panel"><div class="panel-head"><div><h2>渗透率双口径</h2><p>全量口径看 On 组整体触达；解题口径看有 Solve 行为用户中的 Tutor 使用率。</p></div></div><table class="compact-table"><thead><tr><th>口径</th><th>定义</th><th>分子</th><th>分母</th><th>渗透率</th></tr></thead><tbody><tr><td><b>全量 On 组</b></td><td>tutor_session_start / On 组新用户</td><td>334</td><td>7,970</td><td><b>4.19%</b></td></tr><tr><td><b>严口径</b></td><td>tutor_session_start ∩ Solve_Success / Solve UV</td><td>232</td><td>4,138</td><td><b>5.61%</b></td></tr><tr><td><b>宽口径</b></td><td>tutor_session_start / Solve UV</td><td>334</td><td>4,138</td><td><b>8.07%</b></td></tr></tbody></table></section>
-  <div class="split-panel"><section class="rich-card"><h3>核心指标：Tutor 用户 vs 非 Tutor On 组</h3><div class="kv"><span>订阅率</span><b>21.26% vs 10.33%（+10.92pp）</b></div><div class="kv"><span>人均解题</span><b>15.24 vs 6.54</b></div><div class="kv"><span>正反馈率</span><b>19.76% vs 9.68%（+10.08pp）</b></div><div class="kv"><span>负反馈率</span><b>0.60% vs 0.64%</b></div><div class="kv"><span>D1 留存</span><b>28.14% vs 10.25%（+17.89pp）</b></div><div class="kv"><span>人均活跃天数</span><b>1.49 vs 1.17</b></div><ul class="bullet-note"><li>注意：Tutor 用户是更活跃人群，指标差异不完全代表因果效应。</li></ul></section>
-  <section class="rich-card"><h3>国家差异：US 与 NonUS 渗透接近</h3><div class="kv"><span>NonUS</span><b>165 / 2,815 = 5.86%</b></div><div class="kv"><span>US</span><b>169 / 5,155 = 3.28%</b></div><div class="kv"><span>相对差异</span><b>NonUS / US = 1.79 倍</b></div><ul class="bullet-note"><li>更新到 6/29 后，Tutor 使用量明显扩大，US 与 NonUS 渗透差距收窄。</li><li>后半部分 feedback 中仍保留 US vs NonUS 质量对比。</li></ul></section></div>
+  <section class="insight-grid"><div class="insight-card"><span>On 组新用户</span><strong>7,968</strong><em>421 On1 1,360 + 424 On 6,608</em></div><div class="insight-card"><span>Tutor UV</span><strong>333</strong><em>触发 tutor_session_start</em></div><div class="insight-card"><span>全量渗透</span><strong>4.18%</strong><em>333 / 7,968</em></div><div class="insight-card"><span>基于解题渗透</span><strong>8.05%</strong><em>宽口径：333 / 4,138 Solve UV</em></div></section>
+  <section class="panel"><div class="panel-head"><div><h2>渗透率双口径</h2><p>全量口径看 On 组整体触达；解题口径看有 Solve 行为用户中的 Tutor 使用率。</p></div></div><table class="compact-table"><thead><tr><th>口径</th><th>定义</th><th>分子</th><th>分母</th><th>渗透率</th></tr></thead><tbody><tr><td><b>全量 On 组</b></td><td>tutor_session_start / On 组新用户</td><td>333</td><td>7,968</td><td><b>4.18%</b></td></tr><tr><td><b>严口径</b></td><td>tutor_session_start ∩ Solve_Success / Solve UV</td><td>233</td><td>4,138</td><td><b>5.63%</b></td></tr><tr><td><b>宽口径</b></td><td>tutor_session_start / Solve UV</td><td>333</td><td>4,138</td><td><b>8.05%</b></td></tr></tbody></table></section>
+  <div class="split-panel"><section class="rich-card"><h3>核心指标：Tutor 用户 vs 非 Tutor On 组</h3><div class="kv"><span>订阅率</span><b>21.32% vs 10.33%（+10.99pp）</b></div><div class="kv"><span>人均解题</span><b>15.29 vs 6.54</b></div><div class="kv"><span>正反馈率</span><b>19.82% vs 9.68%（+10.14pp）</b></div><div class="kv"><span>负反馈率</span><b>0.60% vs 0.64%</b></div><div class="kv"><span>D1 留存</span><b>27.93% vs 10.26%（+17.67pp）</b></div><div class="kv"><span>人均活跃天数</span><b>1.49 vs 1.17</b></div><ul class="bullet-note"><li>注意：Tutor 用户是更活跃人群，指标差异不完全代表因果效应。</li></ul></section><section class="rich-card"><h3>国家差异：US 与 NonUS 渗透接近</h3><div class="kv"><span>NonUS</span><b>163 / 2,813 = 5.79%</b></div><div class="kv"><span>US</span><b>170 / 5,155 = 3.30%</b></div><div class="kv"><span>相对差异</span><b>NonUS / US = 1.76 倍</b></div><ul class="bullet-note"><li>测试账号已从 session 与 feedback 中排除。</li><li>后半部分 feedback 中仍保留 US vs NonUS 质量对比。</li></ul></section></div>
   <div class="split-panel"><section class="panel"><div class="panel-head"><div><h2>学段渗透差异</h2><p>按最新 cohort 计算各学段 Tutor 渗透率。</p></div></div><table class="compact-table"><thead><tr><th>年级</th><th>Tutor 用户</th><th>On 组总人数</th><th>渗透率</th></tr></thead><tbody><tr><td>middleSchool</td><td>25</td><td>382</td><td><b>6.54%</b></td></tr>
-<tr><td>others</td><td>23</td><td>493</td><td>4.67%</td></tr>
 <tr><td>university</td><td>116</td><td>2,506</td><td>4.63%</td></tr>
 <tr><td>communityCollege</td><td>33</td><td>723</td><td>4.56%</td></tr>
+<tr><td>others</td><td>22</td><td>491</td><td>4.48%</td></tr>
 <tr><td>highSchool</td><td>87</td><td>2,012</td><td>4.32%</td></tr>
 <tr><td>null</td><td>12</td><td>327</td><td>3.67%</td></tr>
 <tr><td>unknown</td><td>38</td><td>1,527</td><td>2.49%</td></tr></tbody></table></section><section class="panel"><div class="panel-head"><div><h2>渠道渗透差异</h2><p>按最新 cohort 计算各渠道 Tutor 渗透率。</p></div></div><table class="compact-table"><thead><tr><th>渠道</th><th>Tutor 用户</th><th>On 组总人数</th><th>渗透率</th></tr></thead><tbody><tr><td>instagram installs</td><td>1</td><td>7</td><td><b>14.29%</b></td></tr>
 <tr><td>web to app_solve times_0827</td><td>5</td><td>98</td><td>5.10%</td></tr>
-<tr><td>organic</td><td>142</td><td>2,906</td><td>4.89%</td></tr>
+<tr><td>organic</td><td>140</td><td>2,904</td><td>4.82%</td></tr>
 <tr><td>apple search ads</td><td>63</td><td>1,490</td><td>4.23%</td></tr>
-<tr><td>sem</td><td>105</td><td>2,713</td><td>3.87%</td></tr>
+<tr><td>sem</td><td>106</td><td>2,713</td><td>3.91%</td></tr>
 <tr><td>null</td><td>17</td><td>657</td><td>2.59%</td></tr>
 <tr><td>facebook installs</td><td>1</td><td>47</td><td>2.13%</td></tr>
-<tr><td>off-facebook installs</td><td>0</td><td>1</td><td>0.00%</td></tr>
-<tr><td>ios-web2app-2025-12-02</td><td>0</td><td>1</td><td>0.00%</td></tr>
-<tr><td>firebase_scan-to-login</td><td>0</td><td>2</td><td>0.00%</td></tr>
-<tr><td>solvely_ins_official</td><td>0</td><td>2</td><td>0.00%</td></tr>
 <tr><td>no user consent</td><td>0</td><td>42</td><td>0.00%</td></tr>
-<tr><td>firebase_referral-finals</td><td>0</td><td>4</td><td>0.00%</td></tr></tbody></table></section></div>
-  <section class="panel"><div class="panel-head"><div><h2>使用互动漏斗</h2><p>以 tutor_loading_start 为入口，展示从加载到开启 session，以及 session 内关键行为的完整路径。</p></div></div><div class="full-funnel">
-      <div class="funnel-node primary"><div><span class="funnel-title">1. Loading Start</span><span class="funnel-sub">tutor_loading_start · 入口基准</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:100%"></div></div><div class="funnel-rate">100%</div></div><div class="funnel-num">412 UV</div></div>
-      <div class="funnel-connector"></div>
-      <div class="funnel-node primary"><div><span class="funnel-title">2. Session Start</span><span class="funnel-sub">334 / 412 from loading · 809 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:81.1%"></div></div><div class="funnel-rate">81.1%</div></div><div class="funnel-num">334 UV</div></div>
-      <div class="funnel-connector"></div>
-      <div class="funnel-node branch"><div><span class="funnel-title">Replay Completed</span><span class="funnel-sub">81 / 334 from session</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:24.3%"></div></div><div class="funnel-rate">24.3%</div></div><div class="funnel-num">81 UV</div></div>
-      <div class="funnel-node branch"><div><span class="funnel-title">Feedback Popup Show</span><span class="funnel-sub">282 / 334 from session</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:84.4%"></div></div><div class="funnel-rate">84.4%</div></div><div class="funnel-num">282 UV</div></div>
-      <div class="funnel-node branch"><div><span class="funnel-title">Feedback Submit</span><span class="funnel-sub">100 / 282 from popup</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:35.5%"></div></div><div class="funnel-rate">35.5%</div></div><div class="funnel-num">100 UV</div></div>
-      <div class="funnel-node branch"><div><span class="funnel-title">Example Click</span><span class="funnel-sub">46 / 334 from session</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:13.8%"></div></div><div class="funnel-rate">13.8%</div></div><div class="funnel-num">46 UV</div></div>
-      <div class="funnel-node branch"><div><span class="funnel-title">Interrupt</span><span class="funnel-sub">122 / 334 from session</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:36.5%"></div></div><div class="funnel-rate">36.5%</div></div><div class="funnel-num">122 UV</div></div>
-</div><div class="insight-grid"><div class="insight-card"><span>人均 session</span><strong>2.42</strong><em>809 sessions / 334 users</em></div><div class="insight-card"><span>Interrupt 使用率</span><strong>36.5%</strong><em>122 / 334 users</em></div><div class="insight-card"><span>Voice interrupt</span><strong>5.56</strong><em>317 events / 57 users</em></div><div class="insight-card"><span>Text interrupt</span><strong>2.93</strong><em>240 events / 82 users</em></div></div><ul class="bullet-note"><li>78 人在 loading 阶段流失，loading 到 session 的转化率为 81.1%。</li><li>36.5% 用户使用 interrupt，说明用户有主动追问/打断互动意愿。</li><li>voice interrupt 使用更频繁，触发用户人均 5.56 次。</li></ul></section>
-  <section class="panel"><div class="panel-head"><div><h2>Session 平均停留时长分布</h2><p>基于 session_start → session_exit 的 559 次完整配对 session；典型 session 中位数约 1分43秒。</p></div></div><div class="duration-summary"><div class="mini"><span>平均时长</span><b>5分32秒</b></div><div class="mini"><span>去极值平均</span><b>3分08秒</b></div><div class="mini"><span>中位数</span><b>1分43秒</b></div><div class="mini"><span>超过 2 分钟</span><b>46.9%</b></div></div><div class="stacked-duration"><div class="stacked-bar" aria-label="Session duration percentage distribution"><div class="stack-seg short" style="width:10.4%">10.4%</div><div class="stack-seg midshort" style="width:17.5%">17.5%</div><div class="stack-seg minute" style="width:12.0%">12.0%</div><div class="stack-seg two" style="width:13.2%">13.2%</div><div class="stack-seg deep" style="width:23.8%">23.8%</div><div class="stack-seg deeper" style="width:11.6%">11.6%</div><div class="stack-seg long" style="width:8.6%">8.6%</div><div class="stack-seg verylong" style="width:2.9%">2.9%</div></div><div class="duration-callouts"><div class="duration-callout short"><b>53.1%</b><span>0-2 分钟内结束：297 / 559 sessions</span></div><div class="duration-callout deep"><b>46.9%</b><span>大于 2 分钟：262 / 559 sessions</span></div></div><div class="duration-breakdown"><div class="duration-pill"><i style="background:#2563eb"></i>0-10秒<strong>10.4%</strong><em>58 sessions · 45 users</em></div><div class="duration-pill"><i style="background:#60a5fa"></i>10-30秒<strong>17.5%</strong><em>98 sessions · 90 users</em></div><div class="duration-pill"><i style="background:#93c5fd"></i>30-60秒<strong>12.0%</strong><em>67 sessions · 59 users</em></div><div class="duration-pill"><i style="background:#bfdbfe"></i>1-2分钟<strong>13.2%</strong><em>74 sessions · 52 users</em></div><div class="duration-pill"><i style="background:#22c55e"></i>2-5分钟<strong>23.8%</strong><em>133 sessions · 67 users</em></div><div class="duration-pill"><i style="background:#16a34a"></i>5-10分钟<strong>11.6%</strong><em>65 sessions · 41 users</em></div><div class="duration-pill"><i style="background:#f97316"></i>10-30分钟<strong>8.6%</strong><em>48 sessions · 26 users</em></div><div class="duration-pill"><i style="background:#ea580c"></i>30分钟+<strong>2.9%</strong><em>16 sessions · 11 users</em></div></div></div><ul class="bullet-note"><li>P25 为 25秒，P75 为 4分40秒，P90 为 11分32秒。</li><li>23.1% session 超过 5 分钟，说明存在一批深度使用者。</li><li>均值被极端长 session 拉高，中位数更能代表典型体验。</li></ul></section>
-  <section class="panel"><div class="panel-head"><div><h2>Tutor 用户解题学科</h2><p>algebra 覆盖最广，整体主要集中在数理化 + 医学相关用户；部分学科存在少数重度用户。</p></div></div><div class="subject-layout"><table class="compact-table"><thead><tr><th>学科</th><th>解题次数</th><th>用户数</th><th>人均解题</th></tr></thead><tbody><tr><td>algebra</td><td>2,219</td><td>108</td><td>20.5</td></tr>
-<tr><td>chemistry</td><td>1,411</td><td>40</td><td>35.3</td></tr>
-<tr><td>probability &amp; statistics</td><td>582</td><td>39</td><td>14.9</td></tr>
-<tr><td>others</td><td>568</td><td>38</td><td>14.9</td></tr>
-<tr><td>geometry</td><td>271</td><td>29</td><td>9.3</td></tr>
+<tr><td>solvely_ins_official</td><td>0</td><td>2</td><td>0.00%</td></tr>
+<tr><td>firebase_referral-finals</td><td>0</td><td>4</td><td>0.00%</td></tr>
+<tr><td>firebase_scan-to-login</td><td>0</td><td>2</td><td>0.00%</td></tr>
+<tr><td>off-facebook installs</td><td>0</td><td>1</td><td>0.00%</td></tr>
+<tr><td>ios-web2app-2025-12-02</td><td>0</td><td>1</td><td>0.00%</td></tr></tbody></table></section></div>
+  <section class="panel"><div class="panel-head"><div><h2>使用互动漏斗</h2><p>以 tutor_loading_start 为入口，展示从加载到开启 session，以及 session 内关键行为的完整路径。</p></div></div><div class="full-funnel"><div class="funnel-node primary"><div><span class="funnel-title">1. Loading Start</span><span class="funnel-sub">tutor_loading_start · 入口基准</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:100%"></div></div><div class="funnel-rate">100%</div></div><div class="funnel-num">412 UV</div></div><div class="funnel-connector"></div><div class="funnel-node primary"><div><span class="funnel-title">2. Session Start</span><span class="funnel-sub">333 / 412 from loading · 817 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:80.8%"></div></div><div class="funnel-rate">80.8%</div></div><div class="funnel-num">333 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">Replay Completed</span><span class="funnel-sub">79 / 333 from session</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:23.7%"></div></div><div class="funnel-rate">23.7%</div></div><div class="funnel-num">79 UV</div></div><div class="funnel-node branch"><div><span class="funnel-title">Feedback Popup Show</span><span class="funnel-sub">282 / 333 from session</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:84.7%"></div></div><div class="funnel-rate">84.7%</div></div><div class="funnel-num">282 UV</div></div><div class="funnel-node branch"><div><span class="funnel-title">Feedback Submit</span><span class="funnel-sub">101 / 282 from popup</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:35.8%"></div></div><div class="funnel-rate">35.8%</div></div><div class="funnel-num">101 UV</div></div><div class="funnel-node branch"><div><span class="funnel-title">Example Click</span><span class="funnel-sub">45 / 333 from session</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:13.5%"></div></div><div class="funnel-rate">13.5%</div></div><div class="funnel-num">45 UV</div></div><div class="funnel-node branch"><div><span class="funnel-title">Interrupt</span><span class="funnel-sub">120 / 333 from session</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:36.0%"></div></div><div class="funnel-rate">36.0%</div></div><div class="funnel-num">120 UV</div></div></div><div class="insight-grid"><div class="insight-card"><span>人均 session</span><strong>2.45</strong><em>817 sessions / 333 users</em></div><div class="insight-card"><span>Interrupt 使用率</span><strong>36.0%</strong><em>120 / 333 users</em></div><div class="insight-card"><span>Voice interrupt</span><strong>5.64</strong><em>310 events / 55 users</em></div><div class="insight-card"><span>Text interrupt</span><strong>2.93</strong><em>240 events / 82 users</em></div></div><ul class="bullet-note"><li>79 人在 loading 阶段流失，loading 到 session 的转化率为 80.8%。</li><li>36.0% 用户使用 interrupt。</li><li>voice interrupt 使用更频繁，触发用户人均 5.64 次。</li></ul></section>
+  <section class="panel"><div class="panel-head"><div><h2>Session 平均停留时长分布</h2><p>基于 session_start → session_exit 的 562 次完整配对 session；典型 session 中位数约 1分43秒。</p></div></div><div class="duration-summary"><div class="mini"><span>平均时长</span><b>5分32秒</b></div><div class="mini"><span>去极值平均</span><b>3分06秒</b></div><div class="mini"><span>中位数</span><b>1分43秒</b></div><div class="mini"><span>超过 2 分钟</span><b>47.0%</b></div></div><div class="stacked-duration"><div class="stacked-bar" aria-label="Session duration percentage distribution"><div class="stack-seg short" style="width:10.3%">10.3%</div><div class="stack-seg midshort" style="width:17.6%">17.6%</div><div class="stack-seg minute" style="width:11.9%">11.9%</div><div class="stack-seg two" style="width:13.2%">13.2%</div><div class="stack-seg deep" style="width:23.8%">23.8%</div><div class="stack-seg deeper" style="width:11.7%">11.7%</div><div class="stack-seg long" style="width:8.5%">8.5%</div><div class="stack-seg verylong" style="width:2.8%">2.8%</div></div><div class="duration-callouts"><div class="duration-callout short"><b>53.0%</b><span>0-2 分钟内结束：298 / 562 sessions</span></div><div class="duration-callout deep"><b>47.0%</b><span>大于 2 分钟：264 / 562 sessions</span></div></div><div class="duration-breakdown"><div class="duration-pill"><i style="background:#2563eb"></i>0-10秒<strong>10.3%</strong><em>58 sessions · 45 users</em></div><div class="duration-pill"><i style="background:#60a5fa"></i>10-30秒<strong>17.6%</strong><em>99 sessions · 91 users</em></div><div class="duration-pill"><i style="background:#93c5fd"></i>30-60秒<strong>11.9%</strong><em>67 sessions · 59 users</em></div><div class="duration-pill"><i style="background:#bfdbfe"></i>1-2分钟<strong>13.2%</strong><em>74 sessions · 52 users</em></div><div class="duration-pill"><i style="background:#22c55e"></i>2-5分钟<strong>23.8%</strong><em>134 sessions · 67 users</em></div><div class="duration-pill"><i style="background:#16a34a"></i>5-10分钟<strong>11.7%</strong><em>66 sessions · 41 users</em></div><div class="duration-pill"><i style="background:#f97316"></i>10-30分钟<strong>8.5%</strong><em>48 sessions · 26 users</em></div><div class="duration-pill"><i style="background:#ea580c"></i>30分钟+<strong>2.8%</strong><em>16 sessions · 11 users</em></div></div></div><ul class="bullet-note"><li>P25 为 25秒，P75 为 4分40秒，P90 为 11分28秒。</li><li>23.1% session 超过 5 分钟。</li><li>均值被极端长 session 拉高，中位数更能代表典型体验。</li></ul></section>
+  <section class="panel"><div class="panel-head"><div><h2>Tutor 用户解题学科</h2><p>algebra 覆盖最广，整体主要集中在数理化 + 医学相关用户；部分学科存在少数重度用户。</p></div></div><div class="subject-layout"><table class="compact-table"><thead><tr><th>学科</th><th>解题次数</th><th>用户数</th><th>人均解题</th></tr></thead><tbody><tr><td>algebra</td><td>2,506</td><td>107</td><td>23.4</td></tr>
+<tr><td>chemistry</td><td>1,484</td><td>40</td><td>37.1</td></tr>
+<tr><td>probability &amp; statistics</td><td>695</td><td>40</td><td>17.4</td></tr>
+<tr><td>others</td><td>612</td><td>40</td><td>15.3</td></tr>
+<tr><td>geometry</td><td>303</td><td>30</td><td>10.1</td></tr>
 <tr><td>physics</td><td>391</td><td>26</td><td>15.0</td></tr>
-<tr><td>biological sciences</td><td>341</td><td>22</td><td>15.5</td></tr>
-<tr><td>health sciences &amp; professions</td><td>671</td><td>20</td><td>33.5</td></tr>
-<tr><td>calculus</td><td>173</td><td>19</td><td>9.1</td></tr>
-<tr><td>other math</td><td>49</td><td>14</td><td>3.5</td></tr></tbody></table><div class="subject-pie-card"><div class="subject-pie" style="background:conic-gradient(#2563eb 0.0% 28.3%, #f97316 28.3% 38.8%, #16a34a 38.8% 49.1%, #8b5cf6 49.1% 59.1%, #06b6d4 59.1% 66.7%, #f59e0b 66.7% 73.5%, #ec4899 73.5% 79.3%, #64748b 79.3% 84.5%, #84cc16 84.5% 100.0%)"><span class="subject-pie-label" style="left:81.1%; top:24.8%">Algebra <b>28.3%</b></span><span class="subject-pie-label" style="left:84.3%; top:70.6%">Chem <b>10.5%</b></span><span class="subject-pie-label" style="left:64.8%; top:87.2%">Stats <b>10.2%</b></span><span class="subject-pie-label" style="left:39.9%; top:88.7%">Others <b>10.0%</b></span><span class="subject-pie-label" style="left:21.1%; top:77.6%">Geometry <b>7.6%</b></span><span class="subject-pie-label" style="left:11.9%; top:62.2%">Physics <b>6.8%</b></span><span class="subject-pie-label" style="left:10.1%; top:46.5%">Bio <b>5.8%</b></span><span class="subject-pie-label" style="left:13.7%; top:33.2%">Health <b>5.2%</b></span><span class="subject-pie-label" style="left:31.3%; top:14.6%">Other subjects <b>15.5%</b></span><div class="donut-center"><b>83.2%</b><span>STEM + medical</span></div></div><div class="subject-note">主要使用人群集中在数理化与医学相关场景：algebra、physics、chemistry、probability & statistics、calculus、biological sciences、health sciences 等合计约 83.2%。</div></div></div></section>
-  <div class="phase-divider"><h2>Feedback Quality Analysis</h2><p>以下为最新反馈分析：样本是 2026-06-19 至 2026-06-29 使用过 Tutor 的新老用户合并反馈，不限于上方实验组新用户。</p></div>
-  <section class="hero"><div><div class="eyebrow">Used Tutor Feedback · New + Old Users</div><h1>US vs NonUS Feedback Quality</h1><p>2026-06-19 至 2026-06-29，修正口径：年级用 <code>dim.user_grade</code> 优先，渠道用 GA <code>event_params.channel</code>，学科用反馈前最近一次 <code>Solve_Success.subject</code>。</p></div><div class="hero-card"><div class="big-number">72.4%</div><div class="small-label">整体 5 星好评率</div><div class="mini-note">437 / 604 feedback</div></div></section>
-  <section class="metric-grid"><div class="metric"><span>Total Feedback</span><strong>604</strong><em>361 users</em></div><div class="metric"><span>Avg Rating</span><strong>4.13</strong><em>1-5 scale</em></div><div class="metric blue"><span>US 5-Star</span><strong>79.1%</strong><em>317 / 401</em></div><div class="metric orange"><span>NonUS 5-Star</span><strong>58.8%</strong><em>117 / 199</em></div><div class="metric red"><span>5-Star Gap</span><strong>20.3pp</strong><em>US - NonUS</em></div><div class="metric"><span>Text Feedback</span><strong>45</strong><em>tagged: 145</em></div></section>
-  <section class="side-cards"><div class="region-card us"><h3>US</h3><div class="score-row"><span>Feedback</span><strong>401</strong></div><div class="score-row"><span>Users</span><strong>224</strong></div><div class="score-row"><span>Avg rating</span><strong>4.35</strong></div><div class="score-row"><span>5-star rate</span><strong>79.1%</strong></div><div class="progress"><div style="width:79.1%"></div></div><p>317 five-star ratings · 21 text comments</p></div><div class="region-card nonus"><h3>NonUS</h3><div class="score-row"><span>Feedback</span><strong>199</strong></div><div class="score-row"><span>Users</span><strong>133</strong></div><div class="score-row"><span>Avg rating</span><strong>3.69</strong></div><div class="score-row"><span>5-star rate</span><strong>58.8%</strong></div><div class="progress"><div style="width:58.8%"></div></div><p>117 five-star ratings · 24 text comments</p></div></section>
-  <section class="panel"><div class="panel-head"><div><h2>Grade-Level Rating Comparison</h2><p>按年级比较 US 与 NonUS 的反馈量、平均评分和 5 星数量。</p></div><div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div></div><div class="table-scroll"><table class="compare-table"><thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead><tbody>
-        <tr>
-          <td class="dim-name">university</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:80.4%"></div></div><div class="cell-meta"><b>181</b> feedback · avg 4.51 · 5★ 153</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:19.6%"></div></div><div class="cell-meta"><b>44</b> feedback · avg 3.25 · 5★ 22</div></td>
-          <td class="delta pos">+1.26</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">communityCollege</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:46.7%"></div></div><div class="cell-meta"><b>105</b> feedback · avg 4.72 · 5★ 92</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:3.6%"></div></div><div class="cell-meta"><b>8</b> feedback · avg 3.62 · 5★ 4</div></td>
-          <td class="delta pos">+1.10</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">highSchool</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:18.2%"></div></div><div class="cell-meta"><b>41</b> feedback · avg 3.54 · 5★ 23</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:28.0%"></div></div><div class="cell-meta"><b>63</b> feedback · avg 4.05 · 5★ 45</div></td>
-          <td class="delta neg">-0.51</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">Unknown</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:13.3%"></div></div><div class="cell-meta"><b>30</b> feedback · avg 4.07 · 5★ 22</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:12.0%"></div></div><div class="cell-meta"><b>27</b> feedback · avg 4.07 · 5★ 18</div></td>
-          <td class="delta neg">-0.01</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">middleSchool</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:11.1%"></div></div><div class="cell-meta"><b>25</b> feedback · avg 3.44 · 5★ 13</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:13.8%"></div></div><div class="cell-meta"><b>31</b> feedback · avg 3.26 · 5★ 15</div></td>
-          <td class="delta pos">+0.18</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">others</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:8.0%"></div></div><div class="cell-meta"><b>18</b> feedback · avg 4.06 · 5★ 13</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:10.7%"></div></div><div class="cell-meta"><b>24</b> feedback · avg 3.58 · 5★ 11</div></td>
-          <td class="delta pos">+0.47</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">primaryMiddleSchool</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.9%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div></td>
-          <td class="delta ">—</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">undergraduate</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:0.4%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-          <td class="delta ">—</td>
-        </tr></tbody></table></div></section>
-  <section class="panel"><div class="panel-head"><div><h2>Channel Rating Comparison</h2><p>按渠道比较 US 与 NonUS 的反馈表现。</p></div><div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div></div><div class="table-scroll"><table class="compare-table"><thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead><tbody>
-        <tr>
-          <td class="dim-name">Organic</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:58.6%"></div></div><div class="cell-meta"><b>130</b> feedback · avg 4.17 · 5★ 95</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:41.4%"></div></div><div class="cell-meta"><b>92</b> feedback · avg 3.54 · 5★ 51</div></td>
-          <td class="delta pos">+0.63</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">Google Ads Search</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:67.6%"></div></div><div class="cell-meta"><b>150</b> feedback · avg 4.49 · 5★ 125</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:15.8%"></div></div><div class="cell-meta"><b>35</b> feedback · avg 3.31 · 5★ 16</div></td>
-          <td class="delta pos">+1.18</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">Apple Search Ads</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:41.0%"></div></div><div class="cell-meta"><b>91</b> feedback · avg 4.38 · 5★ 73</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:17.1%"></div></div><div class="cell-meta"><b>38</b> feedback · avg 4.24 · 5★ 29</div></td>
-          <td class="delta pos">+0.15</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">Unknown</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:1.8%"></div></div><div class="cell-meta"><b>4</b> feedback · avg 4.00 · 5★ 3</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:9.9%"></div></div><div class="cell-meta"><b>22</b> feedback · avg 3.77 · 5★ 13</div></td>
-          <td class="delta pos">+0.23</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">Google-W2A-DTS-2023-09-06</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:10.4%"></div></div><div class="cell-meta"><b>23</b> feedback · avg 4.39 · 5★ 19</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.5%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 4.00 · 5★ 0</div></td>
-          <td class="delta pos">+0.39</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">Facebook Installs</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:3.6%"></div></div><div class="cell-meta"><b>8</b> feedback · avg 5.00 · 5★ 8</div></td>
-          <td class="delta ">—</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">web to app_solve times_0827</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:0.9%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 3.00 · 5★ 1</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.9%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 1.50 · 5★ 0</div></td>
-          <td class="delta pos">+1.50</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">firebase_referral-finals</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.5%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div></td>
-          <td class="delta ">—</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">Unattributed</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:0.5%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-          <td class="delta ">—</td>
-        </tr></tbody></table></div></section>
-  <section class="panel"><div class="panel-head"><div><h2>Subject Rating Comparison</h2><p>按反馈前最近一次 Solve_Success.subject 补充的学科比较。</p></div><div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div></div><div class="table-scroll"><table class="compare-table"><thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead><tbody>
-        <tr>
-          <td class="dim-name">algebra</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:62.8%"></div></div><div class="cell-meta"><b>98</b> feedback · avg 4.19 · 5★ 72</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:37.2%"></div></div><div class="cell-meta"><b>58</b> feedback · avg 3.72 · 5★ 36</div></td>
-          <td class="delta pos">+0.47</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">Unknown</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:21.8%"></div></div><div class="cell-meta"><b>34</b> feedback · avg 3.50 · 5★ 18</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:40.4%"></div></div><div class="cell-meta"><b>63</b> feedback · avg 3.68 · 5★ 38</div></td>
-          <td class="delta neg">-0.18</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">biological sciences</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:37.8%"></div></div><div class="cell-meta"><b>59</b> feedback · avg 4.85 · 5★ 56</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:1.9%"></div></div><div class="cell-meta"><b>3</b> feedback · avg 4.00 · 5★ 2</div></td>
-          <td class="delta pos">+0.85</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">chemistry</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:37.8%"></div></div><div class="cell-meta"><b>59</b> feedback · avg 4.49 · 5★ 48</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-          <td class="delta ">—</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">calculus</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:18.6%"></div></div><div class="cell-meta"><b>29</b> feedback · avg 4.48 · 5★ 24</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:9.6%"></div></div><div class="cell-meta"><b>15</b> feedback · avg 3.07 · 5★ 5</div></td>
-          <td class="delta pos">+1.42</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">geometry</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:15.4%"></div></div><div class="cell-meta"><b>24</b> feedback · avg 4.33 · 5★ 20</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:12.2%"></div></div><div class="cell-meta"><b>19</b> feedback · avg 3.58 · 5★ 12</div></td>
-          <td class="delta pos">+0.75</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">probability &amp; statistics</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:14.7%"></div></div><div class="cell-meta"><b>23</b> feedback · avg 4.09 · 5★ 16</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:6.4%"></div></div><div class="cell-meta"><b>10</b> feedback · avg 4.20 · 5★ 8</div></td>
-          <td class="delta neg">-0.11</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">physics</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:15.4%"></div></div><div class="cell-meta"><b>24</b> feedback · avg 4.92 · 5★ 23</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:3.2%"></div></div><div class="cell-meta"><b>5</b> feedback · avg 3.80 · 5★ 2</div></td>
-          <td class="delta pos">+1.12</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">health sciences &amp; professions</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:8.3%"></div></div><div class="cell-meta"><b>13</b> feedback · avg 4.69 · 5★ 12</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:1.3%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 4.00 · 5★ 1</div></td>
-          <td class="delta pos">+0.69</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">others</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:5.8%"></div></div><div class="cell-meta"><b>9</b> feedback · avg 4.11 · 5★ 7</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-          <td class="delta ">—</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">engineering</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:2.6%"></div></div><div class="cell-meta"><b>4</b> feedback · avg 5.00 · 5★ 4</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:3.2%"></div></div><div class="cell-meta"><b>5</b> feedback · avg 3.60 · 5★ 2</div></td>
-          <td class="delta pos">+1.40</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">trigonometry</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:3.8%"></div></div><div class="cell-meta"><b>6</b> feedback · avg 3.67 · 5★ 4</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.6%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
-          <td class="delta neg">-1.33</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">advanced math</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:0.6%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:3.2%"></div></div><div class="cell-meta"><b>5</b> feedback · avg 3.60 · 5★ 1</div></td>
-          <td class="delta pos">+1.40</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">financial mathematics</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:1.3%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 1.00 · 5★ 0</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:2.6%"></div></div><div class="cell-meta"><b>4</b> feedback · avg 3.25 · 5★ 2</div></td>
-          <td class="delta neg">-2.25</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">psychology</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:1.9%"></div></div><div class="cell-meta"><b>3</b> feedback · avg 5.00 · 5★ 3</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-          <td class="delta ">—</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">computer science</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:0.6%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:1.3%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div></td>
-          <td class="delta neg">-4.00</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">economics</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:1.9%"></div></div><div class="cell-meta"><b>3</b> feedback · avg 4.33 · 5★ 2</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-          <td class="delta ">—</td>
-        </tr>
-
-        <tr>
-          <td class="dim-name">business</td>
-          <td><div class="bar-wrap"><div class="bar us" style="width:0.6%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
-          <td><div class="bar-wrap"><div class="bar nonus" style="width:1.3%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 3.00 · 5★ 1</div></td>
-          <td class="delta pos">+2.00</td>
-        </tr></tbody></table></div></section>
-  <section class="panel compact"><div class="panel-head"><div><h2>Feedback Tags</h2><p>标签反馈集中在低分问题；Unknown 代表无标签的评分反馈。</p></div></div><div class="chip-grid"><div class="chip"><span>Unknown</span><b>459</b><em>avg 4.85</em></div><div class="chip"><span>Hard to follow</span><b>42</b><em>avg 1.48</em></div><div class="chip"><span>Slow response</span><b>17</b><em>avg 1.41</em></div><div class="chip"><span>Got stuck</span><b>16</b><em>avg 2.38</em></div><div class="chip"><span>Misunderstands me</span><b>15</b><em>avg 1.93</em></div><div class="chip"><span>Wrong explanation</span><b>15</b><em>avg 1.73</em></div><div class="chip"><span>Graph errors</span><b>14</b><em>avg 2.14</em></div><div class="chip"><span>Audio issues</span><b>12</b><em>avg 2.50</em></div><div class="chip"><span>Too fast</span><b>8</b><em>avg 2.12</em></div><div class="chip"><span>Messy whiteboard</span><b>6</b><em>avg 2.50</em></div></div></section>
+<tr><td>biological sciences</td><td>363</td><td>22</td><td>16.5</td></tr>
+<tr><td>health sciences &amp; professions</td><td>674</td><td>20</td><td>33.7</td></tr>
+<tr><td>calculus</td><td>167</td><td>19</td><td>8.8</td></tr>
+<tr><td>financial mathematics</td><td>221</td><td>14</td><td>15.8</td></tr></tbody></table><div class="subject-pie-card"><div class="subject-pie" style="background:conic-gradient(#2563eb 0.0% 27.8%, #f97316 27.8% 38.2%, #16a34a 38.2% 48.6%, #8b5cf6 48.6% 59.0%, #06b6d4 59.0% 66.8%, #f59e0b 66.8% 73.5%, #ec4899 73.5% 79.2%, #64748b 79.2% 84.4%, #84cc16 84.4% 100.0%)"><span class="subject-pie-label" style="left:80.7%; top:24.3%">Algebra <b>27.8%</b></span><span class="subject-pie-label" style="left:85.1%; top:69.2%">Chem <b>10.4%</b></span><span class="subject-pie-label" style="left:66.2%; top:86.6%">Stats <b>10.4%</b></span><span class="subject-pie-label" style="left:40.6%; top:88.9%">Others <b>10.4%</b></span><span class="subject-pie-label" style="left:21.1%; top:77.6%">Geometry <b>7.8%</b></span><span class="subject-pie-label" style="left:11.9%; top:62.0%">Physics <b>6.8%</b></span><span class="subject-pie-label" style="left:10.1%; top:46.6%">Bio <b>5.7%</b></span><span class="subject-pie-label" style="left:13.6%; top:33.4%">Health <b>5.2%</b></span><span class="subject-pie-label" style="left:31.2%; top:14.7%">Other subjects <b>15.6%</b></span><div class="donut-center"><b>82.6%</b><span>STEM + medical</span></div></div><div class="subject-note">主要使用人群集中在数理化与医学相关场景：algebra、physics、chemistry、probability & statistics、calculus、biological sciences、health sciences 等合计约 82.6%。</div></div></div></section>
+  <div class="phase-divider"><h2>Feedback Quality Analysis</h2><p>以下为最新反馈分析：样本是 2026-06-19 至 2026-06-29 使用过 Tutor 的新老用户合并反馈，已排除测试账号。</p></div>
+  <section class="hero"><div><div class="eyebrow">Used Tutor Feedback · New + Old Users</div><h1>US vs NonUS Feedback Quality</h1><p>2026-06-19 至 2026-06-29，修正口径：年级用 <code>dim.user_grade</code> 优先，渠道用 GA <code>event_params.channel</code>，学科用反馈前最近一次 <code>Solve_Success.subject</code>。已排除测试账号。</p></div><div class="hero-card"><div class="big-number">73.5%</div><div class="small-label">整体 5 星好评率</div><div class="mini-note">436 / 593 feedback</div></div></section>
+  <section class="metric-grid"><div class="metric"><span>Total Feedback</span><strong>593</strong><em>360 users</em></div><div class="metric"><span>Avg Rating</span><strong>4.16</strong><em>1-5 scale</em></div><div class="metric blue"><span>US 5-Star</span><strong>79.1%</strong><em>317 / 401</em></div><div class="metric orange"><span>NonUS 5-Star</span><strong>61.7%</strong><em>116 / 188</em></div><div class="metric red"><span>5-Star Gap</span><strong>17.4pp</strong><em>US - NonUS</em></div><div class="metric"><span>Text Feedback</span><strong>45</strong><em>tagged: 135</em></div></section>
+  <section class="side-cards"><div class="region-card us"><h3>US</h3><div class="score-row"><span>Feedback</span><strong>401</strong></div><div class="score-row"><span>Users</span><strong>224</strong></div><div class="score-row"><span>Avg rating</span><strong>4.35</strong></div><div class="score-row"><span>5-star rate</span><strong>79.1%</strong></div><div class="progress"><div style="width:79.1%"></div></div><p>317 five-star ratings · 21 text comments</p></div><div class="region-card nonus"><h3>NonUS</h3><div class="score-row"><span>Feedback</span><strong>188</strong></div><div class="score-row"><span>Users</span><strong>132</strong></div><div class="score-row"><span>Avg rating</span><strong>3.74</strong></div><div class="score-row"><span>5-star rate</span><strong>61.7%</strong></div><div class="progress"><div style="width:61.7%"></div></div><p>116 five-star ratings · 24 text comments</p></div></section>
+  <section class="panel"><div class="panel-head"><div><h2>Grade-Level Rating Comparison</h2><p>按年级比较 US 与 NonUS 的反馈量、平均评分和 5 星数量。</p></div><div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div></div><div class="table-scroll"><table class="compare-table"><thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead><tbody><tr><td class="dim-name">university</td><td><div class="bar-wrap"><div class="bar us" style="width:80.4%"></div></div><div class="cell-meta"><b>181</b> feedback · avg 4.51 · 5★ 153</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:19.6%"></div></div><div class="cell-meta"><b>44</b> feedback · avg 3.25 · 5★ 22</div></td><td class="delta pos">+1.26</td></tr>
+<tr><td class="dim-name">communityCollege</td><td><div class="bar-wrap"><div class="bar us" style="width:46.7%"></div></div><div class="cell-meta"><b>105</b> feedback · avg 4.72 · 5★ 92</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:3.6%"></div></div><div class="cell-meta"><b>8</b> feedback · avg 3.62 · 5★ 4</div></td><td class="delta pos">+1.10</td></tr>
+<tr><td class="dim-name">highSchool</td><td><div class="bar-wrap"><div class="bar us" style="width:18.2%"></div></div><div class="cell-meta"><b>41</b> feedback · avg 3.54 · 5★ 23</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:28.0%"></div></div><div class="cell-meta"><b>63</b> feedback · avg 4.05 · 5★ 45</div></td><td class="delta neg">-0.51</td></tr>
+<tr><td class="dim-name">Unknown</td><td><div class="bar-wrap"><div class="bar us" style="width:13.3%"></div></div><div class="cell-meta"><b>30</b> feedback · avg 4.07 · 5★ 22</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:12.0%"></div></div><div class="cell-meta"><b>27</b> feedback · avg 4.07 · 5★ 18</div></td><td class="delta neg">-0.01</td></tr>
+<tr><td class="dim-name">middleSchool</td><td><div class="bar-wrap"><div class="bar us" style="width:11.1%"></div></div><div class="cell-meta"><b>25</b> feedback · avg 3.44 · 5★ 13</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:13.8%"></div></div><div class="cell-meta"><b>31</b> feedback · avg 3.26 · 5★ 15</div></td><td class="delta pos">+0.18</td></tr>
+<tr><td class="dim-name">others</td><td><div class="bar-wrap"><div class="bar us" style="width:8.0%"></div></div><div class="cell-meta"><b>18</b> feedback · avg 4.06 · 5★ 13</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:5.8%"></div></div><div class="cell-meta"><b>13</b> feedback · avg 4.31 · 5★ 10</div></td><td class="delta neg">-0.25</td></tr>
+<tr><td class="dim-name">primaryMiddleSchool</td><td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.9%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div></td><td class="delta ">—</td></tr>
+<tr><td class="dim-name">undergraduate</td><td><div class="bar-wrap"><div class="bar us" style="width:0.4%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td><td class="delta ">—</td></tr></tbody></table></div></section>
+  <section class="panel"><div class="panel-head"><div><h2>Channel Rating Comparison</h2><p>按渠道比较 US 与 NonUS 的反馈表现。</p></div><div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div></div><div class="table-scroll"><table class="compare-table"><thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead><tbody><tr><td class="dim-name">Organic</td><td><div class="bar-wrap"><div class="bar us" style="width:61.6%"></div></div><div class="cell-meta"><b>130</b> feedback · avg 4.17 · 5★ 95</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:38.4%"></div></div><div class="cell-meta"><b>81</b> feedback · avg 3.65 · 5★ 50</div></td><td class="delta pos">+0.51</td></tr>
+<tr><td class="dim-name">Google Ads Search</td><td><div class="bar-wrap"><div class="bar us" style="width:71.1%"></div></div><div class="cell-meta"><b>150</b> feedback · avg 4.49 · 5★ 125</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:16.6%"></div></div><div class="cell-meta"><b>35</b> feedback · avg 3.31 · 5★ 16</div></td><td class="delta pos">+1.18</td></tr>
+<tr><td class="dim-name">Apple Search Ads</td><td><div class="bar-wrap"><div class="bar us" style="width:43.1%"></div></div><div class="cell-meta"><b>91</b> feedback · avg 4.38 · 5★ 73</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:18.0%"></div></div><div class="cell-meta"><b>38</b> feedback · avg 4.24 · 5★ 29</div></td><td class="delta pos">+0.15</td></tr>
+<tr><td class="dim-name">Unknown</td><td><div class="bar-wrap"><div class="bar us" style="width:1.9%"></div></div><div class="cell-meta"><b>4</b> feedback · avg 4.00 · 5★ 3</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:10.4%"></div></div><div class="cell-meta"><b>22</b> feedback · avg 3.77 · 5★ 13</div></td><td class="delta pos">+0.23</td></tr>
+<tr><td class="dim-name">Google-W2A-DTS-2023-09-06</td><td><div class="bar-wrap"><div class="bar us" style="width:10.9%"></div></div><div class="cell-meta"><b>23</b> feedback · avg 4.39 · 5★ 19</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.5%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 4.00 · 5★ 0</div></td><td class="delta pos">+0.39</td></tr>
+<tr><td class="dim-name">Facebook Installs</td><td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:3.8%"></div></div><div class="cell-meta"><b>8</b> feedback · avg 5.00 · 5★ 8</div></td><td class="delta ">—</td></tr>
+<tr><td class="dim-name">web to app_solve times_0827</td><td><div class="bar-wrap"><div class="bar us" style="width:0.9%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 3.00 · 5★ 1</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.9%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 1.50 · 5★ 0</div></td><td class="delta pos">+1.50</td></tr>
+<tr><td class="dim-name">firebase_referral-finals</td><td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.5%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div></td><td class="delta ">—</td></tr>
+<tr><td class="dim-name">Unattributed</td><td><div class="bar-wrap"><div class="bar us" style="width:0.5%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td><td class="delta ">—</td></tr></tbody></table></div></section>
+  <section class="panel"><div class="panel-head"><div><h2>Subject Rating Comparison</h2><p>按反馈前最近一次 Solve_Success.subject 补充的学科比较。</p></div><div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div></div><div class="table-scroll"><table class="compare-table"><thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead><tbody><tr><td class="dim-name">algebra</td><td><div class="bar-wrap"><div class="bar us" style="width:64.5%"></div></div><div class="cell-meta"><b>98</b> feedback · avg 4.19 · 5★ 72</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:35.5%"></div></div><div class="cell-meta"><b>54</b> feedback · avg 3.74 · 5★ 35</div></td><td class="delta pos">+0.45</td></tr>
+<tr><td class="dim-name">Unknown</td><td><div class="bar-wrap"><div class="bar us" style="width:22.4%"></div></div><div class="cell-meta"><b>34</b> feedback · avg 3.50 · 5★ 18</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:41.4%"></div></div><div class="cell-meta"><b>63</b> feedback · avg 3.68 · 5★ 38</div></td><td class="delta neg">-0.18</td></tr>
+<tr><td class="dim-name">biological sciences</td><td><div class="bar-wrap"><div class="bar us" style="width:38.8%"></div></div><div class="cell-meta"><b>59</b> feedback · avg 4.85 · 5★ 56</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:2.0%"></div></div><div class="cell-meta"><b>3</b> feedback · avg 4.00 · 5★ 2</div></td><td class="delta pos">+0.85</td></tr>
+<tr><td class="dim-name">chemistry</td><td><div class="bar-wrap"><div class="bar us" style="width:38.8%"></div></div><div class="cell-meta"><b>59</b> feedback · avg 4.49 · 5★ 48</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td><td class="delta ">—</td></tr>
+<tr><td class="dim-name">geometry</td><td><div class="bar-wrap"><div class="bar us" style="width:15.8%"></div></div><div class="cell-meta"><b>24</b> feedback · avg 4.33 · 5★ 20</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:12.5%"></div></div><div class="cell-meta"><b>19</b> feedback · avg 3.58 · 5★ 12</div></td><td class="delta pos">+0.75</td></tr>
+<tr><td class="dim-name">calculus</td><td><div class="bar-wrap"><div class="bar us" style="width:19.1%"></div></div><div class="cell-meta"><b>29</b> feedback · avg 4.48 · 5★ 24</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:5.3%"></div></div><div class="cell-meta"><b>8</b> feedback · avg 3.75 · 5★ 5</div></td><td class="delta pos">+0.73</td></tr>
+<tr><td class="dim-name">probability &amp; statistics</td><td><div class="bar-wrap"><div class="bar us" style="width:15.1%"></div></div><div class="cell-meta"><b>23</b> feedback · avg 4.09 · 5★ 16</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:6.6%"></div></div><div class="cell-meta"><b>10</b> feedback · avg 4.20 · 5★ 8</div></td><td class="delta neg">-0.11</td></tr>
+<tr><td class="dim-name">physics</td><td><div class="bar-wrap"><div class="bar us" style="width:15.8%"></div></div><div class="cell-meta"><b>24</b> feedback · avg 4.92 · 5★ 23</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:3.3%"></div></div><div class="cell-meta"><b>5</b> feedback · avg 3.80 · 5★ 2</div></td><td class="delta pos">+1.12</td></tr>
+<tr><td class="dim-name">health sciences &amp; professions</td><td><div class="bar-wrap"><div class="bar us" style="width:8.6%"></div></div><div class="cell-meta"><b>13</b> feedback · avg 4.69 · 5★ 12</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:1.3%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 4.00 · 5★ 1</div></td><td class="delta pos">+0.69</td></tr>
+<tr><td class="dim-name">others</td><td><div class="bar-wrap"><div class="bar us" style="width:5.9%"></div></div><div class="cell-meta"><b>9</b> feedback · avg 4.11 · 5★ 7</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td><td class="delta ">—</td></tr>
+<tr><td class="dim-name">engineering</td><td><div class="bar-wrap"><div class="bar us" style="width:2.6%"></div></div><div class="cell-meta"><b>4</b> feedback · avg 5.00 · 5★ 4</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:3.3%"></div></div><div class="cell-meta"><b>5</b> feedback · avg 3.60 · 5★ 2</div></td><td class="delta pos">+1.40</td></tr>
+<tr><td class="dim-name">trigonometry</td><td><div class="bar-wrap"><div class="bar us" style="width:3.9%"></div></div><div class="cell-meta"><b>6</b> feedback · avg 3.67 · 5★ 4</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.7%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td><td class="delta neg">-1.33</td></tr>
+<tr><td class="dim-name">advanced math</td><td><div class="bar-wrap"><div class="bar us" style="width:0.7%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:3.3%"></div></div><div class="cell-meta"><b>5</b> feedback · avg 3.60 · 5★ 1</div></td><td class="delta pos">+1.40</td></tr>
+<tr><td class="dim-name">financial mathematics</td><td><div class="bar-wrap"><div class="bar us" style="width:1.3%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 1.00 · 5★ 0</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:2.6%"></div></div><div class="cell-meta"><b>4</b> feedback · avg 3.25 · 5★ 2</div></td><td class="delta neg">-2.25</td></tr>
+<tr><td class="dim-name">psychology</td><td><div class="bar-wrap"><div class="bar us" style="width:2.0%"></div></div><div class="cell-meta"><b>3</b> feedback · avg 5.00 · 5★ 3</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td><td class="delta ">—</td></tr>
+<tr><td class="dim-name">computer science</td><td><div class="bar-wrap"><div class="bar us" style="width:0.7%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:1.3%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div></td><td class="delta neg">-4.00</td></tr>
+<tr><td class="dim-name">economics</td><td><div class="bar-wrap"><div class="bar us" style="width:2.0%"></div></div><div class="cell-meta"><b>3</b> feedback · avg 4.33 · 5★ 2</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div><div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td><td class="delta ">—</td></tr>
+<tr><td class="dim-name">business</td><td><div class="bar-wrap"><div class="bar us" style="width:0.7%"></div></div><div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td><td><div class="bar-wrap"><div class="bar nonus" style="width:1.3%"></div></div><div class="cell-meta"><b>2</b> feedback · avg 3.00 · 5★ 1</div></td><td class="delta pos">+2.00</td></tr></tbody></table></div></section>
+  <section class="panel compact"><div class="panel-head"><div><h2>Feedback Tags</h2><p>标签反馈集中在低分问题；Unknown 代表无标签的评分反馈。</p></div></div><div class="chip-grid"><div class="chip"><span>Unknown</span><b>458</b><em>avg 4.84</em></div><div class="chip"><span>Hard to follow</span><b>42</b><em>avg 1.48</em></div><div class="chip"><span>Got stuck</span><b>16</b><em>avg 2.38</em></div><div class="chip"><span>Misunderstands me</span><b>15</b><em>avg 1.93</em></div><div class="chip"><span>Slow response</span><b>15</b><em>avg 1.33</em></div><div class="chip"><span>Wrong explanation</span><b>15</b><em>avg 1.73</em></div><div class="chip"><span>Graph errors</span><b>14</b><em>avg 2.14</em></div><div class="chip"><span>Too fast</span><b>7</b><em>avg 2.00</em></div><div class="chip"><span>Messy whiteboard</span><b>6</b><em>avg 2.50</em></div><div class="chip"><span>Audio issues</span><b>5</b><em>avg 2.40</em></div></div></section>
   <section class="panel"><div class="panel-head"><div><h2>5-Star Text Feedback</h2><p>用户主动留下文本的 5 星反馈，包含所有语言原文；右上角展示具体国家、年级与学科。</p></div></div><h3 class="subhead">5 星带文本评价 (13)</h3><div class="quote-grid"><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>Maldives · highSchool · geometry</em></div><p>“The teacher was really helpful and I understood what she said!”</p><footer>2026-06-29T02:58:37 · Organic</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>United Kingdom · highSchool · Unknown</em></div><p>“Answered my questions well and I rlly like how they give visual examples”</p><footer>2026-06-28T23:47:46 · Apple Search Ads</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>United Kingdom · highSchool · Unknown</em></div><p>“I learnt it so quickly and easily”</p><footer>2026-06-28T23:34:49 · Apple Search Ads</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>United States · university · Unknown</em></div><p>“The way”</p><footer>2026-06-28T08:12:45 · Google-W2A-DTS-2023-09-06</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>Canada · university · algebra</em></div><p>“Very detailed explanation with pictures/ diagrams with multiple explanations on how to solve the problem and to verify your answer”</p><footer>2026-06-28T07:57:59 · Google Ads Search</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>United States · others · algebra</em></div><p>“I like how the ai explains everything. But is there a dark mode for this?”</p><footer>2026-06-28T04:34:58 · Organic</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>Türkiye · middleSchool · geometry</em></div><p>“Ai soruyu mükemmel anlattı bir insan anlatmış gibiydi türkçe sesinde problem olsada beğendim müthiş!”</p><div class="quote-translation">中文翻译：AI 把这道题讲得非常好，就像真人在讲解一样；虽然土耳其语语音有点问题，但我很喜欢，太棒了！</div><footer>2026-06-27T19:34:35 · Google Ads Search</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>United States · communityCollege · probability &amp; statistics</em></div><p>“Clear explanation”</p><footer>2026-06-27T04:07:31 · Google Ads Search</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · algebra</em></div><p>“The explanations were really simple and straightforward.”</p><footer>2026-06-27T02:40:02 · Organic</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>South Korea · Unknown · algebra</em></div><p>“질문에 대한 완벽한 답변, 깔끔한 설명”</p><div class="quote-translation">中文翻译：对问题的回答很完美，解释也很清晰简洁。</div><footer>2026-06-23T00:10:07 · Unknown</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>United Arab Emirates · highSchool · geometry</em></div><p>“رائع”</p><div class="quote-translation">中文翻译：很棒。</div><footer>2026-06-21T17:55:25 · Organic</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>United States · university · physics</em></div><p>“This is cool feature”</p><footer>2026-06-21T12:03:30 · Google-W2A-DTS-2023-09-06</footer></article><article class="quote-card "><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · algebra</em></div><p>“Made sure it made sense”</p><footer>2026-06-21T02:08:52 · Organic</footer></article></div></section>
-  <div class="footer">Generated from corrected AI Tutor feedback dataset · 604 feedback · 361 users · Updated through 2026-06-29</div>
+  <div class="footer">Generated from corrected AI Tutor feedback dataset · 593 feedback · 360 users · Updated through 2026-06-29 · Test account excluded</div>
 </div>
 </body>
 </html>
