@@ -838,17 +838,32 @@ td { padding:12px; border-bottom:1px solid #edf2f7; vertical-align:middle; }
 <tr><td><b>用户级首个动作</b></td><td>400 曝光用户 UV</td><td>266（66.5%）</td><td>80（20.0%）</td><td>38（9.5%）</td><td>16（4.0%）</td></tr>
 <tr><td><b>曝光级首个动作</b></td><td>690 次卡片曝光</td><td>511（74.1%）</td><td>117（17.0%）</td><td>43（6.2%）</td><td>19（2.8%）</td></tr>
 <tr><td><b>点击决策次数</b></td><td>628 次点击</td><td>511（81.4%）</td><td>117（18.6%）</td><td>-</td><td>-</td></tr>
-</tbody></table></div></section><section class="panel"><div class="panel-head"><div><h2>实验 444：强交互版本补充分析</h2>
-<p>口径：实验 444 纯新用户，2026-07-14 至 2026-07-31（最新 mart: 20260730）；使用时长取 session 内 timing 最大 elapsed_ms；完播为 tutor_replay_show 且 trigger='completed'。</p></div></div>
-<div class="table-scroll"><table class="compact-table"><thead><tr><th>指标</th><th>对照组：第一期方案</th><th>强交互版本</th><th>变化</th><th>显著性</th></tr></thead><tbody>
-<tr><td><b>平均使用时长</b></td><td>185.1s</td><td>130.7s</td><td>-54.4s</td><td>-</td></tr>
-<tr><td><b>session 级完播率</b></td><td>348 / 2,942 = 11.8%</td><td>408 / 2,327 = 17.5%</td><td>+5.70pp</td><td>p = 0.000</td></tr>
-<tr><td><b>用户级至少完播一次</b></td><td>178 / 1,250 = 14.2%</td><td>223 / 1,220 = 18.3%</td><td>+4.04pp</td><td>p = 0.007</td></tr>
-<tr><td><b>平均评分</b></td><td>4.38</td><td>4.35</td><td>-0.03</td><td>-</td></tr>
-<tr><td><b>五星率</b></td><td>519 / 662 = 78.4%</td><td>437 / 551 = 79.3%</td><td>+0.91pp</td><td>p = 0.699</td></tr>
-<tr><td><b>4-5星率</b></td><td>82.3%</td><td>83.1%</td><td>+0.80pp</td><td>p = 0.715</td></tr>
-<tr><td><b>负反馈率（1-2星）</b></td><td>12.8%</td><td>14.3%</td><td>+1.50pp</td><td>p = 0.448</td></tr>
-</tbody></table></div></section><section class='panel choice-profile-panel' id='specific-point-profile'><div class='panel-head choice-profile-head'><div><div class='choice-profile-kicker'>Explain Choice · Audience Profile</div><h2>Specific Point 用户画像对比</h2><p>按每位用户首次看到讲解方式卡片后 30 分钟内的首个动作互斥归类，对比 specific_point 与 step_by_step 用户。数据范围为 2026-06-19 至 2026-07-31，已统一排除内部和指定测试账号。</p></div><div class='choice-profile-legend'><span><i class='specific'></i>Specific Point</span><span><i class='step'></i>Step by Step</span></div></div>
+</tbody></table></div></section><section class="panel" id="experiment-444"><div class="panel-head"><div><h2>实验 444：强交互版本补充分析</h2>
+<p>修正口径：实验 444 纯新用户；cohort 使用最新 mart 20260730，事件更新至 2026-07-31。所有行为必须发生在用户 first_open_date 当日或之后；只纳入有 tutor_session_start 的 session，反馈也必须匹配同一已开始 session。</p></div></div>
+<p class="subject-note">审计修正：旧版仅按 user_pseudo_id 连接，误纳入实验入组前事件。本版已重新计算。最终 cohort 36,783 人，其中美国 23,865、非美 11,937、国家未知 981；国家未知不并入非美。</p>
+<div class="section-kicker">Overall Experiment Readout</div>
+<div class="table-scroll"><table class="compact-table" style="min-width:760px"><thead><tr><th>指标</th><th>对照组：第一期方案</th><th>强交互版本</th><th>变化</th><th>统计检查</th></tr></thead><tbody>
+<tr><td><b>实验 cohort</b></td><td>18,507 用户</td><td>18,276 用户</td><td>-231</td><td>完整排除测试账号</td></tr>
+<tr><td><b>Tutor 使用率</b></td><td>791 / 18,507 = 4.27%</td><td>833 / 18,276 = 4.56%</td><td>+0.28pp</td><td>p = 0.185</td></tr>
+<tr><td><b>全 cohort 完播用户率（ITT）</b></td><td>129 / 18,507 = 0.697%</td><td>183 / 18,276 = 1.001%</td><td>+0.304pp</td><td>p = 0.0015</td></tr>
+<tr><td><b>有效 session</b></td><td>1,714</td><td>1,373</td><td>-341</td><td>均有 tutor_session_start</td></tr>
+<tr><td><b>平均使用时长</b></td><td>193.4s</td><td>117.6s</td><td>-75.8s</td><td>timing 最大 elapsed_ms</td></tr>
+<tr><td><b>session 级完播率</b></td><td>226 / 1,714 = 13.19%</td><td>324 / 1,373 = 23.60%</td><td>+10.41pp</td><td>p &lt; 0.001</td></tr>
+<tr><td><b>Tutor 用户至少完播一次</b></td><td>129 / 791 = 16.31%</td><td>183 / 833 = 21.97%</td><td>+5.66pp</td><td>p = 0.0038</td></tr>
+<tr><td><b>平均评分</b></td><td>4.58（390 次）</td><td>4.40（321 次）</td><td>-0.18</td><td>仅已开始 session</td></tr>
+<tr><td><b>五星率</b></td><td>327 / 390 = 83.85%</td><td>260 / 321 = 81.00%</td><td>-2.85pp</td><td>p = 0.319</td></tr>
+<tr><td><b>4-5 星率</b></td><td>345 / 390 = 88.46%</td><td>270 / 321 = 84.11%</td><td>-4.35pp</td><td>p = 0.091</td></tr>
+<tr><td><b>负反馈率（1-2 星）</b></td><td>31 / 390 = 7.95%</td><td>43 / 321 = 13.40%</td><td>+5.45pp</td><td>p = 0.018 · 风险信号</td></tr>
+</tbody></table></div>
+<div class="section-kicker">United States vs Non-US</div>
+<div class="table-scroll"><table class="compact-table" style="min-width:1280px"><thead><tr><th>地区</th><th>版本</th><th>Cohort</th><th>Tutor 用户 / 使用率</th><th>Session</th><th>平均 / P50 时长</th><th>Session 完播率</th><th>Tutor 用户完播率</th><th>ITT 完播用户率</th><th>评分 / 五星 / 负反馈</th></tr></thead><tbody>
+<tr><td rowspan="2"><b>美国</b></td><td>第一期方案</td><td>11,978</td><td>524 / 4.37%</td><td>994</td><td>187.2s / 65.2s</td><td>148 / 994 = 14.89%</td><td>81 / 524 = 15.46%</td><td>81 / 11,978 = 0.676%</td><td>4.54 / 82.32% / 9.09%（198 次）</td></tr>
+<tr><td><b>强交互版本</b></td><td>11,887</td><td>547 / 4.60%</td><td>924</td><td>119.3s / 38.7s</td><td><b>228 / 924 = 24.68%</b></td><td><b>114 / 547 = 20.84%</b></td><td><b>114 / 11,887 = 0.959%</b></td><td>4.41 / 81.08% / 13.06%（222 次）</td></tr>
+<tr><td rowspan="2"><b>非美</b></td><td>第一期方案</td><td>6,017</td><td>256 / 4.25%</td><td>698</td><td>203.1s / 73.0s</td><td>75 / 698 = 10.74%</td><td>45 / 256 = 17.58%</td><td>45 / 6,017 = 0.748%</td><td>4.63 / 85.41% / 6.49%（185 次）</td></tr>
+<tr><td><b>强交互版本</b></td><td>5,920</td><td>273 / 4.61%</td><td>432</td><td>115.8s / 38.0s</td><td><b>96 / 432 = 22.22%</b></td><td><b>69 / 273 = 25.27%</b></td><td><b>69 / 5,920 = 1.166%</b></td><td>4.41 / 81.05% / 13.68%（95 次）</td></tr>
+</tbody></table></div>
+<ul class="bullet-note"><li><b>地区一致性：</b>美国 ITT +0.283pp（p = 0.015），非美 +0.418pp（p = 0.019）；地区交互 p = 0.527，暂无证据显示两地实验效果不同。</li><li><b>实验解读：</b>强交互版本没有显著扩大 Tutor 使用率，但进入 Tutor 后的完成概率更高、时长更短，更像效率提升。</li><li><b>反馈提醒：</b>五星率没有显著变化；低分率上升属于需继续监控的事件级风险信号，同一用户可能多次评分，不作确定性因果结论。</li></ul>
+</section><section class='panel choice-profile-panel' id='specific-point-profile'><div class='panel-head choice-profile-head'><div><div class='choice-profile-kicker'>Explain Choice · Audience Profile</div><h2>Specific Point 用户画像对比</h2><p>按每位用户首次看到讲解方式卡片后 30 分钟内的首个动作互斥归类，对比 specific_point 与 step_by_step 用户。数据范围为 2026-06-19 至 2026-07-31，已统一排除内部和指定测试账号。</p></div><div class='choice-profile-legend'><span><i class='specific'></i>Specific Point</span><span><i class='step'></i>Step by Step</span></div></div>
 <div class='choice-profile-summary'><div class='choice-profile-stat primary'><span>Specific Point</span><b>80</b><em>画像分析用户</em></div><div class='choice-profile-stat'><span>Step by Step</span><b>267</b><em>对照用户</em></div><div class='choice-profile-stat'><span>最高正向差异</span><b>+6.3pp</b><em>学科 · others</em></div><div class='choice-profile-stat'><span>最高负向差异</span><b>-10.4pp</b><em>渠道 · unknown</em></div></div>
 <div class='choice-profile-grid'>
 <article class='choice-profile-card'><h3>年级</h3><p>Specific Point 字段覆盖 71 / 80（88.8%）</p><div class='choice-profile-rows'>
