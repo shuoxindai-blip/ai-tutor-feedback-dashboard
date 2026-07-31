@@ -183,6 +183,88 @@ td { padding:12px; border-bottom:1px solid #edf2f7; vertical-align:middle; }
 /* 2026-07-31 mobile overflow QA */
 .container > *, .split-panel > *, .subject-layout > *, .subject-pie-card > * { min-width:0; }
 .quote-card p, .quote-card footer, .quote-top em, .legend-name, .legend-sub { overflow-wrap:anywhere; word-break:break-word; }
+.choice-profile-panel {
+  border:1px solid #dbeafe;
+  background:linear-gradient(145deg,#ffffff 0%,#f8fbff 100%);
+  box-shadow:0 18px 44px rgba(37,99,235,.08);
+}
+.choice-profile-head { align-items:flex-start; gap:24px; }
+.choice-profile-head > div:first-child { max-width:760px; }
+.choice-profile-kicker {
+  display:inline-flex; align-items:center; gap:8px; margin-bottom:10px;
+  color:#1d4ed8; font-size:12px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+}
+.choice-profile-kicker:before {
+  content:""; width:8px; height:8px; border-radius:99px; background:#2563eb;
+  box-shadow:0 0 0 5px rgba(37,99,235,.1);
+}
+.choice-profile-summary {
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:20px 0;
+}
+.choice-profile-stat {
+  padding:16px; border:1px solid #e2e8f0; border-radius:16px; background:#fff;
+}
+.choice-profile-stat span { display:block; color:#64748b; font-size:12px; font-weight:700; }
+.choice-profile-stat b { display:block; margin-top:5px; color:#0f172a; font-size:24px; letter-spacing:-.03em; }
+.choice-profile-stat em { display:block; margin-top:4px; color:#64748b; font-size:11px; font-style:normal; }
+.choice-profile-stat.primary { border-color:#bfdbfe; background:#eff6ff; }
+.choice-profile-stat.primary b { color:#1d4ed8; }
+.choice-profile-legend {
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:10px 16px;
+  color:#475569; font-size:12px; font-weight:700;
+}
+.choice-profile-legend span { display:inline-flex; align-items:center; gap:7px; }
+.choice-profile-legend i { width:10px; height:10px; border-radius:3px; }
+.choice-profile-legend .specific { background:#2563eb; }
+.choice-profile-legend .step { background:#a78bfa; }
+.choice-profile-grid {
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px;
+}
+.choice-profile-card {
+  min-width:0; padding:18px; border:1px solid #e2e8f0; border-radius:18px; background:#fff;
+}
+.choice-profile-card.wide { grid-column:1 / -1; }
+.choice-profile-card h3 { margin:0; color:#0f172a; font-size:17px; }
+.choice-profile-card > p { margin:5px 0 16px; color:#64748b; font-size:12px; line-height:1.6; }
+.choice-profile-rows { display:grid; gap:13px; }
+.choice-profile-card.wide .choice-profile-rows {
+  grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px 24px;
+}
+.choice-profile-row { min-width:0; }
+.choice-profile-row-head {
+  display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:10px; margin-bottom:6px;
+}
+.choice-profile-label {
+  min-width:0; color:#334155; font-size:12px; font-weight:700;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.choice-profile-delta {
+  padding:2px 7px; border-radius:999px; background:#f1f5f9; color:#64748b;
+  font-size:10px; font-weight:800; white-space:nowrap;
+}
+.choice-profile-delta.up { background:#ecfdf5; color:#047857; }
+.choice-profile-delta.down { background:#fff7ed; color:#c2410c; }
+.choice-profile-bars { display:grid; gap:4px; }
+.choice-profile-bar-line {
+  display:grid; grid-template-columns:54px minmax(0,1fr) 74px; align-items:center; gap:8px;
+  color:#64748b; font-size:10px;
+}
+.choice-profile-bar-line > span:first-child { font-weight:700; }
+.choice-profile-track { height:7px; overflow:hidden; border-radius:99px; background:#eef2f7; }
+.choice-profile-fill { height:100%; min-width:2px; border-radius:inherit; }
+.choice-profile-fill.specific { background:linear-gradient(90deg,#2563eb,#60a5fa); }
+.choice-profile-fill.step { background:linear-gradient(90deg,#8b5cf6,#c4b5fd); }
+.choice-profile-value { color:#475569; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.choice-profile-note {
+  display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; margin-top:16px; padding:13px 14px;
+  border:1px solid #fde68a; border-radius:14px; background:#fffbeb; color:#78350f; font-size:12px; line-height:1.6;
+}
+.choice-profile-note strong { color:#92400e; }
+.choice-profile-takeaway {
+  margin-top:16px; padding:16px 18px; border-radius:16px; background:#0f172a; color:#e2e8f0;
+  font-size:13px; line-height:1.7;
+}
+.choice-profile-takeaway b { color:#fff; }
 @media (max-width: 640px) {
   .container { width:100%; max-width:100%; padding:24px 16px 48px; overflow:hidden; }
   .panel, .rich-card, .region-card { padding:16px; }
@@ -199,6 +281,14 @@ td { padding:12px; border-bottom:1px solid #edf2f7; vertical-align:middle; }
   .story-hero { padding:28px; }
   .story-hero h1 { font-size:32px; }
   .hero h1 { font-size:32px; }
+  .choice-profile-head { gap:14px; }
+  .choice-profile-legend { justify-content:flex-start; }
+  .choice-profile-summary { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .choice-profile-grid { grid-template-columns:minmax(0,1fr); }
+  .choice-profile-card.wide { grid-column:auto; }
+  .choice-profile-card.wide .choice-profile-rows { grid-template-columns:minmax(0,1fr); }
+  .choice-profile-bar-line { grid-template-columns:48px minmax(0,1fr) 70px; gap:6px; }
+  .choice-profile-label { white-space:normal; overflow:visible; text-overflow:clip; overflow-wrap:anywhere; }
 }
 </style>
 <link href="data:," rel="icon"/></head>
@@ -758,4 +848,44 @@ td { padding:12px; border-bottom:1px solid #edf2f7; vertical-align:middle; }
 <tr><td><b>五星率</b></td><td>519 / 662 = 78.4%</td><td>437 / 551 = 79.3%</td><td>+0.91pp</td><td>p = 0.699</td></tr>
 <tr><td><b>4-5星率</b></td><td>82.3%</td><td>83.1%</td><td>+0.80pp</td><td>p = 0.715</td></tr>
 <tr><td><b>负反馈率（1-2星）</b></td><td>12.8%</td><td>14.3%</td><td>+1.50pp</td><td>p = 0.448</td></tr>
-</tbody></table></div></section><div class="footer">Generated from BigQuery and server feedback logs · Last updated through 2026-07-31</div></div></body></html>
+</tbody></table></div></section><section class='panel choice-profile-panel' id='specific-point-profile'><div class='panel-head choice-profile-head'><div><div class='choice-profile-kicker'>Explain Choice · Audience Profile</div><h2>Specific Point 用户画像对比</h2><p>按每位用户首次看到讲解方式卡片后 30 分钟内的首个动作互斥归类，对比 specific_point 与 step_by_step 用户。数据范围为 2026-06-19 至 2026-07-31，已统一排除内部和指定测试账号。</p></div><div class='choice-profile-legend'><span><i class='specific'></i>Specific Point</span><span><i class='step'></i>Step by Step</span></div></div>
+<div class='choice-profile-summary'><div class='choice-profile-stat primary'><span>Specific Point</span><b>80</b><em>画像分析用户</em></div><div class='choice-profile-stat'><span>Step by Step</span><b>267</b><em>对照用户</em></div><div class='choice-profile-stat'><span>最高正向差异</span><b>+6.3pp</b><em>学科 · others</em></div><div class='choice-profile-stat'><span>最高负向差异</span><b>-10.4pp</b><em>渠道 · unknown</em></div></div>
+<div class='choice-profile-grid'>
+<article class='choice-profile-card'><h3>年级</h3><p>Specific Point 字段覆盖 71 / 80（88.8%）</p><div class='choice-profile-rows'>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>university</span><span class='choice-profile-delta down'>-9.4pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:36.3%'></div></div><span class='choice-profile-value'>29 · 36.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:45.7%'></div></div><span class='choice-profile-value'>122 · 45.7%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>highSchool</span><span class='choice-profile-delta up'>+3.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:25%'></div></div><span class='choice-profile-value'>20 · 25.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:21.7%'></div></div><span class='choice-profile-value'>58 · 21.7%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>communityCollege</span><span class='choice-profile-delta up'>+1.6pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:12.5%'></div></div><span class='choice-profile-value'>10 · 12.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:10.9%'></div></div><span class='choice-profile-value'>29 · 10.9%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>unknown</span><span class='choice-profile-delta up'>+1.9pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:11.3%'></div></div><span class='choice-profile-value'>9 · 11.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:9.4%'></div></div><span class='choice-profile-value'>25 · 9.4%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>middleSchool</span><span class='choice-profile-delta up'>+1.6pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:8.8%'></div></div><span class='choice-profile-value'>7 · 8.8%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:7.1%'></div></div><span class='choice-profile-value'>19 · 7.1%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>others</span><span class='choice-profile-delta up'>+1.0pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:6.3%'></div></div><span class='choice-profile-value'>5 · 6.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:5.2%'></div></div><span class='choice-profile-value'>14 · 5.2%</span></div></div></div>
+</div></article>
+<article class='choice-profile-card'><h3>渠道</h3><p>Specific Point 字段覆盖 56 / 80（70.0%）</p><div class='choice-profile-rows'>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>unknown</span><span class='choice-profile-delta down'>-10.4pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:30%'></div></div><span class='choice-profile-value'>24 · 30.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:40.4%'></div></div><span class='choice-profile-value'>108 · 40.4%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>organic</span><span class='choice-profile-delta up'>+5.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:30%'></div></div><span class='choice-profile-value'>24 · 30.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:24.7%'></div></div><span class='choice-profile-value'>66 · 24.7%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>sem</span><span class='choice-profile-delta up'>+0.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:28.7%'></div></div><span class='choice-profile-value'>23 · 28.7%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:28.5%'></div></div><span class='choice-profile-value'>76 · 28.5%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>apple search ads</span><span class='choice-profile-delta up'>+1.9pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:7.5%'></div></div><span class='choice-profile-value'>6 · 7.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:5.6%'></div></div><span class='choice-profile-value'>15 · 5.6%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>web to app_solve times_0827</span><span class='choice-profile-delta up'>+2.1pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:2.5%'></div></div><span class='choice-profile-value'>2 · 2.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:.4%'></div></div><span class='choice-profile-value'>1 · 0.4%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>instagram installs</span><span class='choice-profile-delta up'>+1.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:1.3%'></div></div><span class='choice-profile-value'>1 · 1.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:0%'></div></div><span class='choice-profile-value'>0 · 0.0%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>facebook installs</span><span class='choice-profile-delta down'>-0.4pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:0%'></div></div><span class='choice-profile-value'>0 · 0.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:.4%'></div></div><span class='choice-profile-value'>1 · 0.4%</span></div></div></div>
+</div></article>
+<article class='choice-profile-card wide'><h3>登录身份</h3><p>Specific Point 字段覆盖 79 / 80（98.8%）</p><div class='choice-profile-rows'>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>新注册用户</span><span class='choice-profile-delta up'>+4.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:72.5%'></div></div><span class='choice-profile-value'>58 · 72.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:68.2%'></div></div><span class='choice-profile-value'>182 · 68.2%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>重装后登录用户</span><span class='choice-profile-delta down'>-2.8pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:23.8%'></div></div><span class='choice-profile-value'>19 · 23.8%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:26.6%'></div></div><span class='choice-profile-value'>71 · 26.6%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>未登录用户</span><span class='choice-profile-delta down'>-1.6pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:2.5%'></div></div><span class='choice-profile-value'>2 · 2.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:4.1%'></div></div><span class='choice-profile-value'>11 · 4.1%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>unknown</span><span class='choice-profile-delta up'>+0.1pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:1.3%'></div></div><span class='choice-profile-value'>1 · 1.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:1.1%'></div></div><span class='choice-profile-value'>3 · 1.1%</span></div></div></div>
+</div><div class='choice-profile-note'><strong>身份口径</strong><span>Onboarding_Role_Select 的“教育者 / 家长 / 学生”角色字段在本批 Specific Point 用户中 0 / 80 命中，因此本图使用登录身份，不对缺失角色做推断。</span></div></article>
+<article class='choice-profile-card wide'><h3>学科</h3><p>只使用用户选择前最近一次真实 Solve_Success.subject；Specific Point 字段覆盖 61 / 80（76.3%）。展示主要学科，其余小类合并。</p><div class='choice-profile-rows'>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>Unknown subject</span><span class='choice-profile-delta down'>-6.6pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:23.8%'></div></div><span class='choice-profile-value'>19 · 23.8%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:30.3%'></div></div><span class='choice-profile-value'>81 · 30.3%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>algebra</span><span class='choice-profile-delta down'>-7.2pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:17.5%'></div></div><span class='choice-profile-value'>14 · 17.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:24.7%'></div></div><span class='choice-profile-value'>66 · 24.7%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>others</span><span class='choice-profile-delta up'>+6.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:10%'></div></div><span class='choice-profile-value'>8 · 10.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:3.7%'></div></div><span class='choice-profile-value'>10 · 3.7%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>chemistry</span><span class='choice-profile-delta down'>-3.7pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:7.5%'></div></div><span class='choice-profile-value'>6 · 7.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:11.2%'></div></div><span class='choice-profile-value'>30 · 11.2%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>geometry</span><span class='choice-profile-delta up'>+3.8pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:7.5%'></div></div><span class='choice-profile-value'>6 · 7.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:3.7%'></div></div><span class='choice-profile-value'>10 · 3.7%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>trigonometry</span><span class='choice-profile-delta up'>+0.9pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:5%'></div></div><span class='choice-profile-value'>4 · 5.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:4.1%'></div></div><span class='choice-profile-value'>11 · 4.1%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>biological sciences</span><span class='choice-profile-delta up'>+3.5pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:5%'></div></div><span class='choice-profile-value'>4 · 5.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:1.5%'></div></div><span class='choice-profile-value'>4 · 1.5%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>health sciences &amp; professions</span><span class='choice-profile-delta up'>+1.9pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:3.8%'></div></div><span class='choice-profile-value'>3 · 3.8%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:1.9%'></div></div><span class='choice-profile-value'>5 · 1.9%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>computer science</span><span class='choice-profile-delta up'>+3.4pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:3.8%'></div></div><span class='choice-profile-value'>3 · 3.8%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:.4%'></div></div><span class='choice-profile-value'>1 · 0.4%</span></div></div></div>
+<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>其余学科合计</span><span class='choice-profile-delta down'>-2.1pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:16.3%'></div></div><span class='choice-profile-value'>13 · 16.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:18.4%'></div></div><span class='choice-profile-value'>49 · 18.4%</span></div></div></div>
+</div></article>
+</div>
+<div class='choice-profile-takeaway'><b>方向性画像：</b>Specific Point 用户相对更少来自 university 与 algebra，更常见于 organic 渠道，并在 others、geometry、biological sciences、computer science 等学科上占比更高。由于 Specific Point 仅 80 人且部分字段缺失，这些差异用于探索后续定向研究，不代表因果或统计显著。</div></section>
+<div class="footer">Generated from BigQuery and server feedback logs · Last updated through 2026-07-31</div></div></body></html>
