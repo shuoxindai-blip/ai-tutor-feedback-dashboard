@@ -290,62 +290,88 @@ td { padding:12px; border-bottom:1px solid #edf2f7; vertical-align:middle; }
   .choice-profile-bar-line { grid-template-columns:48px minmax(0,1fr) 70px; gap:6px; }
   .choice-profile-label { white-space:normal; overflow:visible; text-overflow:clip; overflow-wrap:anywhere; }
 }
+
+/* 2026-08-03 mobile overflow QA */
+.container > *, .split-panel > *, .subject-layout > *, .subject-pie-card > * { min-width:0; }
+.quote-card p, .quote-card footer, .quote-top em, .legend-name, .legend-sub { overflow-wrap:anywhere; word-break:break-word; }
+@media (max-width: 640px) {
+  .container { width:100%; max-width:100%; padding:24px 16px 48px; overflow:hidden; }
+  .panel, .rich-card, .region-card { padding:16px; }
+  .panel-head, .quote-top { flex-direction:column; }
+  .quote-top { align-items:flex-start; }
+  .quote-top em { text-align:left; }
+  .quote-grid { grid-template-columns:minmax(0,1fr); }
+  .quote-card { min-width:0; overflow:hidden; padding:16px; }
+  .table-scroll { width:100%; max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .subject-pie-card { padding:14px; }
+  .subject-pie { width:250px; height:250px; }
+  .subject-pie:after { inset:72px; }
+  .legend-item { grid-template-columns:14px minmax(0,1fr) auto; }
+  .story-hero { padding:28px; }
+  .story-hero h1 { font-size:32px; }
+  .hero h1 { font-size:32px; }
+}
+
+.intent-scroll{max-height:560px;overflow:auto}.intent-text{min-width:320px;white-space:normal;overflow-wrap:anywhere}
+
+/* 2026-08-03 supplemental nowrap QA */
+.intent-scroll{max-height:560px;overflow:auto}#experiment-444 .compact-table th,#experiment-444 .compact-table td,#specific-point-intents .compact-table th,#specific-point-intents .compact-table td{white-space:nowrap}.intent-text{min-width:320px!important;white-space:normal!important;overflow-wrap:anywhere}
 </style>
 <link href="data:," rel="icon"/></head>
 <body><div class="container"><section class="story-hero"><div class="eyebrow">Tutor Experiment New Users · 421 On1 + 424 On</div>
 <h1>AI Tutor 新用户使用分析与反馈质量看板</h1>
-<p>前半部分更新至 2026-07-31，使用 421 On1 与 424 On 最新可用 cohort（424: 2026-07-29）；已排除内部和指定测试账号。后半部分接入 2026-06-19 至 2026-07-31 的 AI Tutor feedback 明细。</p></section><div class="section-kicker">Experiment Adoption</div><section class="insight-grid">
+<p>前半部分事件更新至 2026-08-03，使用 421 On1 与 424 On 最终 cohort（424: 2026-07-29）；已排除内部和指定测试账号。后半部分接入 2026-06-19 至 2026-08-03 的 AI Tutor feedback 明细。</p></section><div class="section-kicker">Experiment Adoption</div><section class="insight-grid">
 <div class="insight-card"><span>On 组新用户</span><strong>36,913</strong><em>421 On1 1,356 + 424 On 35,557</em></div>
-<div class="insight-card"><span>Tutor UV</span><strong>2,073</strong><em>触发 tutor_session_start</em></div>
-<div class="insight-card"><span>全量渗透</span><strong>5.6%</strong><em>2,073 / 36,913</em></div>
-<div class="insight-card"><span>基于解题渗透</span><strong>11.1%</strong><em>宽口径：2,073 / 18,617 Solve UV</em></div>
+<div class="insight-card"><span>Tutor UV</span><strong>2,129</strong><em>触发 tutor_session_start</em></div>
+<div class="insight-card"><span>全量渗透</span><strong>5.8%</strong><em>2,129 / 36,913</em></div>
+<div class="insight-card"><span>基于解题渗透</span><strong>11.4%</strong><em>宽口径：2,129 / 18,617 Solve UV</em></div>
 </section><section class="panel"><div class="panel-head"><div><h2>渗透率双口径</h2>
 <p>全量口径看 On 组整体触达；解题口径看有 Solve 行为用户中的 Tutor 使用率。</p></div></div>
 <div class="table-scroll"><table class="compact-table"><thead><tr><th>口径</th><th>定义</th><th>分子</th><th>分母</th><th>渗透率</th></tr></thead><tbody>
-<tr><td><b>全量 On 组</b></td><td>tutor_session_start / On 组新用户</td><td>2,073</td><td>36,913</td><td><b>5.6%</b></td></tr>
-<tr><td><b>严口径</b></td><td>tutor_session_start ∩ Solve_Success / Solve UV</td><td>1,556</td><td>18,617</td><td><b>8.4%</b></td></tr>
-<tr><td><b>宽口径</b></td><td>tutor_session_start / Solve UV</td><td>2,073</td><td>18,617</td><td><b>11.1%</b></td></tr>
+<tr><td><b>全量 On 组</b></td><td>tutor_session_start / On 组新用户</td><td>2,129</td><td>36,913</td><td><b>5.8%</b></td></tr>
+<tr><td><b>严口径</b></td><td>tutor_session_start ∩ Solve_Success / Solve UV</td><td>1,606</td><td>18,617</td><td><b>8.6%</b></td></tr>
+<tr><td><b>宽口径</b></td><td>tutor_session_start / Solve UV</td><td>2,129</td><td>18,617</td><td><b>11.4%</b></td></tr>
 </tbody></table></div></section><div class="split-panel"><section class="rich-card"><h3>核心指标：Tutor 用户 vs 非 Tutor On 组</h3>
-<div class="kv"><span>订阅率</span><b>41.7% vs 13.7%</b></div>
-<div class="kv"><span>人均解题</span><b>96.87 vs 15.36</b></div>
-<div class="kv"><span>正反馈率</span><b>16.3% vs 9.0%</b></div>
-<div class="kv"><span>负反馈率</span><b>1.8% vs 0.7%</b></div>
+<div class="kv"><span>订阅率</span><b>42.4% vs 13.6%</b></div>
+<div class="kv"><span>人均解题</span><b>97.97 vs 15.17</b></div>
+<div class="kv"><span>正反馈率</span><b>16.2% vs 9.0%</b></div>
+<div class="kv"><span>负反馈率</span><b>1.7% vs 0.7%</b></div>
 <div class="kv"><span>D1 留存</span><b>37.8% vs 13.1%</b></div>
-<div class="kv"><span>人均活跃天数</span><b>4.73 vs 1.94</b></div></section>
+<div class="kv"><span>人均活跃天数</span><b>4.76 vs 1.94</b></div></section>
 <section class="rich-card"><h3>国家差异：US 与 NonUS 渗透</h3>
-<div class="kv"><span>US 全量</span><b>1,215 / 23,488 = 5.2%</b></div>
-<div class="kv"><span>US 基于解题（宽口径）</span><b>1,215 / 12,250 = 9.9%</b></div>
-<div class="kv"><span>NonUS 全量</span><b>858 / 13,425 = 6.4%</b></div>
-<div class="kv"><span>NonUS 基于解题（宽口径）</span><b>858 / 6,367 = 13.5%</b></div>
+<div class="kv"><span>US 全量</span><b>1,259 / 23,488 = 5.4%</b></div>
+<div class="kv"><span>US 基于解题（宽口径）</span><b>1,259 / 12,250 = 10.3%</b></div>
+<div class="kv"><span>NonUS 全量</span><b>870 / 13,425 = 6.5%</b></div>
+<div class="kv"><span>NonUS 基于解题（宽口径）</span><b>870 / 6,367 = 13.7%</b></div>
 </section></div><div class="split-panel"><section class="panel"><div class="panel-head"><div><h2>学段渗透差异</h2>
 <p>按最新 cohort 计算 Tutor 渗透率，解题宽口径分母使用 solve_count &gt; 0。</p></div></div>
 <div class="table-scroll"><table class="compact-table"><thead><tr><th>维度</th><th>Tutor 用户</th><th>On 组总人数</th><th>全量渗透率</th><th>基于 Solve_Success 渗透（宽口径）</th></tr></thead>
-<tbody><tr><td>university</td><td>814</td><td>12,433</td>
-<td><b>6.5%</b></td>
-<td>814 / 7,236 = <b>11.2%</b></td></tr><tr><td>highSchool</td><td>501</td><td>7,872</td>
+<tbody><tr><td>university</td><td>845</td><td>12,433</td>
+<td><b>6.8%</b></td>
+<td>845 / 7,236 = <b>11.7%</b></td></tr><tr><td>highSchool</td><td>503</td><td>7,872</td>
 <td><b>6.4%</b></td>
-<td>501 / 4,711 = <b>10.6%</b></td></tr><tr><td>unknown</td><td>259</td><td>8,687</td>
+<td>503 / 4,711 = <b>10.7%</b></td></tr><tr><td>unknown</td><td>264</td><td>8,687</td>
 <td><b>3.0%</b></td>
-<td>259 / 2,769 = <b>9.4%</b></td></tr><tr><td>communityCollege</td><td>235</td><td>3,386</td>
-<td><b>6.9%</b></td>
-<td>235 / 2,017 = <b>11.7%</b></td></tr><tr><td>middleSchool</td><td>144</td><td>1,800</td>
-<td><b>8.0%</b></td>
-<td>144 / 755 = <b>19.1%</b></td></tr><tr><td>others</td><td>120</td><td>2,735</td>
-<td><b>4.4%</b></td>
-<td>120 / 1,129 = <b>10.6%</b></td></tr></tbody></table></div></section><section class="panel"><div class="panel-head"><div><h2>渠道渗透差异</h2>
+<td>264 / 2,769 = <b>9.5%</b></td></tr><tr><td>communityCollege</td><td>245</td><td>3,386</td>
+<td><b>7.2%</b></td>
+<td>245 / 2,017 = <b>12.1%</b></td></tr><tr><td>middleSchool</td><td>147</td><td>1,800</td>
+<td><b>8.2%</b></td>
+<td>147 / 755 = <b>19.5%</b></td></tr><tr><td>others</td><td>125</td><td>2,735</td>
+<td><b>4.6%</b></td>
+<td>125 / 1,129 = <b>11.1%</b></td></tr></tbody></table></div></section><section class="panel"><div class="panel-head"><div><h2>渠道渗透差异</h2>
 <p>按最新 cohort 计算 Tutor 渗透率，解题宽口径分母使用 solve_count &gt; 0。</p></div></div>
 <div class="table-scroll"><table class="compact-table"><thead><tr><th>维度</th><th>Tutor 用户</th><th>On 组总人数</th><th>全量渗透率</th><th>基于 Solve_Success 渗透（宽口径）</th></tr></thead>
-<tbody><tr><td>organic</td><td>827</td><td>14,434</td>
-<td><b>5.7%</b></td>
-<td>827 / 7,211 = <b>11.5%</b></td></tr><tr><td>sem</td><td>826</td><td>14,116</td>
+<tbody><tr><td>sem</td><td>854</td><td>14,116</td>
+<td><b>6.0%</b></td>
+<td>854 / 8,005 = <b>10.7%</b></td></tr><tr><td>organic</td><td>846</td><td>14,434</td>
 <td><b>5.9%</b></td>
-<td>826 / 8,005 = <b>10.3%</b></td></tr><tr><td>apple search ads</td><td>309</td><td>4,611</td>
-<td><b>6.7%</b></td>
-<td>309 / 2,666 = <b>11.6%</b></td></tr><tr><td>unknown</td><td>48</td><td>2,631</td>
-<td><b>1.8%</b></td>
-<td>48 / 511 = <b>9.4%</b></td></tr><tr><td>web to app_solve times_0827</td><td>45</td><td>521</td>
-<td><b>8.6%</b></td>
-<td>45 / 190 = <b>23.7%</b></td></tr><tr><td>facebook installs</td><td>9</td><td>115</td>
+<td>846 / 7,211 = <b>11.7%</b></td></tr><tr><td>apple search ads</td><td>315</td><td>4,611</td>
+<td><b>6.8%</b></td>
+<td>315 / 2,666 = <b>11.8%</b></td></tr><tr><td>unknown</td><td>50</td><td>2,631</td>
+<td><b>1.9%</b></td>
+<td>50 / 511 = <b>9.8%</b></td></tr><tr><td>web to app_solve times_0827</td><td>46</td><td>521</td>
+<td><b>8.8%</b></td>
+<td>46 / 190 = <b>24.2%</b></td></tr><tr><td>facebook installs</td><td>9</td><td>115</td>
 <td><b>7.8%</b></td>
 <td>9 / 6 = <b>150.0%</b></td></tr><tr><td>instagram installs</td><td>4</td><td>47</td>
 <td><b>8.5%</b></td>
@@ -355,105 +381,105 @@ td { padding:12px; border-bottom:1px solid #edf2f7; vertical-align:middle; }
 <td><b>13.3%</b></td>
 <td>2 / 3 = <b>66.7%</b></td></tr><tr><td>firebase_referral-finals</td><td>1</td><td>22</td>
 <td><b>4.5%</b></td>
-<td>1 / 8 = <b>12.5%</b></td></tr><tr><td>solvely_ins_official</td><td>0</td><td>6</td>
+<td>1 / 8 = <b>12.5%</b></td></tr><tr><td>no user consent</td><td>0</td><td>295</td>
 <td><b>0.0%</b></td>
-<td>0 / 3 = <b>0.0%</b></td></tr><tr><td>no user consent</td><td>0</td><td>295</td>
+<td>0 / 1 = <b>0.0%</b></td></tr><tr><td>solvely_ins_official</td><td>0</td><td>6</td>
 <td><b>0.0%</b></td>
-<td>0 / 1 = <b>0.0%</b></td></tr><tr><td>unattributed</td><td>0</td><td>3</td>
+<td>0 / 3 = <b>0.0%</b></td></tr><tr><td>unattributed</td><td>0</td><td>3</td>
 <td><b>0.0%</b></td>
 <td>0 / 0 = <b>0.0%</b></td></tr><tr><td>firebase_welcomeedm</td><td>0</td><td>4</td>
+<td><b>0.0%</b></td>
+<td>0 / 1 = <b>0.0%</b></td></tr><tr><td>solvely web qrcode</td><td>0</td><td>2</td>
 <td><b>0.0%</b></td>
 <td>0 / 1 = <b>0.0%</b></td></tr><tr><td>off-facebook installs</td><td>0</td><td>4</td>
 <td><b>0.0%</b></td>
 <td>0 / 0 = <b>0.0%</b></td></tr><tr><td>ios-web2app-2025-12-02</td><td>0</td><td>4</td>
 <td><b>0.0%</b></td>
-<td>0 / 1 = <b>0.0%</b></td></tr><tr><td>fb-w2a-dts-2023-10-17</td><td>0</td><td>1</td>
+<td>0 / 1 = <b>0.0%</b></td></tr><tr><td>firebase_email-link-login</td><td>0</td><td>1</td>
 <td><b>0.0%</b></td>
-<td>0 / 0 = <b>0.0%</b></td></tr><tr><td>firebase_email-link-login</td><td>0</td><td>1</td>
+<td>0 / 0 = <b>0.0%</b></td></tr><tr><td>fb-w2a-dts-2023-10-17</td><td>0</td><td>1</td>
 <td><b>0.0%</b></td>
-<td>0 / 0 = <b>0.0%</b></td></tr><tr><td>solvely web qrcode</td><td>0</td><td>2</td>
-<td><b>0.0%</b></td>
-<td>0 / 1 = <b>0.0%</b></td></tr></tbody></table></div></section></div><section class="panel"><div class="panel-head"><div><h2>使用互动漏斗</h2>
+<td>0 / 0 = <b>0.0%</b></td></tr></tbody></table></div></section></div><section class="panel"><div class="panel-head"><div><h2>使用互动漏斗</h2>
 <p>以 tutor_loading_start 为入口，展示关键行为路径。</p></div></div>
 <div class="full-funnel"><div class="funnel-node primary"><div><span class="funnel-title">1. Loading Start / 加载开始</span>
-<span class="funnel-sub">5,936 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:100.0%"></div></div>
-<div class="funnel-rate">100.0%</div></div><div class="funnel-num">2,695 UV</div></div><div class="funnel-connector"></div><div class="funnel-node primary"><div><span class="funnel-title">2. Session Start / 会话开始</span>
-<span class="funnel-sub">4,364 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:100.0%"></div></div>
-<div class="funnel-rate">100.0%</div></div><div class="funnel-num">2,073 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">3. Replay Completed / 回放完成</span>
-<span class="funnel-sub">731 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:16.8%"></div></div>
-<div class="funnel-rate">16.8%</div></div><div class="funnel-num">377 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">4. Feedback Popup Show / 反馈弹窗展示</span>
-<span class="funnel-sub">3,314 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:75.9%"></div></div>
-<div class="funnel-rate">75.9%</div></div><div class="funnel-num">1,714 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">5. Feedback Submit / 反馈提交</span>
-<span class="funnel-sub">1,024 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:23.5%"></div></div>
-<div class="funnel-rate">23.5%</div></div><div class="funnel-num">543 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">6. Feedback Dismiss / 反馈关闭</span>
-<span class="funnel-sub">2,191 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:50.2%"></div></div>
-<div class="funnel-rate">50.2%</div></div><div class="funnel-num">1,296 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">7. Example Click / 示例点击</span>
-<span class="funnel-sub">586 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:13.4%"></div></div>
-<div class="funnel-rate">13.4%</div></div><div class="funnel-num">240 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">8. Voice Interrupt / 语音打断</span>
-<span class="funnel-sub">1,571 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:36.0%"></div></div>
-<div class="funnel-rate">36.0%</div></div><div class="funnel-num">315 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">9. Text Interrupt / 文本打断</span>
-<span class="funnel-sub">2,677 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:61.3%"></div></div>
-<div class="funnel-rate">61.3%</div></div><div class="funnel-num">494 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">10. Session Exit / 会话退出</span>
-<span class="funnel-sub">3,241 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:74.3%"></div></div>
-<div class="funnel-rate">74.3%</div></div><div class="funnel-num">1,664 UV</div></div></div></section><section class="panel"><div class="panel-head"><div><h2>Session 平均停留时长分布</h2>
-<p>基于 session 内 timing 最大 elapsed_ms 的 5,850 次 session；中位数约 27秒。</p></div></div>
+<span class="funnel-sub">6,155 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:100.0%"></div></div>
+<div class="funnel-rate">100.0%</div></div><div class="funnel-num">2,772 UV</div></div><div class="funnel-connector"></div><div class="funnel-node primary"><div><span class="funnel-title">2. Session Start / 会话开始</span>
+<span class="funnel-sub">4,517 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:100.0%"></div></div>
+<div class="funnel-rate">100.0%</div></div><div class="funnel-num">2,129 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">3. Replay Completed / 回放完成</span>
+<span class="funnel-sub">770 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:17.0%"></div></div>
+<div class="funnel-rate">17.0%</div></div><div class="funnel-num">390 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">4. Feedback Popup Show / 反馈弹窗展示</span>
+<span class="funnel-sub">3,427 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:75.9%"></div></div>
+<div class="funnel-rate">75.9%</div></div><div class="funnel-num">1,757 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">5. Feedback Submit / 反馈提交</span>
+<span class="funnel-sub">1,048 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:23.2%"></div></div>
+<div class="funnel-rate">23.2%</div></div><div class="funnel-num">558 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">6. Feedback Dismiss / 反馈关闭</span>
+<span class="funnel-sub">2,278 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:50.4%"></div></div>
+<div class="funnel-rate">50.4%</div></div><div class="funnel-num">1,331 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">7. Example Click / 示例点击</span>
+<span class="funnel-sub">591 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:13.1%"></div></div>
+<div class="funnel-rate">13.1%</div></div><div class="funnel-num">244 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">8. Voice Interrupt / 语音打断</span>
+<span class="funnel-sub">1,599 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:35.4%"></div></div>
+<div class="funnel-rate">35.4%</div></div><div class="funnel-num">322 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">9. Text Interrupt / 文本打断</span>
+<span class="funnel-sub">2,734 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:60.5%"></div></div>
+<div class="funnel-rate">60.5%</div></div><div class="funnel-num">502 UV</div></div><div class="funnel-connector"></div><div class="funnel-node branch"><div><span class="funnel-title">10. Session Exit / 会话退出</span>
+<span class="funnel-sub">3,353 events</span></div><div class="funnel-track-row"><div class="funnel-track"><div style="width:74.2%"></div></div>
+<div class="funnel-rate">74.2%</div></div><div class="funnel-num">1,707 UV</div></div></div></section><section class="panel"><div class="panel-head"><div><h2>Session 平均停留时长分布</h2>
+<p>基于 session 内 timing 最大 elapsed_ms 的 6,070 次 session；中位数约 26秒。</p></div></div>
 <div class="duration-summary"><div class="mini"><span>平均时长</span><b>2分02秒</b></div>
 <div class="mini"><span>P25</span><b>1秒</b></div>
-<div class="mini"><span>中位数</span><b>27秒</b></div>
-<div class="mini"><span>超过 2 分钟</span><b>25.9%</b></div></div>
+<div class="mini"><span>中位数</span><b>26秒</b></div>
+<div class="mini"><span>超过 2 分钟</span><b>25.8%</b></div></div>
 <div class="duration-breakdown"><div class="duration-pill"><i style="background:#2563eb"></i>0-10秒
-    <strong>2,018</strong><em>34.5% sessions</em></div><div class="duration-pill"><i style="background:#f97316"></i>10-30秒
-    <strong>1,014</strong><em>17.3% sessions</em></div><div class="duration-pill"><i style="background:#16a34a"></i>30-60秒
-    <strong>756</strong><em>12.9% sessions</em></div><div class="duration-pill"><i style="background:#8b5cf6"></i>1-2分钟
-    <strong>549</strong><em>9.4% sessions</em></div><div class="duration-pill"><i style="background:#06b6d4"></i>2-5分钟
-    <strong>945</strong><em>16.2% sessions</em></div><div class="duration-pill"><i style="background:#f59e0b"></i>5-10分钟
-    <strong>365</strong><em>6.2% sessions</em></div><div class="duration-pill"><i style="background:#ec4899"></i>10-30分钟
-    <strong>167</strong><em>2.9% sessions</em></div><div class="duration-pill"><i style="background:#64748b"></i>30分钟+
-    <strong>36</strong><em>0.6% sessions</em></div></div></section><section class="panel"><div class="panel-head"><div><h2>Tutor 用户解题学科</h2>
+    <strong>2,107</strong><em>34.7% sessions</em></div><div class="duration-pill"><i style="background:#f97316"></i>10-30秒
+    <strong>1,056</strong><em>17.4% sessions</em></div><div class="duration-pill"><i style="background:#16a34a"></i>30-60秒
+    <strong>778</strong><em>12.8% sessions</em></div><div class="duration-pill"><i style="background:#8b5cf6"></i>1-2分钟
+    <strong>560</strong><em>9.2% sessions</em></div><div class="duration-pill"><i style="background:#06b6d4"></i>2-5分钟
+    <strong>984</strong><em>16.2% sessions</em></div><div class="duration-pill"><i style="background:#f59e0b"></i>5-10分钟
+    <strong>371</strong><em>6.1% sessions</em></div><div class="duration-pill"><i style="background:#ec4899"></i>10-30分钟
+    <strong>177</strong><em>2.9% sessions</em></div><div class="duration-pill"><i style="background:#64748b"></i>30分钟+
+    <strong>37</strong><em>0.6% sessions</em></div></div></section><section class="panel"><div class="panel-head"><div><h2>Tutor 用户解题学科</h2>
 <p>真实 Tutor 用户的 Solve_Success 学科分布。</p></div></div>
 <div class="subject-layout"><div class="table-scroll"><table class="compact-table"><thead><tr><th>学科</th><th>解题次数</th><th>用户数</th><th>人均解题</th></tr></thead>
-<tbody><tr><td>algebra</td><td>288,935</td><td>2,484</td><td>116.3</td></tr><tr><td>others</td><td>55,889</td><td>2,269</td><td>24.6</td></tr><tr><td>health sciences &amp; professions</td><td>124,200</td><td>1,247</td><td>99.6</td></tr><tr><td>physics</td><td>39,144</td><td>1,172</td><td>33.4</td></tr><tr><td>biological sciences</td><td>158,677</td><td>1,141</td><td>139.1</td></tr><tr><td>geometry</td><td>40,575</td><td>1,131</td><td>35.9</td></tr><tr><td>chemistry</td><td>108,995</td><td>1,115</td><td>97.8</td></tr><tr><td>probability &amp; statistics</td><td>109,553</td><td>1,035</td><td>105.8</td></tr><tr><td>calculus</td><td>55,456</td><td>1,008</td><td>55.0</td></tr><tr><td>financial mathematics</td><td>27,932</td><td>935</td><td>29.9</td></tr></tbody></table></div>
-<div class="subject-pie-card"><div class="subject-pie" style="background:conic-gradient(#2563eb 0.0% 18.3%, #f97316 18.3% 35.1%, #16a34a 35.1% 44.3%, #8b5cf6 44.3% 53.0%, #06b6d4 53.0% 61.4%, #f59e0b 61.4% 69.8%, #ec4899 69.8% 78.0%, #64748b 78.0% 85.6%, #94a3b8 85.6% 93.1%, #cbd5e1 93.1% 100.0%)">
-<div class="donut-center"><b>13,537</b><span>top subject users</span></div></div>
+<tbody><tr><td>algebra</td><td>311,607</td><td>2,628</td><td>118.6</td></tr><tr><td>others</td><td>59,727</td><td>2,395</td><td>24.9</td></tr><tr><td>health sciences &amp; professions</td><td>132,064</td><td>1,313</td><td>100.6</td></tr><tr><td>physics</td><td>41,451</td><td>1,241</td><td>33.4</td></tr><tr><td>biological sciences</td><td>169,553</td><td>1,200</td><td>141.3</td></tr><tr><td>geometry</td><td>44,666</td><td>1,191</td><td>37.5</td></tr><tr><td>chemistry</td><td>118,979</td><td>1,168</td><td>101.9</td></tr><tr><td>probability &amp; statistics</td><td>119,065</td><td>1,106</td><td>107.7</td></tr><tr><td>calculus</td><td>60,191</td><td>1,054</td><td>57.1</td></tr><tr><td>financial mathematics</td><td>29,720</td><td>997</td><td>29.8</td></tr></tbody></table></div>
+<div class="subject-pie-card"><div class="subject-pie" style="background:conic-gradient(#2563eb 0.0% 18.4%, #f97316 18.4% 35.1%, #16a34a 35.1% 44.3%, #8b5cf6 44.3% 53.0%, #06b6d4 53.0% 61.4%, #f59e0b 61.4% 69.7%, #ec4899 69.7% 77.9%, #64748b 77.9% 85.7%, #94a3b8 85.7% 93.0%, #cbd5e1 93.0% 100.0%)">
+<div class="donut-center"><b>14,293</b><span>top subject users</span></div></div>
 <div class="donut-legend"><div class="legend-item"><span class="legend-swatch" style="background:#2563eb"></span>
-<span class="legend-name">algebra</span><span class="legend-pct">18.3%</span>
-<span class="legend-sub">2,484 users · 288,935 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#f97316"></span>
+<span class="legend-name">algebra</span><span class="legend-pct">18.4%</span>
+<span class="legend-sub">2,628 users · 311,607 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#f97316"></span>
 <span class="legend-name">others</span><span class="legend-pct">16.8%</span>
-<span class="legend-sub">2,269 users · 55,889 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span>
+<span class="legend-sub">2,395 users · 59,727 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span>
 <span class="legend-name">health sciences &amp; professions</span><span class="legend-pct">9.2%</span>
-<span class="legend-sub">1,247 users · 124,200 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#8b5cf6"></span>
+<span class="legend-sub">1,313 users · 132,064 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#8b5cf6"></span>
 <span class="legend-name">physics</span><span class="legend-pct">8.7%</span>
-<span class="legend-sub">1,172 users · 39,144 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#06b6d4"></span>
+<span class="legend-sub">1,241 users · 41,451 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#06b6d4"></span>
 <span class="legend-name">biological sciences</span><span class="legend-pct">8.4%</span>
-<span class="legend-sub">1,141 users · 158,677 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#f59e0b"></span>
-<span class="legend-name">geometry</span><span class="legend-pct">8.4%</span>
-<span class="legend-sub">1,131 users · 40,575 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#ec4899"></span>
+<span class="legend-sub">1,200 users · 169,553 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#f59e0b"></span>
+<span class="legend-name">geometry</span><span class="legend-pct">8.3%</span>
+<span class="legend-sub">1,191 users · 44,666 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#ec4899"></span>
 <span class="legend-name">chemistry</span><span class="legend-pct">8.2%</span>
-<span class="legend-sub">1,115 users · 108,995 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#64748b"></span>
-<span class="legend-name">probability &amp; statistics</span><span class="legend-pct">7.6%</span>
-<span class="legend-sub">1,035 users · 109,553 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#94a3b8"></span>
+<span class="legend-sub">1,168 users · 118,979 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#64748b"></span>
+<span class="legend-name">probability &amp; statistics</span><span class="legend-pct">7.7%</span>
+<span class="legend-sub">1,106 users · 119,065 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#94a3b8"></span>
 <span class="legend-name">calculus</span><span class="legend-pct">7.4%</span>
-<span class="legend-sub">1,008 users · 55,456 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#cbd5e1"></span>
-<span class="legend-name">financial mathematics</span><span class="legend-pct">6.9%</span>
-<span class="legend-sub">935 users · 27,932 solves</span></div></div>
+<span class="legend-sub">1,054 users · 60,191 solves</span></div><div class="legend-item"><span class="legend-swatch" style="background:#cbd5e1"></span>
+<span class="legend-name">financial mathematics</span><span class="legend-pct">7.0%</span>
+<span class="legend-sub">997 users · 29,720 solves</span></div></div>
 <p class="subject-note">该部分只统计触发过 tutor_session_start 的真实 Tutor 用户，并按 Solve_Success.subject 排序，不从 feedback 文本推断。</p></div></div></section><div class="phase-divider"><span>Feedback Quality Analysis</span>
-<p>以下为最新反馈分析：样本是 2026-06-19 至 2026-07-31 使用过 Tutor 的新老用户合并反馈，已排除内部和指定测试账号。</p></div><section class="hero"><div><div class="eyebrow">Used Tutor Feedback · New + Old Users</div>
-<h1>US vs NonUS Feedback Quality</h1><p>2026-06-19 至 2026-07-31，年级用 dim.user_grade 优先，渠道用 GA event_params.channel，学科用反馈前最近一次 Solve_Success.subject。</p></div>
-<div class="hero-card"><div class="big-number">75.8%</div><div class="small-label">整体 5 星好评率</div>
-<div class="mini-note">2,269 / 2,992 feedback</div></div></section><section class="metric-grid">
-<div class="metric"><span>Total Feedback</span><strong>2,992</strong><em>1,577 users</em></div>
+<p>以下为最新反馈分析：样本是 2026-06-19 至 2026-08-03 使用过 Tutor 的新老用户合并反馈，已排除内部和指定测试账号。</p></div><section class="hero"><div><div class="eyebrow">Used Tutor Feedback · New + Old Users</div>
+<h1>US vs NonUS Feedback Quality</h1><p>2026-06-19 至 2026-08-03，年级用 dim.user_grade 优先，渠道用 GA event_params.channel，学科用反馈前最近一次 Solve_Success.subject。</p></div>
+<div class="hero-card"><div class="big-number">75.9%</div><div class="small-label">整体 5 星好评率</div>
+<div class="mini-note">2,385 / 3,143 feedback</div></div></section><section class="metric-grid">
+<div class="metric"><span>Total Feedback</span><strong>3,143</strong><em>1,666 users</em></div>
 <div class="metric"><span>Avg Rating</span><strong>4.26</strong><em>1-5 scale</em></div>
-<div class="metric blue"><span>US 5-Star</span><strong>77.4%</strong><em>1,551 / 2,003</em></div>
-<div class="metric orange"><span>NonUS 5-Star</span><strong>72.6%</strong><em>718 / 989</em></div>
-<div class="metric red"><span>5-Star Gap</span><strong>4.8pp</strong><em>US - NonUS</em></div>
-<div class="metric"><span>Text Feedback</span><strong>202</strong><em>tagged: 628</em></div>
+<div class="metric blue"><span>US 5-Star</span><strong>77.5%</strong><em>1,739 / 2,245</em></div>
+<div class="metric orange"><span>NonUS 5-Star</span><strong>71.9%</strong><em>646 / 898</em></div>
+<div class="metric red"><span>5-Star Gap</span><strong>5.5pp</strong><em>US - NonUS</em></div>
+<div class="metric"><span>Text Feedback</span><strong>211</strong><em>tagged: 660</em></div>
 </section><section class="side-cards">
-<div class="region-card us"><h3>US</h3><div class="kv"><span>Feedback</span><b>2,003</b></div>
-<div class="kv"><span>Users</span><b>1,013</b></div><div class="kv"><span>Avg rating</span><b>4.30</b></div>
-<div class="kv"><span>5-star rate</span><b>77.4%</b></div><p>1,551 five-star ratings · 23 text comments</p></div>
-<div class="region-card nonus"><h3>NonUS</h3><div class="kv"><span>Feedback</span><b>989</b></div>
-<div class="kv"><span>Users</span><b>565</b></div><div class="kv"><span>Avg rating</span><b>4.18</b></div>
-<div class="kv"><span>5-star rate</span><b>72.6%</b></div><p>718 five-star ratings · 41 text comments</p></div>
+<div class="region-card us"><h3>US</h3><div class="kv"><span>Feedback</span><b>2,245</b></div>
+<div class="kv"><span>Users</span><b>1,150</b></div><div class="kv"><span>Avg rating</span><b>4.31</b></div>
+<div class="kv"><span>5-star rate</span><b>77.5%</b></div><p>1,739 five-star ratings · 33 text comments</p></div>
+<div class="region-card nonus"><h3>NonUS</h3><div class="kv"><span>Feedback</span><b>898</b></div>
+<div class="kv"><span>Users</span><b>540</b></div><div class="kv"><span>Avg rating</span><b>4.15</b></div>
+<div class="kv"><span>5-star rate</span><b>71.9%</b></div><p>646 five-star ratings · 35 text comments</p></div>
 </section><section class="panel"><div class="panel-head"><div><h2>Grade-Level Rating Comparison</h2>
 <p>按维度比较 US 与 NonUS 的反馈量、平均评分和 5 星数量。</p></div>
 <div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div></div>
@@ -461,446 +487,508 @@ td { padding:12px; border-bottom:1px solid #edf2f7; vertical-align:middle; }
 <tbody><tr>
 <td class="dim-name">university</td>
 <td><div class="bar-wrap"><div class="bar us" style="width:100.0%"></div></div>
-<div class="cell-meta"><b>810</b> feedback · avg 4.41 · 5★ 665</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:72.5%"></div></div>
-<div class="cell-meta"><b>216</b> feedback · avg 4.15 · 5★ 156</div></td>
-<td class="delta pos">+0.26</td></tr><tr>
+<div class="cell-meta"><b>865</b> feedback · avg 4.41 · 5★ 707</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:73.6%"></div></div>
+<div class="cell-meta"><b>226</b> feedback · avg 4.13 · 5★ 163</div></td>
+<td class="delta pos">+0.28</td></tr><tr>
 <td class="dim-name">Unknown</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:47.8%"></div></div>
-<div class="cell-meta"><b>387</b> feedback · avg 4.22 · 5★ 288</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:50.0%"></div></div>
-<div class="cell-meta"><b>149</b> feedback · avg 4.34 · 5★ 115</div></td>
-<td class="delta neg">-0.11</td></tr><tr>
+<td><div class="bar-wrap"><div class="bar us" style="width:62.4%"></div></div>
+<div class="cell-meta"><b>540</b> feedback · avg 4.26 · 5★ 408</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:6.5%"></div></div>
+<div class="cell-meta"><b>20</b> feedback · avg 4.45 · 5★ 17</div></td>
+<td class="delta neg">-0.19</td></tr><tr>
 <td class="dim-name">highSchool</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:23.2%"></div></div>
-<div class="cell-meta"><b>188</b> feedback · avg 4.08 · 5★ 128</div></td>
+<td><div class="bar-wrap"><div class="bar us" style="width:23.6%"></div></div>
+<div class="cell-meta"><b>204</b> feedback · avg 4.13 · 5★ 143</div></td>
 <td><div class="bar-wrap"><div class="bar nonus" style="width:100.0%"></div></div>
-<div class="cell-meta"><b>298</b> feedback · avg 4.13 · 5★ 217</div></td>
-<td class="delta neg">-0.05</td></tr><tr>
+<div class="cell-meta"><b>307</b> feedback · avg 4.12 · 5★ 222</div></td>
+<td class="delta pos">+0.01</td></tr><tr>
 <td class="dim-name">communityCollege</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:42.7%"></div></div>
-<div class="cell-meta"><b>346</b> feedback · avg 4.52 · 5★ 287</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:7.7%"></div></div>
-<div class="cell-meta"><b>23</b> feedback · avg 4.13 · 5★ 14</div></td>
-<td class="delta pos">+0.39</td></tr><tr>
+<td><div class="bar-wrap"><div class="bar us" style="width:40.6%"></div></div>
+<div class="cell-meta"><b>351</b> feedback · avg 4.52 · 5★ 290</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:8.1%"></div></div>
+<div class="cell-meta"><b>25</b> feedback · avg 4.20 · 5★ 16</div></td>
+<td class="delta pos">+0.32</td></tr><tr>
 <td class="dim-name">middleSchool</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:12.1%"></div></div>
-<div class="cell-meta"><b>98</b> feedback · avg 3.59 · 5★ 55</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:49.0%"></div></div>
-<div class="cell-meta"><b>146</b> feedback · avg 3.90 · 5★ 90</div></td>
-<td class="delta neg">-0.31</td></tr><tr>
+<td><div class="bar-wrap"><div class="bar us" style="width:11.8%"></div></div>
+<div class="cell-meta"><b>102</b> feedback · avg 3.60 · 5★ 57</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:49.8%"></div></div>
+<div class="cell-meta"><b>153</b> feedback · avg 3.95 · 5★ 96</div></td>
+<td class="delta neg">-0.35</td></tr><tr>
 <td class="dim-name">unknown</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:12.2%"></div></div>
-<div class="cell-meta"><b>99</b> feedback · avg 4.27 · 5★ 77</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:35.9%"></div></div>
-<div class="cell-meta"><b>107</b> feedback · avg 4.55 · 5★ 91</div></td>
-<td class="delta neg">-0.28</td></tr><tr>
+<td><div class="bar-wrap"><div class="bar us" style="width:11.9%"></div></div>
+<div class="cell-meta"><b>103</b> feedback · avg 4.30 · 5★ 81</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:36.5%"></div></div>
+<div class="cell-meta"><b>112</b> feedback · avg 4.46 · 5★ 93</div></td>
+<td class="delta neg">-0.16</td></tr><tr>
 <td class="dim-name">others</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:9.3%"></div></div>
-<div class="cell-meta"><b>75</b> feedback · avg 4.00 · 5★ 51</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:16.8%"></div></div>
-<div class="cell-meta"><b>50</b> feedback · avg 4.18 · 5★ 35</div></td>
-<td class="delta neg">-0.18</td></tr></tbody></table></div></section><section class="panel"><div class="panel-head"><div><h2>Subject Rating Comparison</h2>
+<td><div class="bar-wrap"><div class="bar us" style="width:9.0%"></div></div>
+<div class="cell-meta"><b>78</b> feedback · avg 3.94 · 5★ 52</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:17.9%"></div></div>
+<div class="cell-meta"><b>55</b> feedback · avg 4.22 · 5★ 39</div></td>
+<td class="delta neg">-0.28</td></tr><tr>
+<td class="dim-name">undergraduate</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 4.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+4.00</td></tr><tr>
+<td class="dim-name">graduate</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+5.00</td></tr></tbody></table></div></section><section class="panel"><div class="panel-head"><div><h2>Subject Rating Comparison</h2>
 <p>按维度比较 US 与 NonUS 的反馈量、平均评分和 5 星数量。</p></div>
 <div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div></div>
 <div class="table-scroll"><table class="compare-table"><thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead>
 <tbody><tr>
-<td class="dim-name">algebra</td>
+<td class="dim-name">math</td>
 <td><div class="bar-wrap"><div class="bar us" style="width:100.0%"></div></div>
-<div class="cell-meta"><b>539</b> feedback · avg 4.38 · 5★ 428</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:64.6%"></div></div>
-<div class="cell-meta"><b>204</b> feedback · avg 4.01 · 5★ 134</div></td>
-<td class="delta pos">+0.37</td></tr><tr>
-<td class="dim-name">Unknown subject</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:44.9%"></div></div>
-<div class="cell-meta"><b>242</b> feedback · avg 4.07 · 5★ 167</div></td>
+<div class="cell-meta"><b>1,001</b> feedback · avg 4.27 · 5★ 759</div></td>
 <td><div class="bar-wrap"><div class="bar nonus" style="width:100.0%"></div></div>
-<div class="cell-meta"><b>316</b> feedback · avg 4.01 · 5★ 215</div></td>
-<td class="delta pos">+0.06</td></tr><tr>
-<td class="dim-name">chemistry</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:37.3%"></div></div>
-<div class="cell-meta"><b>201</b> feedback · avg 4.14 · 5★ 150</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:9.5%"></div></div>
-<div class="cell-meta"><b>30</b> feedback · avg 4.33 · 5★ 24</div></td>
-<td class="delta neg">-0.19</td></tr><tr>
-<td class="dim-name">biological sciences</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:37.1%"></div></div>
-<div class="cell-meta"><b>200</b> feedback · avg 4.58 · 5★ 175</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:5.7%"></div></div>
-<div class="cell-meta"><b>18</b> feedback · avg 4.39 · 5★ 15</div></td>
-<td class="delta pos">+0.19</td></tr><tr>
-<td class="dim-name">calculus</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:25.4%"></div></div>
-<div class="cell-meta"><b>137</b> feedback · avg 4.01 · 5★ 90</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:10.8%"></div></div>
-<div class="cell-meta"><b>34</b> feedback · avg 4.18 · 5★ 27</div></td>
-<td class="delta neg">-0.17</td></tr><tr>
+<div class="cell-meta"><b>353</b> feedback · avg 4.03 · 5★ 238</div></td>
+<td class="delta pos">+0.23</td></tr><tr>
+<td class="dim-name">humanities &amp; social sciences</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:53.3%"></div></div>
+<div class="cell-meta"><b>534</b> feedback · avg 4.49 · 5★ 450</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:22.7%"></div></div>
+<div class="cell-meta"><b>80</b> feedback · avg 4.44 · 5★ 63</div></td>
+<td class="delta pos">+0.05</td></tr><tr>
+<td class="dim-name">Unknown subject</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:28.1%"></div></div>
+<div class="cell-meta"><b>281</b> feedback · avg 4.10 · 5★ 196</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:83.6%"></div></div>
+<div class="cell-meta"><b>295</b> feedback · avg 3.97 · 5★ 197</div></td>
+<td class="delta pos">+0.13</td></tr><tr>
+<td class="dim-name">science</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:26.6%"></div></div>
+<div class="cell-meta"><b>266</b> feedback · avg 4.24 · 5★ 204</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:15.0%"></div></div>
+<div class="cell-meta"><b>53</b> feedback · avg 4.28 · 5★ 41</div></td>
+<td class="delta neg">-0.04</td></tr><tr>
 <td class="dim-name">others</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:11.9%"></div></div>
-<div class="cell-meta"><b>64</b> feedback · avg 4.47 · 5★ 52</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:31.0%"></div></div>
-<div class="cell-meta"><b>98</b> feedback · avg 4.91 · 5★ 95</div></td>
-<td class="delta neg">-0.44</td></tr><tr>
-<td class="dim-name">geometry</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:15.6%"></div></div>
-<div class="cell-meta"><b>84</b> feedback · avg 3.98 · 5★ 57</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:21.2%"></div></div>
-<div class="cell-meta"><b>67</b> feedback · avg 3.78 · 5★ 44</div></td>
-<td class="delta pos">+0.20</td></tr><tr>
-<td class="dim-name">probability &amp; statistics</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:17.4%"></div></div>
-<div class="cell-meta"><b>94</b> feedback · avg 4.43 · 5★ 76</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:12.0%"></div></div>
-<div class="cell-meta"><b>38</b> feedback · avg 4.37 · 5★ 28</div></td>
-<td class="delta pos">+0.06</td></tr><tr>
-<td class="dim-name">health sciences &amp; professions</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:21.5%"></div></div>
-<div class="cell-meta"><b>116</b> feedback · avg 4.72 · 5★ 105</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:4.1%"></div></div>
-<div class="cell-meta"><b>13</b> feedback · avg 4.92 · 5★ 12</div></td>
-<td class="delta neg">-0.20</td></tr><tr>
-<td class="dim-name">physics</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:11.5%"></div></div>
-<div class="cell-meta"><b>62</b> feedback · avg 4.63 · 5★ 54</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:8.2%"></div></div>
-<div class="cell-meta"><b>26</b> feedback · avg 4.12 · 5★ 17</div></td>
-<td class="delta pos">+0.51</td></tr><tr>
-<td class="dim-name">engineering</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:5.6%"></div></div>
-<div class="cell-meta"><b>30</b> feedback · avg 4.17 · 5★ 22</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:12.7%"></div></div>
-<div class="cell-meta"><b>40</b> feedback · avg 4.65 · 5★ 33</div></td>
-<td class="delta neg">-0.48</td></tr><tr>
-<td class="dim-name">trigonometry</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:8.2%"></div></div>
-<div class="cell-meta"><b>44</b> feedback · avg 4.32 · 5★ 34</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:7.6%"></div></div>
-<div class="cell-meta"><b>24</b> feedback · avg 4.04 · 5★ 17</div></td>
-<td class="delta pos">+0.28</td></tr><tr>
-<td class="dim-name">financial mathematics</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:4.6%"></div></div>
-<div class="cell-meta"><b>25</b> feedback · avg 3.64 · 5★ 14</div></td>
+<td><div class="bar-wrap"><div class="bar us" style="width:8.0%"></div></div>
+<div class="cell-meta"><b>80</b> feedback · avg 4.58 · 5★ 68</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:25.5%"></div></div>
+<div class="cell-meta"><b>90</b> feedback · avg 4.90 · 5★ 87</div></td>
+<td class="delta neg">-0.33</td></tr><tr>
+<td class="dim-name">algebra</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:4.0%"></div></div>
+<div class="cell-meta"><b>40</b> feedback · avg 4.35 · 5★ 31</div></td>
 <td><div class="bar-wrap"><div class="bar nonus" style="width:2.8%"></div></div>
-<div class="cell-meta"><b>9</b> feedback · avg 3.33 · 5★ 4</div></td>
-<td class="delta pos">+0.31</td></tr><tr>
-<td class="dim-name">business</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:4.1%"></div></div>
-<div class="cell-meta"><b>22</b> feedback · avg 4.82 · 5★ 21</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:1.3%"></div></div>
-<div class="cell-meta"><b>4</b> feedback · avg 3.50 · 5★ 2</div></td>
-<td class="delta pos">+1.32</td></tr><tr>
-<td class="dim-name">accounting</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:2.4%"></div></div>
-<div class="cell-meta"><b>13</b> feedback · avg 4.08 · 5★ 10</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:3.5%"></div></div>
-<div class="cell-meta"><b>11</b> feedback · avg 4.64 · 5★ 10</div></td>
-<td class="delta neg">-0.56</td></tr><tr>
-<td class="dim-name">economics</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:3.5%"></div></div>
-<div class="cell-meta"><b>19</b> feedback · avg 4.47 · 5★ 16</div></td>
+<div class="cell-meta"><b>10</b> feedback · avg 4.40 · 5★ 8</div></td>
+<td class="delta neg">-0.05</td></tr><tr>
+<td class="dim-name">chemistry</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:1.1%"></div></div>
+<div class="cell-meta"><b>11</b> feedback · avg 3.73 · 5★ 6</div></td>
 <td><div class="bar-wrap"><div class="bar nonus" style="width:0.3%"></div></div>
 <div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
-<td class="delta neg">-0.53</td></tr><tr>
-<td class="dim-name">computer science</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:2.0%"></div></div>
-<div class="cell-meta"><b>11</b> feedback · avg 3.91 · 5★ 8</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:2.5%"></div></div>
-<div class="cell-meta"><b>8</b> feedback · avg 5.00 · 5★ 8</div></td>
-<td class="delta neg">-1.09</td></tr><tr>
-<td class="dim-name">history</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:3.2%"></div></div>
-<div class="cell-meta"><b>17</b> feedback · avg 4.12 · 5★ 12</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.6%"></div></div>
-<div class="cell-meta"><b>2</b> feedback · avg 3.00 · 5★ 1</div></td>
-<td class="delta pos">+1.12</td></tr><tr>
-<td class="dim-name">literary studies</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:1.7%"></div></div>
-<div class="cell-meta"><b>9</b> feedback · avg 3.33 · 5★ 5</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:2.8%"></div></div>
-<div class="cell-meta"><b>9</b> feedback · avg 3.89 · 5★ 5</div></td>
-<td class="delta neg">-0.56</td></tr><tr>
-<td class="dim-name">linguistics</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:1.5%"></div></div>
-<div class="cell-meta"><b>8</b> feedback · avg 4.88 · 5★ 7</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:3.2%"></div></div>
-<div class="cell-meta"><b>10</b> feedback · avg 4.90 · 5★ 9</div></td>
-<td class="delta neg">-0.03</td></tr><tr>
-<td class="dim-name">other math</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:2.0%"></div></div>
-<div class="cell-meta"><b>11</b> feedback · avg 5.00 · 5★ 11</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:1.9%"></div></div>
-<div class="cell-meta"><b>6</b> feedback · avg 4.17 · 5★ 4</div></td>
-<td class="delta pos">+0.83</td></tr><tr>
-<td class="dim-name">advanced math</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:1.7%"></div></div>
-<div class="cell-meta"><b>9</b> feedback · avg 4.56 · 5★ 8</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:1.9%"></div></div>
-<div class="cell-meta"><b>6</b> feedback · avg 3.33 · 5★ 1</div></td>
-<td class="delta pos">+1.22</td></tr><tr>
-<td class="dim-name">earth &amp; environmental sciences</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:1.9%"></div></div>
-<div class="cell-meta"><b>10</b> feedback · avg 3.40 · 5★ 6</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.9%"></div></div>
-<div class="cell-meta"><b>3</b> feedback · avg 5.00 · 5★ 3</div></td>
-<td class="delta neg">-1.60</td></tr><tr>
-<td class="dim-name">geography</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.9%"></div></div>
-<div class="cell-meta"><b>5</b> feedback · avg 4.80 · 5★ 4</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.9%"></div></div>
-<div class="cell-meta"><b>3</b> feedback · avg 3.67 · 5★ 2</div></td>
-<td class="delta pos">+1.13</td></tr><tr>
-<td class="dim-name">psychology</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:1.5%"></div></div>
-<div class="cell-meta"><b>8</b> feedback · avg 4.00 · 5★ 6</div></td>
+<td class="delta neg">-1.27</td></tr><tr>
+<td class="dim-name">calculus</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.5%"></div></div>
+<div class="cell-meta"><b>5</b> feedback · avg 5.00 · 5★ 5</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.3%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div></td>
+<td class="delta pos">+4.00</td></tr><tr>
+<td class="dim-name">accounting</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.2%"></div></div>
+<div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:1.1%"></div></div>
+<div class="cell-meta"><b>4</b> feedback · avg 4.00 · 5★ 3</div></td>
+<td class="delta pos">+1.00</td></tr><tr>
+<td class="dim-name">health sciences &amp; professions</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.5%"></div></div>
+<div class="cell-meta"><b>5</b> feedback · avg 3.40 · 5★ 3</div></td>
 <td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
 <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-<td class="delta pos">+4.00</td></tr><tr>
-<td class="dim-name">arts &amp; design &amp; film media</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.9%"></div></div>
-<div class="cell-meta"><b>5</b> feedback · avg 5.00 · 5★ 5</div></td>
+<td class="delta pos">+3.40</td></tr><tr>
+<td class="dim-name">geometry</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.8%"></div></div>
+<div class="cell-meta"><b>3</b> feedback · avg 4.67 · 5★ 2</div></td>
+<td class="delta pos">+0.33</td></tr><tr>
+<td class="dim-name">physics</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.6%"></div></div>
+<div class="cell-meta"><b>2</b> feedback · avg 3.00 · 5★ 1</div></td>
+<td class="delta pos">+2.00</td></tr><tr>
+<td class="dim-name">probability &amp; statistics</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.3%"></div></div>
+<div class="cell-meta"><b>3</b> feedback · avg 4.67 · 5★ 2</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+4.67</td></tr><tr>
+<td class="dim-name">financial mathematics</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.3%"></div></div>
+<div class="cell-meta"><b>3</b> feedback · avg 3.67 · 5★ 1</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+3.67</td></tr><tr>
+<td class="dim-name">communication</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.2%"></div></div>
+<div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div></td>
 <td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
 <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
 <td class="delta pos">+5.00</td></tr><tr>
-<td class="dim-name">education</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.6%"></div></div>
-<div class="cell-meta"><b>3</b> feedback · avg 2.33 · 5★ 1</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.6%"></div></div>
-<div class="cell-meta"><b>2</b> feedback · avg 4.00 · 5★ 1</div></td>
-<td class="delta neg">-1.67</td></tr><tr>
-<td class="dim-name">Unknown</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.9%"></div></div>
-<div class="cell-meta"><b>5</b> feedback · avg 3.20 · 5★ 2</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
-<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-<td class="delta pos">+3.20</td></tr><tr>
-<td class="dim-name">political science &amp; government</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.7%"></div></div>
-<div class="cell-meta"><b>4</b> feedback · avg 3.25 · 5★ 2</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
-<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-<td class="delta pos">+3.25</td></tr><tr>
-<td class="dim-name">sociology</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.6%"></div></div>
-<div class="cell-meta"><b>3</b> feedback · avg 1.00 · 5★ 0</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.3%"></div></div>
+<td class="dim-name">engineering</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
 <div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
-<td class="delta neg">-4.00</td></tr><tr>
-<td class="dim-name">law</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.4%"></div></div>
-<div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div></td>
 <td><div class="bar-wrap"><div class="bar nonus" style="width:0.3%"></div></div>
 <div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
 <td class="delta pos">+0.00</td></tr><tr>
-<td class="dim-name">communication</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
-<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.6%"></div></div>
-<div class="cell-meta"><b>2</b> feedback · avg 4.50 · 5★ 1</div></td>
-<td class="delta neg">-4.50</td></tr><tr>
-<td class="dim-name">Math</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
-<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.6%"></div></div>
+<td class="dim-name">law</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.3%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td class="delta neg">-4.00</td></tr><tr>
+<td class="dim-name">history</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.2%"></div></div>
 <div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div></td>
-<td class="delta neg">-5.00</td></tr><tr>
-<td class="dim-name">math</td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+5.00</td></tr><tr>
+<td class="dim-name">business</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 4.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+4.00</td></tr><tr>
+<td class="dim-name">biological sciences</td>
 <td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
 <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
 <td><div class="bar-wrap"><div class="bar nonus" style="width:0.3%"></div></div>
 <div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
 <td class="delta neg">-5.00</td></tr><tr>
-<td class="dim-name">philosophy</td>
+<td class="dim-name">arts &amp; design &amp; film media</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.3%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td class="delta neg">-5.00</td></tr><tr>
+<td class="dim-name">trigonometry</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+5.00</td></tr><tr>
+<td class="dim-name">sociology</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+5.00</td></tr><tr>
+<td class="dim-name">other math</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+5.00</td></tr><tr>
+<td class="dim-name">earth &amp; environmental sciences</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.3%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td class="delta neg">-5.00</td></tr><tr>
+<td class="dim-name">linguistics</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+5.00</td></tr><tr>
+<td class="dim-name">psychology</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+5.00</td></tr><tr>
+<td class="dim-name">economics</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.3%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div></td>
+<td class="delta neg">-1.00</td></tr></tbody></table></div></section><section class="panel"><div class="panel-head"><div><h2>Channel Rating Comparison</h2>
+<p>按维度比较 US 与 NonUS 的反馈量、平均评分和 5 星数量。</p></div>
+<div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div></div>
+<div class="table-scroll"><table class="compare-table"><thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead>
+<tbody><tr>
+<td class="dim-name">Unknown</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:100.0%"></div></div>
+<div class="cell-meta"><b>581</b> feedback · avg 4.31 · 5★ 447</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:45.5%"></div></div>
+<div class="cell-meta"><b>100</b> feedback · avg 4.00 · 5★ 69</div></td>
+<td class="delta pos">+0.31</td></tr><tr>
+<td class="dim-name">Organic</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:66.1%"></div></div>
+<div class="cell-meta"><b>384</b> feedback · avg 4.21 · 5★ 283</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:100.0%"></div></div>
+<div class="cell-meta"><b>220</b> feedback · avg 3.95 · 5★ 146</div></td>
+<td class="delta pos">+0.26</td></tr><tr>
+<td class="dim-name">Google Ads Search</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:78.8%"></div></div>
+<div class="cell-meta"><b>458</b> feedback · avg 4.60 · 5★ 401</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:33.6%"></div></div>
+<div class="cell-meta"><b>74</b> feedback · avg 3.97 · 5★ 45</div></td>
+<td class="delta pos">+0.63</td></tr><tr>
+<td class="dim-name">sem</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:44.9%"></div></div>
+<div class="cell-meta"><b>261</b> feedback · avg 4.22 · 5★ 197</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:71.4%"></div></div>
+<div class="cell-meta"><b>157</b> feedback · avg 4.15 · 5★ 116</div></td>
+<td class="delta pos">+0.08</td></tr><tr>
+<td class="dim-name">organic</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:32.7%"></div></div>
+<div class="cell-meta"><b>190</b> feedback · avg 4.19 · 5★ 137</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:78.6%"></div></div>
+<div class="cell-meta"><b>173</b> feedback · avg 4.45 · 5★ 137</div></td>
+<td class="delta neg">-0.26</td></tr><tr>
+<td class="dim-name">Apple Search Ads</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:31.5%"></div></div>
+<div class="cell-meta"><b>183</b> feedback · avg 4.23 · 5★ 140</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:38.2%"></div></div>
+<div class="cell-meta"><b>84</b> feedback · avg 4.01 · 5★ 59</div></td>
+<td class="delta pos">+0.22</td></tr><tr>
+<td class="dim-name">apple search ads</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:19.8%"></div></div>
+<div class="cell-meta"><b>115</b> feedback · avg 4.03 · 5★ 79</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:28.6%"></div></div>
+<div class="cell-meta"><b>63</b> feedback · avg 4.56 · 5★ 52</div></td>
+<td class="delta neg">-0.53</td></tr><tr>
+<td class="dim-name">Google-W2A-DTS-2023-09-06</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:6.5%"></div></div>
+<div class="cell-meta"><b>38</b> feedback · avg 4.26 · 5★ 29</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.9%"></div></div>
+<div class="cell-meta"><b>2</b> feedback · avg 4.50 · 5★ 1</div></td>
+<td class="delta neg">-0.24</td></tr><tr>
+<td class="dim-name">web to app_solve times_0827</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:4.8%"></div></div>
+<div class="cell-meta"><b>28</b> feedback · avg 4.50 · 5★ 23</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:5.5%"></div></div>
+<div class="cell-meta"><b>12</b> feedback · avg 4.25 · 5★ 9</div></td>
+<td class="delta pos">+0.25</td></tr><tr>
+<td class="dim-name">facebook installs</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:4.5%"></div></div>
+<div class="cell-meta"><b>10</b> feedback · avg 5.00 · 5★ 10</div></td>
+<td class="delta neg">-5.00</td></tr><tr>
+<td class="dim-name">FB-W2A-DTS-2023-10-17</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.5%"></div></div>
+<div class="cell-meta"><b>3</b> feedback · avg 4.33 · 5★ 2</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+4.33</td></tr><tr>
+<td class="dim-name">firebase_scan-to-login</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.3%"></div></div>
+<div class="cell-meta"><b>2</b> feedback · avg 1.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+1.00</td></tr><tr>
+<td class="dim-name">instagram installs</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.9%"></div></div>
+<div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div></td>
+<td class="delta neg">-5.00</td></tr><tr>
+<td class="dim-name">TikTok SAN</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.2%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td class="delta pos">+1.00</td></tr><tr>
+<td class="dim-name">firebase_referral-finals</td>
+<td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
+<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
+<td><div class="bar-wrap"><div class="bar nonus" style="width:0.5%"></div></div>
+<div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div></td>
+<td class="delta neg">-1.00</td></tr><tr>
+<td class="dim-name">Unattributed</td>
 <td><div class="bar-wrap"><div class="bar us" style="width:0.2%"></div></div>
 <div class="cell-meta"><b>1</b> feedback · avg 5.00 · 5★ 1</div></td>
 <td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
 <div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-<td class="delta pos">+5.00</td></tr></tbody></table></div></section><section class="panel"><div class="panel-head"><div><h2>Channel Rating Comparison</h2>
-<p>按维度比较 US 与 NonUS 的反馈量、平均评分和 5 星数量。</p></div>
-<div class="legend"><span><i class="dot us-dot"></i>US</span><span><i class="dot nonus-dot"></i>NonUS</span></div></div>
-<div class="table-scroll"><table class="compare-table"><thead><tr><th>Dimension</th><th>US</th><th>NonUS</th><th>Avg Gap</th></tr></thead>
-<tbody><tr>
-<td class="dim-name">Unknown</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:100.0%"></div></div>
-<div class="cell-meta"><b>1,432</b> feedback · avg 4.35 · 5★ 1,131</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:100.0%"></div></div>
-<div class="cell-meta"><b>576</b> feedback · avg 4.05 · 5★ 395</div></td>
-<td class="delta pos">+0.30</td></tr><tr>
-<td class="dim-name">sem</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:17.6%"></div></div>
-<div class="cell-meta"><b>252</b> feedback · avg 4.23 · 5★ 191</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:27.4%"></div></div>
-<div class="cell-meta"><b>158</b> feedback · avg 4.13 · 5★ 116</div></td>
-<td class="delta pos">+0.10</td></tr><tr>
-<td class="dim-name">organic</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:13.0%"></div></div>
-<div class="cell-meta"><b>186</b> feedback · avg 4.22 · 5★ 137</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:29.9%"></div></div>
-<div class="cell-meta"><b>172</b> feedback · avg 4.45 · 5★ 136</div></td>
-<td class="delta neg">-0.23</td></tr><tr>
-<td class="dim-name">apple search ads</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:7.5%"></div></div>
-<div class="cell-meta"><b>108</b> feedback · avg 3.96 · 5★ 72</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:11.5%"></div></div>
-<div class="cell-meta"><b>66</b> feedback · avg 4.58 · 5★ 55</div></td>
-<td class="delta neg">-0.61</td></tr><tr>
-<td class="dim-name">web to app_solve times_0827</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:1.7%"></div></div>
-<div class="cell-meta"><b>24</b> feedback · avg 4.58 · 5★ 20</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.9%"></div></div>
-<div class="cell-meta"><b>5</b> feedback · avg 4.60 · 5★ 4</div></td>
-<td class="delta neg">-0.02</td></tr><tr>
-<td class="dim-name">facebook installs</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
-<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:1.7%"></div></div>
-<div class="cell-meta"><b>10</b> feedback · avg 5.00 · 5★ 10</div></td>
-<td class="delta neg">-5.00</td></tr><tr>
-<td class="dim-name">instagram installs</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.0%"></div></div>
-<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.3%"></div></div>
-<div class="cell-meta"><b>2</b> feedback · avg 5.00 · 5★ 2</div></td>
-<td class="delta neg">-5.00</td></tr><tr>
-<td class="dim-name">firebase_scan-to-login</td>
-<td><div class="bar-wrap"><div class="bar us" style="width:0.1%"></div></div>
-<div class="cell-meta"><b>1</b> feedback · avg 1.00 · 5★ 0</div></td>
-<td><div class="bar-wrap"><div class="bar nonus" style="width:0.0%"></div></div>
-<div class="cell-meta"><b>0</b> feedback · avg 0.00 · 5★ 0</div></td>
-<td class="delta pos">+1.00</td></tr></tbody></table></div></section><section class="panel"><div class="panel-head"><div><h2>5-Star Text Feedback</h2>
-<p>展示全部 64 条 5 星文本反馈，不隐藏任何评价；英文和非英文有语义文字评论均补充中文翻译，纯 emoji / 无明确语义 emoji 评价不翻译。</p></div></div>
+<td class="delta pos">+5.00</td></tr></tbody></table></div></section><section class="panel"><div class="panel-head"><div><h2>5-Star Text Feedback</h2>
+<p>展示全部 68 条 5 星文本反馈，不隐藏任何评价；英文和非英文有语义文字评论均补充中文翻译，纯 emoji / 无明确语义 emoji 评价不翻译。</p></div></div>
 <div class="quote-grid"><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · Unknown subject</em></div>
+<p>Super helpful and made me understand one of my homework pages</p><div class="quote-translation">中文：非常有帮助，让我理解了作业中的一页内容。</div><footer>2026-08-03 10:58:49 · session aitutor_2026_08_02_0e3198ec173b83c11f5d</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>US · Unknown grade · others</em></div>
+<p>Nice</p><div class="quote-translation">中文：很好。</div><footer>2026-08-03 02:45:53 · session aitutor_2026_08_02_f208b858d5638cafd323</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Iraq · highSchool · Unknown subject</em></div>
+<p>Yup</p><div class="quote-translation">中文：对的。</div><footer>2026-08-02 00:19:18 · session aitutor_2026_08_01_7c6c3c6237cd185426eb</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · university · algebra</em></div>
+<p>It really helped me understand the graphs more! Thanks!</p><div class="quote-translation">中文：它确实帮助我更好地理解了图表，谢谢！</div><footer>2026-08-01 08:30:49 · session aitutor_2026_07_31_1d3ed3d0ad098b565cac</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · math</em></div>
 <p>Excellent explanation.</p><div class="quote-translation">中文：讲解非常出色。</div><footer>2026-07-31 12:57:27 · session aitutor_2026_07_31_2118541a358d9df92975</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · others</em></div>
-<p>I’m</p><div class="quote-translation">中文：原文不完整（“我……”）。</div><footer>2026-07-31 03:50:58 · session aitutor_2026_07_30_aa9a2c4dfaf5fcfdf6a0</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>South Africa · university · algebra</em></div>
-<p>Explaination</p><div class="quote-translation">中文：讲解。</div><footer>2026-07-29 08:03:34 · session aitutor_2026_07_29_012d8c3ba7590a9906dc</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · university · probability &amp; statistics</em></div>
-<p>Wow. This was great feature! Loved the voice and speed in which this was explained. It’s helpful to learn difficult subjects.</p><div class="quote-translation">中文：哇，这是很棒的功能！我喜欢讲解的语音和速度，对学习困难科目很有帮助。</div><footer>2026-07-29 07:38:22 · session aitutor_2026_07_28_015c514d9e55a7dfeda5</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>South Africa · highSchool · geometry</em></div>
-<p>Everything</p><div class="quote-translation">中文：所有内容都很好。</div><footer>2026-07-29 03:29:41 · session aitutor_2026_07_28_3dbeeb1581f07ec54f68</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Vietnam · highSchool · geometry</em></div>
-<p>Giải thích cụ thể chi tiết rõ ràng rất tốt nhé🥰</p><div class="quote-translation">中文：解释得具体、详细又清楚，非常好。</div><footer>2026-07-28 21:29:13 · session aitutor_2026_07_28_5c7fd033ea3bc660ef4e</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · biological sciences</em></div>
+<p>I’m</p><div class="quote-translation">中文：原文不完整（“我……”）。</div><footer>2026-07-31 03:50:58 · session aitutor_2026_07_30_aa9a2c4dfaf5fcfdf6a0</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>South Africa · university · math</em></div>
+<p>Explaination</p><div class="quote-translation">中文：讲解。</div><footer>2026-07-29 08:03:34 · session aitutor_2026_07_29_012d8c3ba7590a9906dc</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · university · math</em></div>
+<p>Wow. This was great feature! Loved the voice and speed in which this was explained. It’s helpful to learn difficult subjects.</p><div class="quote-translation">中文：哇，这是很棒的功能！我喜欢讲解的语音和速度，对学习困难科目很有帮助。</div><footer>2026-07-29 07:38:22 · session aitutor_2026_07_28_015c514d9e55a7dfeda5</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>South Africa · highSchool · math</em></div>
+<p>Everything</p><div class="quote-translation">中文：所有内容都很好。</div><footer>2026-07-29 03:29:41 · session aitutor_2026_07_28_3dbeeb1581f07ec54f68</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Vietnam · highSchool · math</em></div>
+<p>Giải thích cụ thể chi tiết rõ ràng rất tốt nhé🥰</p><div class="quote-translation">中文：解释得具体、详细又清楚，非常好。</div><footer>2026-07-28 21:29:13 · session aitutor_2026_07_28_5c7fd033ea3bc660ef4e</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · humanities &amp; social sciences</em></div>
 <p>I’m glad to know that I can use solveify for more than math</p><div class="quote-translation">中文：我很高兴知道 Solveify 不只可以用来学数学。</div><footer>2026-07-28 05:58:37 · session aitutor_2026_07_27_fe3b8633e3761d7e86ff</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Australia · university · Unknown subject</em></div>
 <p>Great easy to understand. Good to explain in a different way as a teaching tool</p><div class="quote-translation">中文：很棒，容易理解。作为教学工具，用不同方式解释很有帮助。</div><footer>2026-07-28 04:27:52 · session aitutor_2026_07_28_7baadcba9761546213f1</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Australia · university · Unknown subject</em></div>
 <p>Great explanation</p><div class="quote-translation">中文：很棒的讲解。</div><footer>2026-07-28 04:10:18 · session aitutor_2026_07_28_cd1e3c1c11e4dbeda818</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · unknown · Unknown subject</em></div>
 <p>Wonderful</p><div class="quote-translation">中文：很棒。</div><footer>2026-07-27 02:26:48 · session aitutor_2026_07_26_16280b020b5544159967</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · Unknown subject</em></div>
 <p>Good</p><div class="quote-translation">中文：很好。</div><footer>2026-07-26 23:28:58 · session aitutor_2026_07_26_584d8ce448650106ab8b</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Vietnam · middleSchool · Unknown subject</em></div>
-<p>Giảng rất hay</p><div class="quote-translation">中文：讲得非常好。</div><footer>2026-07-26 21:37:00 · session aitutor_2026_07_26_3ab670ce072ad546e9fd</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Malaysia · others · algebra</em></div>
+<p>Giảng rất hay</p><div class="quote-translation">中文：讲得非常好。</div><footer>2026-07-26 21:37:00 · session aitutor_2026_07_26_3ab670ce072ad546e9fd</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Malaysia · others · math</em></div>
 <p>她会正确的讲解和有直视</p><footer>2026-07-25 17:34:35 · session aitutor_2026_07_25_93369f786de0a61a1357</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Vietnam · middleSchool · Unknown subject</em></div>
-<p>It’s clear and not intimidating</p><div class="quote-translation">中文：讲解很清楚，而且不会让人感到压力。</div><footer>2026-07-25 09:24:43 · session aitutor_2026_07_25_b813d2cef62696b832e9</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · communityCollege · algebra</em></div>
+<p>It’s clear and not intimidating</p><div class="quote-translation">中文：讲解很清楚，而且不会让人感到压力。</div><footer>2026-07-25 09:24:43 · session aitutor_2026_07_25_b813d2cef62696b832e9</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · communityCollege · math</em></div>
 <p>Very helpful on the stop help!</p><div class="quote-translation">中文：在卡住需要帮助的时候非常有用。</div><footer>2026-07-25 06:11:27 · session aitutor_2026_07_24_420ff9b567c0fadef57e</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>South Africa · university · others</em></div>
 <p>The response is on it’s A-game.</p><div class="quote-translation">中文：回答非常出色。</div><footer>2026-07-23 14:24:50 · session aitutor_2026_07_23_8846d80bea97f4c8dc37</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Canada · middleSchool · Unknown subject</em></div>
-<p>I liked how it shows us how important and shows us the steps of how to do multiple</p><div class="quote-translation">中文：我喜欢它会告诉我们重点，并展示如何一步步完成多个步骤。</div><footer>2026-07-22 22:17:05 · session aitutor_2026_07_22_ef29ae5314af97002672</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · communityCollege · accounting</em></div>
+<p>I liked how it shows us how important and shows us the steps of how to do multiple</p><div class="quote-translation">中文：我喜欢它会告诉我们重点，并展示如何一步步完成多个步骤。</div><footer>2026-07-22 22:17:05 · session aitutor_2026_07_22_ef29ae5314af97002672</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · communityCollege · humanities &amp; social sciences</em></div>
 <p>Clear explanation</p><div class="quote-translation">中文：讲解很清楚。</div><footer>2026-07-22 10:30:26 · session aitutor_2026_07_21_953ff11fe5167cc46f33</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · others · Unknown subject</em></div>
 <p>Very thorough and used excellent examples</p><div class="quote-translation">中文：讲解非常全面，并且用了很好的例子。</div><footer>2026-07-22 01:52:46 · session aitutor_2026_07_21_3e718758b875fd2cf776</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Canada · middleSchool · Unknown subject</em></div>
 <p>I liked how she was patient with me</p><div class="quote-translation">中文：我喜欢她对我很有耐心。</div><footer>2026-07-22 00:11:28 · session aitutor_2026_07_21_5a51ad3b47895b46c7c9</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Türkiye · middleSchool · Unknown subject</em></div>
 <p>İt explained the topic so neatly</p><div class="quote-translation">中文：它把这个主题讲解得很清楚、很有条理。</div><footer>2026-07-21 20:27:18 · session aitutor_2026_07_21_4faa8f54886a8181f45e</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Mexico · unknown · others</em></div>
 <p>Genial</p><div class="quote-translation">中文：很棒。</div><footer>2026-07-21 02:27:05 · session aitutor_2026_07_20_460c380a4fb009e0b82c</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Senegal · university · Unknown subject</em></div>
-<p>Sa ma beaucoup plu</p><div class="quote-translation">中文：我非常喜欢。</div><footer>2026-07-20 21:16:03 · session aitutor_2026_07_20_dd4278040782acfcbff5</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Vietnam · middleSchool · algebra</em></div>
-<p>Rất hay</p><div class="quote-translation">中文：非常好。</div><footer>2026-07-20 18:59:23 · session aitutor_2026_07_20_6842559e439691ab23ce</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Hong Kong · others · linguistics</em></div>
-<p>Versatile</p><div class="quote-translation">中文：很灵活、用途很广。</div><footer>2026-07-20 11:20:21 · session aitutor_2026_07_20_e8cd1c7e379db0f92250</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Belize · middleSchool · algebra</em></div>
-<p>I love how she goes slow and tells me step by step</p><div class="quote-translation">中文：我喜欢她讲得很慢，并且一步一步地告诉我。</div><footer>2026-07-19 07:31:57 · session aitutor_2026_07_18_ef3533c38db7c162a813</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Canada · Unknown grade · health sciences &amp; professions</em></div>
+<p>Sa ma beaucoup plu</p><div class="quote-translation">中文：我非常喜欢。</div><footer>2026-07-20 21:16:03 · session aitutor_2026_07_20_dd4278040782acfcbff5</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Vietnam · middleSchool · math</em></div>
+<p>Rất hay</p><div class="quote-translation">中文：非常好。</div><footer>2026-07-20 18:59:23 · session aitutor_2026_07_20_6842559e439691ab23ce</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Hong Kong · others · humanities &amp; social sciences</em></div>
+<p>Versatile</p><div class="quote-translation">中文：很灵活、用途很广。</div><footer>2026-07-20 11:20:21 · session aitutor_2026_07_20_e8cd1c7e379db0f92250</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Belize · middleSchool · math</em></div>
+<p>I love how she goes slow and tells me step by step</p><div class="quote-translation">中文：我喜欢她讲得很慢，并且一步一步地告诉我。</div><footer>2026-07-19 07:31:57 · session aitutor_2026_07_18_ef3533c38db7c162a813</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · humanities &amp; social sciences</em></div>
 <p>Very informative</p><div class="quote-translation">中文：信息量很足，很有帮助。</div><footer>2026-07-18 02:52:31 · session aitutor_2026_07_17_d377d28e309a77639711</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Ghana · Unknown grade · others</em></div>
 <p>S</p><footer>2026-07-16 09:01:27 · session aitutor_2026_07_16_31d83203ded2724c8510</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · highSchool · Unknown subject</em></div>
 <p>Como explica</p><div class="quote-translation">中文：我喜欢它解释的方式。</div><footer>2026-07-14 03:33:56 · session aitutor_2026_07_13_f0f110573883ed04820e</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Malaysia · highSchool · Unknown subject</em></div>
-<p>You explained it very well</p><div class="quote-translation">中文：你解释得非常好。</div><footer>2026-07-13 15:02:19 · session aitutor_2026_07_13_64bfb49837784b5a0cdf</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · communityCollege · algebra</em></div>
+<p>You explained it very well</p><div class="quote-translation">中文：你解释得非常好。</div><footer>2026-07-13 15:02:19 · session aitutor_2026_07_13_64bfb49837784b5a0cdf</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · communityCollege · math</em></div>
 <p>I like</p><div class="quote-translation">中文：我喜欢。</div><footer>2026-07-13 03:04:47 · session aitutor_2026_07_12_1a553f5f8f5ad701cd54</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · communityCollege · Unknown subject</em></div>
-<p>Thanks that was clearer than my class or my textbook.</p><div class="quote-translation">中文：谢谢，这比我的课堂和教材都讲得更清楚。</div><footer>2026-07-12 13:13:30 · session aitutor_2026_07_11_2012ad91e474407b7d09</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>India · Unknown grade · Unknown subject</em></div>
-<p>u help me under stqnd</p><div class="quote-translation">中文：你帮助我理解了。</div><footer>2026-07-11 14:20:05 · session aitutor_2026_07_11_142e01f6dd6fbadb384e</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Kenya · Unknown grade · Unknown subject</em></div>
+<p>Thanks that was clearer than my class or my textbook.</p><div class="quote-translation">中文：谢谢，这比我的课堂和教材都讲得更清楚。</div><footer>2026-07-12 13:13:30 · session aitutor_2026_07_11_2012ad91e474407b7d09</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · Unknown subject</em></div>
+<p>u help me under stqnd</p><div class="quote-translation">中文：你帮助我理解了。</div><footer>2026-07-11 14:20:05 · session aitutor_2026_07_11_142e01f6dd6fbadb384e</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · Unknown subject</em></div>
 <p>💯</p><footer>2026-07-10 01:45:13 · session aitutor_2026_07_09_ae3c53eb810c4788025f</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · others · Unknown subject</em></div>
 <p>Amazing study guide</p><div class="quote-translation">中文：很棒的学习指南。</div><footer>2026-07-09 17:09:01 · session aitutor_2026_07_09_fb01773dea70de6bac50</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>India · middleSchool · Unknown subject</em></div>
 <p>It was very easy to understand even in first class ever</p><div class="quote-translation">中文：即使是第一次上课也非常容易理解。</div><footer>2026-07-07 19:02:56 · session aitutor_2026_07_07_3fab8f7a6797b2a0b788</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Canada · highSchool · Unknown subject</em></div>
-<p>Patient and interactive</p><div class="quote-translation">中文：耐心并且有互动性。</div><footer>2026-07-07 09:28:31 · session aitutor_2026_07_06_ee89d269b084cb059e43</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · geography</em></div>
-<p>How to explain it in very great detail and I like how she was able to show me evidence It was Pretty nice</p><div class="quote-translation">中文：讲解非常详细，我也喜欢她能够展示证据，这一点很不错。</div><footer>2026-07-07 04:47:16 · session aitutor_2026_07_06_e51a9eaa3ec3d896eed8</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · algebra</em></div>
-<p>The AI helped very much and I learned a new topic</p><div class="quote-translation">中文：AI 帮了我很多，我学到了一个新主题。</div><footer>2026-07-07 04:11:42 · session aitutor_2026_07_06_a462454291d27f9667d3</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Nigeria · Unknown grade · Unknown subject</em></div>
+<p>Patient and interactive</p><div class="quote-translation">中文：耐心并且有互动性。</div><footer>2026-07-07 09:28:31 · session aitutor_2026_07_06_ee89d269b084cb059e43</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · humanities &amp; social sciences</em></div>
+<p>How to explain it in very great detail and I like how she was able to show me evidence It was Pretty nice</p><div class="quote-translation">中文：讲解非常详细，我也喜欢她能够展示证据，这一点很不错。</div><footer>2026-07-07 04:47:16 · session aitutor_2026_07_06_e51a9eaa3ec3d896eed8</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · math</em></div>
+<p>The AI helped very much and I learned a new topic</p><div class="quote-translation">中文：AI 帮了我很多，我学到了一个新主题。</div><footer>2026-07-07 04:11:42 · session aitutor_2026_07_06_a462454291d27f9667d3</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · Unknown subject</em></div>
 <p>R❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️💜❤️❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥💜💜❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥❣️💕❤️‍🩹❣️🖤🤍🤍🤍🤍🤍🤍🤍🖤🤍🖤❤️‍🩹💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟💟❤️‍🩹💖❤️‍🩹💓💓💓💓💓❤️‍🔥❤️‍🔥🖤🖤🖤🖤🖤🖤💜💜💜🖤🖤🖤🧡🧡🧡🧡🖤💜❤️‍🔥💜🖤🖤🖤🖤🖤🖤🖤🖤🖤🖤🖤💜🖤🖤🖤🖤❤️‍🩹💜❤️‍🔥💜💜❤️‍🔥💜❤️‍🔥❤️‍🔥❤️‍🩹❤️‍🩹❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥💜❤️‍🩹🖤🖤❤️‍🩹🖤❤️‍🩹❤️‍🩹❤️‍🔥❤️‍🔥❤️‍🩹❤️‍🔥❤️‍🔥💜❤️‍🔥❤️‍🔥💜💜🖤🖤🖤💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜💜❤️❤️❤️❤️❤️💛💛💛💛💛💛💛💛💛💛💛💚💚💚💚💚💚💛💚💚💚💙💙🤎</p><footer>2026-07-06 01:44:18 · session aitutor_2026_07_05_8db9e3e91317e09cc929</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · Unknown subject</em></div>
-<p>Awesome I’m finally figuring it out! Quadratic Functions</p><div class="quote-translation">中文：太棒了，我终于弄懂二次函数了！</div><footer>2026-07-04 00:37:10 · session aitutor_2026_07_03_74720ebc0ddf23ccbe17</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Australia · Unknown grade · calculus</em></div>
+<p>Awesome I’m finally figuring it out! Quadratic Functions</p><div class="quote-translation">中文：太棒了，我终于弄懂二次函数了！</div><footer>2026-07-04 00:37:10 · session aitutor_2026_07_03_74720ebc0ddf23ccbe17</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · math</em></div>
 <p>Y</p><footer>2026-07-02 10:36:11 · session aitutor_2026_07_02_028cfb4e6eb011009b8a</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Nigeria · middleSchool · Unknown subject</em></div>
 <p>Love the excavation that’s what I like about you do you understand I just love your teaching teacher love you thank you</p><div class="quote-translation">中文：我喜欢你的讲解方式，真的很喜欢你的教学，谢谢你。</div><footer>2026-07-02 02:31:32 · session aitutor_2026_07_01_49d606e58cc39111faf2</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Nigeria · middleSchool · Unknown subject</em></div>
 <p>❤️❤️❤️❤️❤️❤️💜❤️❤️❤️❤️❤️❤️</p><footer>2026-07-02 02:23:08 · session aitutor_2026_07_01_7c619651da6ebbaf3bf2</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Nigeria · middleSchool · Unknown subject</em></div>
-<p>Speech ❤️❤️❤️❤️❤️❤️❤️😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😙😙😙😙😙😙😗😗😗😙😙😙😗😗😗😙😙😙😗😗😗😗😗😗😗😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️💜❤️💜❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</p><div class="quote-translation">中文：语音讲解。</div><footer>2026-07-02 02:16:02 · session aitutor_2026_07_01_088afe81e4e8bc6bb4ca</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Canada · highSchool · chemistry</em></div>
-<p>Great! It’s the best explanation for full understanding</p><div class="quote-translation">中文：太好了！这是最能帮助完全理解的讲解。</div><footer>2026-07-02 02:03:28 · session aitutor_2026_07_01_5283b1c87c0df8d01f2d</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · university · algebra</em></div>
+<p>Speech ❤️❤️❤️❤️❤️❤️❤️😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😌😙😙😙😙😙😙😗😗😗😙😙😙😗😗😗😙😙😙😗😗😗😗😗😗😗😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉😉❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️💜❤️💜❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</p><div class="quote-translation">中文：语音讲解。</div><footer>2026-07-02 02:16:02 · session aitutor_2026_07_01_088afe81e4e8bc6bb4ca</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Canada · highSchool · science</em></div>
+<p>Great! It’s the best explanation for full understanding</p><div class="quote-translation">中文：太好了！这是最能帮助完全理解的讲解。</div><footer>2026-07-02 02:03:28 · session aitutor_2026_07_01_5283b1c87c0df8d01f2d</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · university · math</em></div>
 <p>Very clear explanation</p><div class="quote-translation">中文：讲解很清楚。</div><footer>2026-07-01 08:57:05 · session aitutor_2026_06_30_b5b8b54bf9ed84b704be</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Nigeria · middleSchool · Unknown subject</em></div>
 <p>Okay ❤️🤠🤠🤠🤡</p><div class="quote-translation">中文：还不错。</div><footer>2026-07-01 02:10:05 · session aitutor_2026_06_30_1443a841c6644dbedb0a</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Nigeria · middleSchool · Unknown subject</em></div>
-<p>I love it</p><div class="quote-translation">中文：我喜欢它。</div><footer>2026-07-01 01:57:15 · session aitutor_2026_06_30_5e38ce96f2669dfee153</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Malaysia · highSchool · algebra</em></div>
-<p>Clear explanation love her behaviour but eould love if better</p><div class="quote-translation">中文：讲解很清楚，我喜欢她的表现，不过如果能更好就更好了。</div><footer>2026-06-30 22:41:45 · session aitutor_2026_06_30_39c7154e7d4816c62339</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>South Africa · Unknown grade · Unknown subject</em></div>
-<p>The explanation, simple and analytic</p><div class="quote-translation">中文：讲解简单且有分析性。</div><footer>2026-06-30 22:24:09 · session aitutor_2026_06_30_668c9ccdb68937f7e8b7</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Maldives · highSchool · geometry</em></div>
-<p>The teacher was really helpful and I understood what she said!</p><div class="quote-translation">中文：老师真的很有帮助，我理解了她说的内容！</div><footer>2026-06-29 02:58:37 · session aitutor_2026_06_28_7483e652bc3b357912e3</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United Kingdom · Unknown grade · Unknown subject</em></div>
+<p>I love it</p><div class="quote-translation">中文：我喜欢它。</div><footer>2026-07-01 01:57:15 · session aitutor_2026_06_30_5e38ce96f2669dfee153</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Malaysia · highSchool · math</em></div>
+<p>Clear explanation love her behaviour but eould love if better</p><div class="quote-translation">中文：讲解很清楚，我喜欢她的表现，不过如果能更好就更好了。</div><footer>2026-06-30 22:41:45 · session aitutor_2026_06_30_39c7154e7d4816c62339</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · Unknown subject</em></div>
+<p>The explanation, simple and analytic</p><div class="quote-translation">中文：讲解简单且有分析性。</div><footer>2026-06-30 22:24:09 · session aitutor_2026_06_30_668c9ccdb68937f7e8b7</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Maldives · highSchool · math</em></div>
+<p>The teacher was really helpful and I understood what she said!</p><div class="quote-translation">中文：老师真的很有帮助，我理解了她说的内容！</div><footer>2026-06-29 02:58:37 · session aitutor_2026_06_28_7483e652bc3b357912e3</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · Unknown subject</em></div>
 <p>Answered my questions well and I rlly like how they give visual examples</p><div class="quote-translation">中文：很好地回答了我的问题，我也很喜欢它提供可视化例子。</div><footer>2026-06-28 23:47:46 · session aitutor_2026_06_28_fff353447131e341ac17</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United Kingdom · highSchool · Unknown subject</em></div>
 <p>I learnt it so quickly and easily</p><div class="quote-translation">中文：我学得又快又轻松。</div><footer>2026-06-28 23:34:49 · session aitutor_2026_06_28_17ce1d4710e51274d9e5</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · Unknown subject</em></div>
-<p>The way</p><div class="quote-translation">中文：讲解方式。</div><footer>2026-06-28 08:12:45 · session aitutor_2026_06_27_bf80f90ec725dc5e4f9e</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Canada · university · algebra</em></div>
-<p>Very detailed explanation with pictures/ diagrams with multiple explanations on how to solve the problem and to verify your answer</p><div class="quote-translation">中文：讲解非常详细，有图片/图示，也提供了多种解题和验证答案的方法。</div><footer>2026-06-28 07:57:59 · session aitutor_2026_06_27_6d03edf3ab55332aa049</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · algebra</em></div>
-<p>I like how the ai explains everything. But is there a dark mode for this?</p><div class="quote-translation">中文：我喜欢 AI 解释所有内容的方式。不过这个有深色模式吗？</div><footer>2026-06-28 04:34:58 · session aitutor_2026_06_27_446cfdeb2a2a3b2a7f2b</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Türkiye · middleSchool · geometry</em></div>
-<p>Ai soruyu mükemmel anlattı bir insan anlatmış gibiydi türkçe sesinde problem olsada beğendim müthiş!</p><div class="quote-translation">中文：AI 把这道题讲得非常完美，像真人在讲解一样。虽然土耳其语语音有点问题，但我还是很喜欢，太棒了！</div><footer>2026-06-27 19:34:35 · session aitutor_2026_06_27_6adb1613d9304294fc30</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · communityCollege · probability &amp; statistics</em></div>
-<p>Clear explanation</p><div class="quote-translation">中文：讲解很清楚。</div><footer>2026-06-27 04:07:31 · session aitutor_2026_06_26_d62ff224b6eb27953979</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · algebra</em></div>
-<p>The explanations were really simple and straightforward.</p><div class="quote-translation">中文：讲解非常简单直接。</div><footer>2026-06-27 02:40:02 · session aitutor_2026_06_26_0fac6b9c4d6d37eb2cf3</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>South Korea · unknown · algebra</em></div>
-<p>질문에 대한 완벽한 답변, 깔끔한 설명</p><div class="quote-translation">中文：对问题的回答非常完美，解释也很清晰。</div><footer>2026-06-23 00:10:07 · session aitutor_2026_06_23_759b37bf708e6c7cc527</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United Arab Emirates · highSchool · geometry</em></div>
-<p>رائع</p><div class="quote-translation">中文：很棒。</div><footer>2026-06-21 17:55:25 · session aitutor_2026_06_21_707240b9eb028e0a5fb6</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · university · physics</em></div>
-<p>This is cool feature</p><div class="quote-translation">中文：这是一个很酷的功能。</div><footer>2026-06-21 12:03:30 · session aitutor_2026_06_20_5a782a7d884f4dca0b75</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · algebra</em></div>
+<p>The way</p><div class="quote-translation">中文：讲解方式。</div><footer>2026-06-28 08:12:45 · session aitutor_2026_06_27_bf80f90ec725dc5e4f9e</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Canada · university · math</em></div>
+<p>Very detailed explanation with pictures/ diagrams with multiple explanations on how to solve the problem and to verify your answer</p><div class="quote-translation">中文：讲解非常详细，有图片/图示，也提供了多种解题和验证答案的方法。</div><footer>2026-06-28 07:57:59 · session aitutor_2026_06_27_6d03edf3ab55332aa049</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · Unknown grade · math</em></div>
+<p>I like how the ai explains everything. But is there a dark mode for this?</p><div class="quote-translation">中文：我喜欢 AI 解释所有内容的方式。不过这个有深色模式吗？</div><footer>2026-06-28 04:34:58 · session aitutor_2026_06_27_446cfdeb2a2a3b2a7f2b</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Türkiye · middleSchool · math</em></div>
+<p>Ai soruyu mükemmel anlattı bir insan anlatmış gibiydi türkçe sesinde problem olsada beğendim müthiş!</p><div class="quote-translation">中文：AI 把这道题讲得非常完美，像真人在讲解一样。虽然土耳其语语音有点问题，但我还是很喜欢，太棒了！</div><footer>2026-06-27 19:34:35 · session aitutor_2026_06_27_6adb1613d9304294fc30</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · communityCollege · math</em></div>
+<p>Clear explanation</p><div class="quote-translation">中文：讲解很清楚。</div><footer>2026-06-27 04:07:31 · session aitutor_2026_06_26_d62ff224b6eb27953979</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · math</em></div>
+<p>The explanations were really simple and straightforward.</p><div class="quote-translation">中文：讲解非常简单直接。</div><footer>2026-06-27 02:40:02 · session aitutor_2026_06_26_0fac6b9c4d6d37eb2cf3</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>South Korea · unknown · math</em></div>
+<p>질문에 대한 완벽한 답변, 깔끔한 설명</p><div class="quote-translation">中文：对问题的回答非常完美，解释也很清晰。</div><footer>2026-06-23 00:10:07 · session aitutor_2026_06_23_759b37bf708e6c7cc527</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United Arab Emirates · highSchool · math</em></div>
+<p>رائع</p><div class="quote-translation">中文：很棒。</div><footer>2026-06-21 17:55:25 · session aitutor_2026_06_21_707240b9eb028e0a5fb6</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · university · science</em></div>
+<p>This is cool feature</p><div class="quote-translation">中文：这是一个很酷的功能。</div><footer>2026-06-21 12:03:30 · session aitutor_2026_06_20_5a782a7d884f4dca0b75</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · middleSchool · math</em></div>
 <p>Made sure it made sense</p><div class="quote-translation">中文：它确保内容讲得通、能被理解。</div><footer>2026-06-21 02:08:52 · session aitutor_2026_06_20_ca079754300878ed4539</footer></div></div></section><section class="panel"><div class="panel-head"><div><h2>讲解方式选择卡片分析</h2>
-<p>补充分析，不限制新用户 cohort：基于 2026-06-19 至 2026-07-31 的 GA 原始事件。</p></div></div>
+<p>补充分析，不限制新用户 cohort：基于 2026-06-19 至 2026-08-03 的 GA 原始事件。</p></div></div>
 <div class="table-scroll"><table class="compact-table"><thead><tr><th>口径</th><th>分母</th><th>step_by_step</th><th>specific_point</th><th>关闭</th><th>无动作</th></tr></thead><tbody>
-<tr><td><b>用户级首个动作</b></td><td>401 曝光用户 UV</td><td>267（66.6%）</td><td>80（20.0%）</td><td>38（9.5%）</td><td>16（4.0%）</td></tr>
-<tr><td><b>曝光级首个动作</b></td><td>698 次卡片曝光</td><td>516（73.9%）</td><td>118（16.9%）</td><td>43（6.2%）</td><td>21（3.0%）</td></tr>
-<tr><td><b>点击决策次数</b></td><td>634 次点击</td><td>516（81.4%）</td><td>118（18.6%）</td><td>-</td><td>-</td></tr>
+<tr><td><b>用户级首个动作</b></td><td>462 曝光用户 UV</td><td>312（67.5%）</td><td>88（19.0%）</td><td>45（9.7%）</td><td>17（3.7%）</td></tr>
+<tr><td><b>曝光级首个动作</b></td><td>795 次卡片曝光</td><td>595（74.8%）</td><td>129（16.2%）</td><td>50（6.3%）</td><td>21（2.6%）</td></tr>
+<tr><td><b>点击决策次数</b></td><td>724 次点击</td><td>595（82.2%）</td><td>129（17.8%）</td><td>-</td><td>-</td></tr>
 </tbody></table></div></section><section class="panel" id="experiment-444"><div class="panel-head"><div><h2>实验 444：强交互版本补充分析</h2>
-<p>修正口径：实验 444 纯新用户；cohort 使用最新 mart 20260730，事件更新至 2026-07-31。所有行为必须发生在用户 first_open_date 当日或之后；只纳入有 tutor_session_start 的 session，反馈也必须匹配同一已开始 session。</p></div></div>
-<p class="subject-note">审计修正：旧版仅按 user_pseudo_id 连接，误纳入实验入组前事件。本版已重新计算。最终 cohort 36,783 人，其中美国 23,865、非美 11,937、国家未知 981；国家未知不并入非美。</p>
-<div class="section-kicker">Overall Experiment Readout</div>
-<div class="table-scroll"><table class="compact-table" style="min-width:760px"><thead><tr><th>指标</th><th>对照组：第一期方案</th><th>强交互版本</th><th>变化</th><th>统计检查</th></tr></thead><tbody>
-<tr><td><b>实验 cohort</b></td><td>18,507 用户</td><td>18,276 用户</td><td>-231</td><td>完整排除测试账号</td></tr>
-<tr><td><b>Tutor 使用率</b></td><td>791 / 18,507 = 4.27%</td><td>833 / 18,276 = 4.56%</td><td>+0.28pp</td><td>p = 0.185</td></tr>
-<tr><td><b>全 cohort 完播用户率（ITT）</b></td><td>129 / 18,507 = 0.697%</td><td>183 / 18,276 = 1.001%</td><td>+0.304pp</td><td>p = 0.0015</td></tr>
-<tr><td><b>有效 session</b></td><td>1,714</td><td>1,373</td><td>-341</td><td>均有 tutor_session_start</td></tr>
-<tr><td><b>平均使用时长</b></td><td>193.4s</td><td>117.6s</td><td>-75.8s</td><td>timing 最大 elapsed_ms</td></tr>
-<tr><td><b>session 级完播率</b></td><td>226 / 1,714 = 13.19%</td><td>324 / 1,373 = 23.60%</td><td>+10.41pp</td><td>p &lt; 0.001</td></tr>
-<tr><td><b>Tutor 用户至少完播一次</b></td><td>129 / 791 = 16.31%</td><td>183 / 833 = 21.97%</td><td>+5.66pp</td><td>p = 0.0038</td></tr>
-<tr><td><b>平均评分</b></td><td>4.58（390 次）</td><td>4.40（321 次）</td><td>-0.18</td><td>仅已开始 session</td></tr>
-<tr><td><b>五星率</b></td><td>327 / 390 = 83.85%</td><td>260 / 321 = 81.00%</td><td>-2.85pp</td><td>p = 0.319</td></tr>
-<tr><td><b>4-5 星率</b></td><td>345 / 390 = 88.46%</td><td>270 / 321 = 84.11%</td><td>-4.35pp</td><td>p = 0.091</td></tr>
-<tr><td><b>负反馈率（1-2 星）</b></td><td>31 / 390 = 7.95%</td><td>43 / 321 = 13.40%</td><td>+5.45pp</td><td>p = 0.018 · 风险信号</td></tr>
-</tbody></table></div>
-<div class="section-kicker">United States vs Non-US</div>
-<div class="table-scroll"><table class="compact-table" style="min-width:1280px"><thead><tr><th>地区</th><th>版本</th><th>Cohort</th><th>Tutor 用户 / 使用率</th><th>Session</th><th>平均 / P50 时长</th><th>Session 完播率</th><th>Tutor 用户完播率</th><th>ITT 完播用户率</th><th>评分 / 五星 / 负反馈</th></tr></thead><tbody>
-<tr><td rowspan="2"><b>美国</b></td><td>第一期方案</td><td>11,978</td><td>524 / 4.37%</td><td>994</td><td>187.2s / 65.2s</td><td>148 / 994 = 14.89%</td><td>81 / 524 = 15.46%</td><td>81 / 11,978 = 0.676%</td><td>4.54 / 82.32% / 9.09%（198 次）</td></tr>
-<tr><td><b>强交互版本</b></td><td>11,887</td><td>547 / 4.60%</td><td>924</td><td>119.3s / 38.7s</td><td><b>228 / 924 = 24.68%</b></td><td><b>114 / 547 = 20.84%</b></td><td><b>114 / 11,887 = 0.959%</b></td><td>4.41 / 81.08% / 13.06%（222 次）</td></tr>
-<tr><td rowspan="2"><b>非美</b></td><td>第一期方案</td><td>6,017</td><td>256 / 4.25%</td><td>698</td><td>203.1s / 73.0s</td><td>75 / 698 = 10.74%</td><td>45 / 256 = 17.58%</td><td>45 / 6,017 = 0.748%</td><td>4.63 / 85.41% / 6.49%（185 次）</td></tr>
-<tr><td><b>强交互版本</b></td><td>5,920</td><td>273 / 4.61%</td><td>432</td><td>115.8s / 38.0s</td><td><b>96 / 432 = 22.22%</b></td><td><b>69 / 273 = 25.27%</b></td><td><b>69 / 5,920 = 1.166%</b></td><td>4.41 / 81.05% / 13.68%（95 次）</td></tr>
-</tbody></table></div>
-<ul class="bullet-note"><li><b>地区一致性：</b>美国 ITT +0.283pp（p = 0.015），非美 +0.418pp（p = 0.019）；地区交互 p = 0.527，暂无证据显示两地实验效果不同。</li><li><b>实验解读：</b>强交互版本没有显著扩大 Tutor 使用率，但进入 Tutor 后的完成概率更高、时长更短，更像效率提升。</li><li><b>反馈提醒：</b>五星率没有显著变化；低分率上升属于需继续监控的事件级风险信号，同一用户可能多次评分，不作确定性因果结论。</li></ul>
-</section><section class='panel choice-profile-panel' id='specific-point-profile'><div class='panel-head choice-profile-head'><div><div class='choice-profile-kicker'>Explain Choice · Audience Profile</div><h2>Specific Point 用户画像对比</h2><p>按每位用户首次看到讲解方式卡片后 30 分钟内的首个动作互斥归类，对比 specific_point 与 step_by_step 用户。数据范围为 2026-06-19 至 2026-07-31，已按本次最新 Regular + Intraday 全量重拉，并统一排除内部和指定测试账号。</p></div><div class='choice-profile-legend'><span><i class='specific'></i>Specific Point</span><span><i class='step'></i>Step by Step</span></div></div>
-<div class='choice-profile-summary'><div class='choice-profile-stat primary'><span>Specific Point</span><b>80</b><em>画像分析用户</em></div><div class='choice-profile-stat'><span>Step by Step</span><b>267</b><em>对照用户</em></div><div class='choice-profile-stat'><span>最高正向差异</span><b>+6.3pp</b><em>学科 · others</em></div><div class='choice-profile-stat'><span>最高负向差异</span><b>-10.4pp</b><em>渠道 · unknown</em></div></div>
-<div class='choice-profile-grid'>
-<article class='choice-profile-card'><h3>年级</h3><p>Specific Point 字段覆盖 71 / 80（88.8%）</p><div class='choice-profile-rows'>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>university</span><span class='choice-profile-delta down'>-9.4pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:36.3%'></div></div><span class='choice-profile-value'>29 · 36.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:45.7%'></div></div><span class='choice-profile-value'>122 · 45.7%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>highSchool</span><span class='choice-profile-delta up'>+3.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:25%'></div></div><span class='choice-profile-value'>20 · 25.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:21.7%'></div></div><span class='choice-profile-value'>58 · 21.7%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>communityCollege</span><span class='choice-profile-delta up'>+1.6pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:12.5%'></div></div><span class='choice-profile-value'>10 · 12.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:10.9%'></div></div><span class='choice-profile-value'>29 · 10.9%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>unknown</span><span class='choice-profile-delta up'>+1.9pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:11.3%'></div></div><span class='choice-profile-value'>9 · 11.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:9.4%'></div></div><span class='choice-profile-value'>25 · 9.4%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>middleSchool</span><span class='choice-profile-delta up'>+1.6pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:8.8%'></div></div><span class='choice-profile-value'>7 · 8.8%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:7.1%'></div></div><span class='choice-profile-value'>19 · 7.1%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>others</span><span class='choice-profile-delta up'>+1.0pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:6.3%'></div></div><span class='choice-profile-value'>5 · 6.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:5.2%'></div></div><span class='choice-profile-value'>14 · 5.2%</span></div></div></div>
-</div></article>
-<article class='choice-profile-card'><h3>渠道</h3><p>Specific Point 字段覆盖 56 / 80（70.0%）</p><div class='choice-profile-rows'>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>unknown</span><span class='choice-profile-delta down'>-10.4pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:30%'></div></div><span class='choice-profile-value'>24 · 30.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:40.4%'></div></div><span class='choice-profile-value'>108 · 40.4%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>organic</span><span class='choice-profile-delta up'>+5.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:30%'></div></div><span class='choice-profile-value'>24 · 30.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:24.7%'></div></div><span class='choice-profile-value'>66 · 24.7%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>sem</span><span class='choice-profile-delta up'>+0.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:28.7%'></div></div><span class='choice-profile-value'>23 · 28.7%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:28.5%'></div></div><span class='choice-profile-value'>76 · 28.5%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>apple search ads</span><span class='choice-profile-delta up'>+1.9pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:7.5%'></div></div><span class='choice-profile-value'>6 · 7.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:5.6%'></div></div><span class='choice-profile-value'>15 · 5.6%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>web to app_solve times_0827</span><span class='choice-profile-delta up'>+2.1pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:2.5%'></div></div><span class='choice-profile-value'>2 · 2.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:.4%'></div></div><span class='choice-profile-value'>1 · 0.4%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>instagram installs</span><span class='choice-profile-delta up'>+1.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:1.3%'></div></div><span class='choice-profile-value'>1 · 1.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:0%'></div></div><span class='choice-profile-value'>0 · 0.0%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>facebook installs</span><span class='choice-profile-delta down'>-0.4pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:0%'></div></div><span class='choice-profile-value'>0 · 0.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:.4%'></div></div><span class='choice-profile-value'>1 · 0.4%</span></div></div></div>
-</div></article>
-<article class='choice-profile-card wide'><h3>登录身份</h3><p>Specific Point 字段覆盖 79 / 80（98.8%）</p><div class='choice-profile-rows'>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>新注册用户</span><span class='choice-profile-delta up'>+4.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:72.5%'></div></div><span class='choice-profile-value'>58 · 72.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:68.2%'></div></div><span class='choice-profile-value'>182 · 68.2%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>重装后登录用户</span><span class='choice-profile-delta down'>-2.8pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:23.8%'></div></div><span class='choice-profile-value'>19 · 23.8%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:26.6%'></div></div><span class='choice-profile-value'>71 · 26.6%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>未登录用户</span><span class='choice-profile-delta down'>-1.6pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:2.5%'></div></div><span class='choice-profile-value'>2 · 2.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:4.1%'></div></div><span class='choice-profile-value'>11 · 4.1%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>unknown</span><span class='choice-profile-delta up'>+0.1pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:1.3%'></div></div><span class='choice-profile-value'>1 · 1.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:1.1%'></div></div><span class='choice-profile-value'>3 · 1.1%</span></div></div></div>
-</div><div class='choice-profile-note'><strong>身份口径</strong><span>Onboarding_Role_Select 的“教育者 / 家长 / 学生”角色字段在本批 Specific Point 用户中 0 / 80 命中，因此本图使用登录身份，不对缺失角色做推断。</span></div></article>
-<article class='choice-profile-card wide'><h3>学科</h3><p>只使用用户选择前最近一次真实 Solve_Success.subject；Specific Point 字段覆盖 61 / 80（76.3%）。展示主要学科，其余小类合并。</p><div class='choice-profile-rows'>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>Unknown subject</span><span class='choice-profile-delta down'>-6.2pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:23.8%'></div></div><span class='choice-profile-value'>19 · 23.8%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:30.0%'></div></div><span class='choice-profile-value'>80 · 30.0%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>algebra</span><span class='choice-profile-delta down'>-7.2pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:17.5%'></div></div><span class='choice-profile-value'>14 · 17.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:24.7%'></div></div><span class='choice-profile-value'>66 · 24.7%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>others</span><span class='choice-profile-delta up'>+6.3pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:10%'></div></div><span class='choice-profile-value'>8 · 10.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:3.7%'></div></div><span class='choice-profile-value'>10 · 3.7%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>chemistry</span><span class='choice-profile-delta down'>-3.7pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:7.5%'></div></div><span class='choice-profile-value'>6 · 7.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:11.2%'></div></div><span class='choice-profile-value'>30 · 11.2%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>geometry</span><span class='choice-profile-delta up'>+3.8pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:7.5%'></div></div><span class='choice-profile-value'>6 · 7.5%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:3.7%'></div></div><span class='choice-profile-value'>10 · 3.7%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>trigonometry</span><span class='choice-profile-delta up'>+0.9pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:5%'></div></div><span class='choice-profile-value'>4 · 5.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:4.1%'></div></div><span class='choice-profile-value'>11 · 4.1%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>biological sciences</span><span class='choice-profile-delta up'>+3.5pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:5%'></div></div><span class='choice-profile-value'>4 · 5.0%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:1.5%'></div></div><span class='choice-profile-value'>4 · 1.5%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>health sciences &amp; professions</span><span class='choice-profile-delta up'>+1.9pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:3.8%'></div></div><span class='choice-profile-value'>3 · 3.8%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:1.9%'></div></div><span class='choice-profile-value'>5 · 1.9%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>computer science</span><span class='choice-profile-delta up'>+3.4pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:3.8%'></div></div><span class='choice-profile-value'>3 · 3.8%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:.4%'></div></div><span class='choice-profile-value'>1 · 0.4%</span></div></div></div>
-<div class='choice-profile-row'><div class='choice-profile-row-head'><span class='choice-profile-label'>其余学科合计</span><span class='choice-profile-delta down'>-2.5pp</span></div><div class='choice-profile-bars'><div class='choice-profile-bar-line'><span>Specific</span><div class='choice-profile-track'><div class='choice-profile-fill specific' style='width:16.3%'></div></div><span class='choice-profile-value'>13 · 16.3%</span></div><div class='choice-profile-bar-line'><span>Step</span><div class='choice-profile-track'><div class='choice-profile-fill step' style='width:18.7%'></div></div><span class='choice-profile-value'>50 · 18.7%</span></div></div></div>
-</div></article>
-</div>
-<div class='choice-profile-takeaway'><b>方向性画像：</b>Specific Point 用户相对更少来自 university 与 algebra，更常见于 organic 渠道，并在 others、geometry、biological sciences、computer science 等学科上占比更高。由于 Specific Point 仅 80 人且部分字段缺失，这些差异用于探索后续定向研究，不代表因果或统计显著。</div></section>
-<div class="footer">Generated from BigQuery and server feedback logs · Last updated through 2026-07-31</div></div></body></html>
+<p>正确窗口口径：cohort 使用最新 mart 20260802，事件更新至 2026-08-03；每个用户只统计 first_open_date 当日及之后的行为，反馈必须匹配同一已开始 session。</p></div></div>
+<p class="subject-note">最终 cohort 40,143 人：美国 25,884、非美 13,176、国家未知 1,083。国家未知单独保留；user_id 为空的实验用户也完整保留。</p>
+<h3 style="margin:18px 0 10px">整体</h3><div class="table-scroll"><table class="compact-table"><thead><tr><th>版本</th><th>Cohort</th><th>Tutor UV / 使用率</th><th>Session</th><th>平均时长</th><th>Session 完播</th><th>Tutor 用户完播</th><th>ITT 完播用户率</th><th>Interrupt ITT</th></tr></thead><tbody><tr><td><b>第一期方案</b></td><td>20,143</td>
+<td>907 / 4.50%</td><td>1,972</td>
+<td>189.7s</td><td>267 / 13.54%</td>
+<td>141 / 15.55%</td>
+<td>141 / 0.700%</td>
+<td>222 / 1.102%</td></tr><tr><td><b>强交互版本</b></td><td>20,000</td>
+<td>939 / 4.70%</td><td>1,574</td>
+<td>118.7s</td><td>386 / 24.52%</td>
+<td>216 / 23.00%</td>
+<td>216 / 1.080%</td>
+<td>239 / 1.195%</td></tr></tbody></table></div>
+<h3 style="margin:24px 0 10px">美国</h3>
+<div class="table-scroll"><table class="compact-table"><thead><tr><th>版本</th><th>Cohort</th><th>Tutor UV / 使用率</th><th>Session</th><th>平均时长</th><th>Session 完播</th><th>Tutor 用户完播</th><th>ITT 完播用户率</th><th>Interrupt ITT</th></tr></thead><tbody><tr><td><b>第一期方案</b></td><td>12,966</td>
+<td>599 / 4.62%</td><td>1,151</td>
+<td>180.7s</td><td>178 / 15.46%</td>
+<td>88 / 14.69%</td>
+<td>88 / 0.679%</td>
+<td>110 / 0.848%</td></tr><tr><td><b>强交互版本</b></td><td>12,918</td>
+<td>612 / 4.74%</td><td>1,052</td>
+<td>120.8s</td><td>270 / 25.67%</td>
+<td>134 / 21.90%</td>
+<td>134 / 1.037%</td>
+<td>122 / 0.944%</td></tr></tbody></table></div><h3 style="margin:24px 0 10px">非美</h3>
+<div class="table-scroll"><table class="compact-table"><thead><tr><th>版本</th><th>Cohort</th><th>Tutor UV / 使用率</th><th>Session</th><th>平均时长</th><th>Session 完播</th><th>Tutor 用户完播</th><th>ITT 完播用户率</th><th>Interrupt ITT</th></tr></thead><tbody><tr><td><b>第一期方案</b></td><td>6,623</td>
+<td>294 / 4.44%</td><td>796</td>
+<td>203.7s</td><td>86 / 10.80%</td>
+<td>50 / 17.01%</td>
+<td>50 / 0.755%</td>
+<td>107 / 1.616%</td></tr><tr><td><b>强交互版本</b></td><td>6,553</td>
+<td>313 / 4.78%</td><td>503</td>
+<td>116.6s</td><td>116 / 23.06%</td>
+<td>82 / 26.20%</td>
+<td>82 / 1.251%</td>
+<td>115 / 1.755%</td></tr></tbody></table></div>
+<h3 style="margin:24px 0 10px">评分信号</h3><div class="table-scroll"><table class="compact-table"><thead><tr><th>地区</th><th>版本</th><th>评分事件</th><th>平均分</th><th>五星率</th><th>1 至 2 星率</th></tr></thead><tbody><tr><td>美国</td><td>第一期方案</td>
+<td>238</td><td>4.50</td>
+<td>80.67%</td><td>10.08%</td></tr><tr><td>美国</td><td>强交互版本</td>
+<td>251</td><td>4.39</td>
+<td>80.48%</td><td>13.15%</td></tr><tr><td>非美</td><td>第一期方案</td>
+<td>200</td><td>4.58</td>
+<td>84.50%</td><td>7.50%</td></tr><tr><td>非美</td><td>强交互版本</td>
+<td>113</td><td>4.32</td>
+<td>78.76%</td><td>15.93%</td></tr></tbody></table></div>
+<ul class="bullet-note"><li><b>ITT 完播：</b>0.700% → 1.080%，+0.38pp，p &lt; 0.001。</li>
+<li><b>Tutor 使用：</b>4.50% → 4.70%，+0.19pp，p = 0.358。</li>
+<li><b>Interrupt：</b>全 cohort 1.102% → 1.195%，p = 0.383；进入 Tutor 后 24.48% → 25.45%，p = 0.628。显著性以用户级双侧比例检验判断。</li></ul></section><section class="panel choice-profile-panel" id="specific-point-profile"><div class="panel-head choice-profile-head"><div><div class="choice-profile-kicker">Explain Choice · Audience Profile</div><h2>Specific Point 用户画像对比</h2><p>按每位用户首次看到讲解方式卡片后 30 分钟内的首个动作互斥归类，对比 specific_point 与 step_by_step 用户。数据范围为 2026-06-19 至 2026-08-03，已统一排除内部和指定测试账号。</p></div><div class="choice-profile-legend"><span><i class="specific"></i>Specific Point</span><span><i class="step"></i>Step by Step</span></div></div>
+<div class="choice-profile-summary"><div class="choice-profile-stat primary"><span>Specific Point</span><b>88</b><em>画像分析用户</em></div><div class="choice-profile-stat"><span>Step by Step</span><b>312</b><em>对照用户</em></div><div class="choice-profile-stat"><span>最高正向差异</span><b>+5.9pp</b><em>学科 · others</em></div><div class="choice-profile-stat"><span>最高负向差异</span><b>-9.3pp</b><em>渠道 · unknown</em></div></div>
+<div class="choice-profile-grid"><article class="choice-profile-card"><h3>年级</h3><p>Specific Point 字段覆盖 79 / 88（89.8%）。</p><div class="choice-profile-rows"><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">university</span><span class="choice-profile-delta down">-8.8pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:36.4%"></div></div><span class="choice-profile-value">32 · 36.4%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:45.2%"></div></div><span class="choice-profile-value">141 · 45.2%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">highSchool</span><span class="choice-profile-delta up">+0.9pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:22.7%"></div></div><span class="choice-profile-value">20 · 22.7%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:21.8%"></div></div><span class="choice-profile-value">68 · 21.8%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">communityCollege</span><span class="choice-profile-delta up">+1.3pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:12.5%"></div></div><span class="choice-profile-value">11 · 12.5%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:11.2%"></div></div><span class="choice-profile-value">35 · 11.2%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">middleSchool</span><span class="choice-profile-delta up">+5.8pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:12.5%"></div></div><span class="choice-profile-value">11 · 12.5%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:6.7%"></div></div><span class="choice-profile-value">21 · 6.7%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">unknown</span><span class="choice-profile-delta up">+0.6pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:10.2%"></div></div><span class="choice-profile-value">9 · 10.2%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:9.6%"></div></div><span class="choice-profile-value">30 · 9.6%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">others</span><span class="choice-profile-delta up">+0.2pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:5.7%"></div></div><span class="choice-profile-value">5 · 5.7%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:5.4%"></div></div><span class="choice-profile-value">17 · 5.4%</span></div></div></div></div></article><article class="choice-profile-card"><h3>渠道</h3><p>Specific Point 字段覆盖 57 / 88（64.8%）。</p><div class="choice-profile-rows"><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">unknown</span><span class="choice-profile-delta down">-9.3pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:35.2%"></div></div><span class="choice-profile-value">31 · 35.2%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:44.6%"></div></div><span class="choice-profile-value">139 · 44.6%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">organic</span><span class="choice-profile-delta up">+5.3pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:28.4%"></div></div><span class="choice-profile-value">25 · 28.4%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:23.1%"></div></div><span class="choice-profile-value">72 · 23.1%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">sem</span><span class="choice-profile-delta down">-0.1pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:26.1%"></div></div><span class="choice-profile-value">23 · 26.1%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:26.3%"></div></div><span class="choice-profile-value">82 · 26.3%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">apple search ads</span><span class="choice-profile-delta up">+1.7pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:6.8%"></div></div><span class="choice-profile-value">6 · 6.8%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:5.1%"></div></div><span class="choice-profile-value">16 · 5.1%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">web to app_solve times_0827</span><span class="choice-profile-delta up">+1.6pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:2.3%"></div></div><span class="choice-profile-value">2 · 2.3%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:0.6%"></div></div><span class="choice-profile-value">2 · 0.6%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">instagram installs</span><span class="choice-profile-delta up">+1.1pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:1.1%"></div></div><span class="choice-profile-value">1 · 1.1%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:0.0%"></div></div><span class="choice-profile-value">0 · 0.0%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">facebook installs</span><span class="choice-profile-delta down">-0.3pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:0.0%"></div></div><span class="choice-profile-value">0 · 0.0%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:0.3%"></div></div><span class="choice-profile-value">1 · 0.3%</span></div></div></div></div></article><article class="choice-profile-card"><h3>登录身份</h3><p>Specific Point 字段覆盖 87 / 88（98.9%）。</p><div class="choice-profile-rows"><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">new_registered_user</span><span class="choice-profile-delta up">+3.6pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:71.6%"></div></div><span class="choice-profile-value">63 · 71.6%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:67.9%"></div></div><span class="choice-profile-value">212 · 67.9%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">reinstall_logged_in_user</span><span class="choice-profile-delta down">-2.7pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:23.9%"></div></div><span class="choice-profile-value">21 · 23.9%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:26.6%"></div></div><span class="choice-profile-value">83 · 26.6%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">not_logged_in_user</span><span class="choice-profile-delta down">-0.4pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:3.4%"></div></div><span class="choice-profile-value">3 · 3.4%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:3.8%"></div></div><span class="choice-profile-value">12 · 3.8%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">unknown</span><span class="choice-profile-delta down">-0.5pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:1.1%"></div></div><span class="choice-profile-value">1 · 1.1%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:1.6%"></div></div><span class="choice-profile-value">5 · 1.6%</span></div></div></div></div><div class="choice-profile-note"><strong>身份口径</strong><span>角色字段覆盖不足，因此展示登录身份，不对缺失角色做推断。</span></div></article><article class="choice-profile-card wide"><h3>学科</h3><p>Specific Point 字段覆盖 66 / 88（75.0%）。 只使用用户选择前最近一次真实 Solve_Success.subject。</p><div class="choice-profile-rows"><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">Unknown subject</span><span class="choice-profile-delta down">-6.1pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:25.0%"></div></div><span class="choice-profile-value">22 · 25.0%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:31.1%"></div></div><span class="choice-profile-value">97 · 31.1%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">algebra</span><span class="choice-profile-delta down">-8.8pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:15.9%"></div></div><span class="choice-profile-value">14 · 15.9%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:24.7%"></div></div><span class="choice-profile-value">77 · 24.7%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">others</span><span class="choice-profile-delta up">+5.9pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:9.1%"></div></div><span class="choice-profile-value">8 · 9.1%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:3.2%"></div></div><span class="choice-profile-value">10 · 3.2%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">chemistry</span><span class="choice-profile-delta down">-2.6pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:8.0%"></div></div><span class="choice-profile-value">7 · 8.0%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:10.6%"></div></div><span class="choice-profile-value">33 · 10.6%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">geometry</span><span class="choice-profile-delta up">+3.3pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:6.8%"></div></div><span class="choice-profile-value">6 · 6.8%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:3.5%"></div></div><span class="choice-profile-value">11 · 3.5%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">trigonometry</span><span class="choice-profile-delta up">+1.0pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:4.5%"></div></div><span class="choice-profile-value">4 · 4.5%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:3.5%"></div></div><span class="choice-profile-value">11 · 3.5%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">biological sciences</span><span class="choice-profile-delta up">+2.9pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:4.5%"></div></div><span class="choice-profile-value">4 · 4.5%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:1.6%"></div></div><span class="choice-profile-value">5 · 1.6%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">business</span><span class="choice-profile-delta up">+3.6pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:4.5%"></div></div><span class="choice-profile-value">4 · 4.5%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:1.0%"></div></div><span class="choice-profile-value">3 · 1.0%</span></div></div></div><div class="choice-profile-row"><div class="choice-profile-row-head"><span class="choice-profile-label">其余学科合计</span><span class="choice-profile-delta up">+0.8pp</span></div>
+<div class="choice-profile-bars"><div class="choice-profile-bar-line"><span>Specific</span><div class="choice-profile-track"><div class="choice-profile-fill specific" style="width:21.6%"></div></div><span class="choice-profile-value">19 · 21.6%</span></div>
+<div class="choice-profile-bar-line"><span>Step</span><div class="choice-profile-track"><div class="choice-profile-fill step" style="width:20.8%"></div></div><span class="choice-profile-value">65 · 20.8%</span></div></div></div></div></article></div><div class="choice-profile-takeaway"><b>方向性画像：</b>最明显的正向差异来自 学科 的 others，最明显的负向差异来自 渠道 的 unknown。Specific Point 样本仍较小且部分字段缺失，这些差异用于探索后续定向研究，不代表因果或统计显著。</div></section><section class="panel" id="specific-point-intents"><div class="panel-head"><div><h2>Specific Point 用户输入诉求</h2><p>只展示选择 specific_point 后、服务端成功完成的文本 interrupt 请求；用户和 session 均已匿名化。共 147 条输入，覆盖 48 位用户、48 个 session。</p></div></div>
+<p class="subject-note">自动主题归类用于快速浏览：具体题目追问 94 · 追问原因或解释 35 · 要求解答或核对 12 · 步骤导航 6。完整原文保留在下表。</p><div class="table-scroll intent-scroll"><table class="compact-table"><thead><tr><th>输入时间</th><th>用户哈希</th><th>诉求类型</th><th>原始输入</th></tr></thead><tbody><tr><td>2026-08-03 10:49:05</td><td>a148fbbff2</td><td>追问原因或解释</td><td class="intent-text">How do I do</td></tr><tr><td>2026-08-03 10:48:33</td><td>a148fbbff2</td><td>要求解答或核对</td><td class="intent-text">Can u check my work if match</td></tr><tr><td>2026-08-03 10:48:17</td><td>a148fbbff2</td><td>具体题目追问</td><td class="intent-text">Yeah. Okay.</td></tr><tr><td>2026-08-03 03:44:06</td><td>1c643bf7e4</td><td>具体题目追问</td><td class="intent-text">Can I copy it?</td></tr><tr><td>2026-08-03 03:43:45</td><td>1c643bf7e4</td><td>具体题目追问</td><td class="intent-text">Can you just give me one sentence of what homogenized mean?</td></tr><tr><td>2026-08-03 03:43:02</td><td>1c643bf7e4</td><td>具体题目追问</td><td class="intent-text">science</td></tr><tr><td>2026-08-02 23:17:33</td><td>d3ad63508f</td><td>具体题目追问</td><td class="intent-text">The multiplication.</td></tr><tr><td>2026-08-02 23:16:50</td><td>d3ad63508f</td><td>追问原因或解释</td><td class="intent-text">Because I still don't understand.</td></tr><tr><td>2026-08-02 23:02:29</td><td>d3ad63508f</td><td>要求解答或核对</td><td class="intent-text">Can you just tell me if 17.95 is correct for the 1st one?</td></tr><tr><td>2026-08-02 23:01:24</td><td>d3ad63508f</td><td>具体题目追问</td><td class="intent-text">95 for the third one, but I am not sure about the third one.</td></tr><tr><td>2026-08-02 23:00:07</td><td>d3ad63508f</td><td>具体题目追问</td><td class="intent-text">I, I did them all.</td></tr><tr><td>2026-08-02 22:59:19</td><td>d3ad63508f</td><td>具体题目追问</td><td class="intent-text">39.95.</td></tr><tr><td>2026-08-02 22:57:46</td><td>d3ad63508f</td><td>追问原因或解释</td><td class="intent-text">I will, um, send you three of the answers, and you are gonna tell me if they're correct and explain my mistakes if they are not.</td></tr><tr><td>2026-08-02 22:57:00</td><td>d3ad63508f</td><td>要求解答或核对</td><td class="intent-text">Um, That I have to answer.</td></tr><tr><td>2026-08-02 22:55:54</td><td>d3ad63508f</td><td>具体题目追问</td><td class="intent-text">Division accepted.</td></tr><tr><td>2026-08-02 22:55:05</td><td>d3ad63508f</td><td>具体题目追问</td><td class="intent-text">On converting the decimals into fractions and their numbers, and I would like to focus on multiplying duxibles and dividing decimals.</td></tr><tr><td>2026-08-02 02:14:20</td><td>a16472b5cf</td><td>要求解答或核对</td><td class="intent-text">So identify the value proposition and customers what is the answer to these two questions please</td></tr><tr><td>2026-07-31 22:10:03</td><td>03d10a053e</td><td>具体题目追问</td><td class="intent-text">What if I need an exact amount</td></tr><tr><td>2026-07-31 22:09:31</td><td>51c556d088</td><td>追问原因或解释</td><td class="intent-text">Give a complete reaction mechanism for reaction 3 NB reaction of product 2 to form product 3 and 4 show the chemical structure of product 3 and product 4</td></tr><tr><td>2026-07-31 22:08:54</td><td>03d10a053e</td><td>具体题目追问</td><td class="intent-text">Is their any short cuts for harder problems like 23/63</td></tr><tr><td>2026-07-31 22:07:55</td><td>51c556d088</td><td>具体题目追问</td><td class="intent-text">Don't you have number five which says give a complete reaction mechanism for reaction and being a reaction of product to form product</td></tr><tr><td>2026-07-31 22:07:47</td><td>03d10a053e</td><td>要求解答或核对</td><td class="intent-text">I want to be able to do it faster and get a higher correct rate</td></tr><tr><td>2026-07-31 06:44:54</td><td>1205c0dad9</td><td>具体题目追问</td><td class="intent-text">Like the picture please</td></tr><tr><td>2026-07-31 06:43:18</td><td>1205c0dad9</td><td>具体题目追问</td><td class="intent-text">Gloria’s bond and carbohydrate</td></tr><tr><td>2026-07-31 05:49:54</td><td>2aa4f627dc</td><td>具体题目追问</td><td class="intent-text">What is an alternate interior?</td></tr><tr><td>2026-07-31 05:40:56</td><td>2aa4f627dc</td><td>步骤导航</td><td class="intent-text">Can you continue?</td></tr><tr><td>2026-07-31 05:38:33</td><td>2aa4f627dc</td><td>具体题目追问</td><td class="intent-text">Can you teach me proofs?</td></tr><tr><td>2026-07-31 05:37:18</td><td>2aa4f627dc</td><td>具体题目追问</td><td class="intent-text">Yes</td></tr><tr><td>2026-07-31 05:36:43</td><td>2aa4f627dc</td><td>具体题目追问</td><td class="intent-text">Oh wait, can you speak a little bit faster thank you</td></tr><tr><td>2026-07-31 05:04:41</td><td>02df06efe2</td><td>要求解答或核对</td><td class="intent-text">Give me answer of question with explanation</td></tr><tr><td>2026-07-31 05:03:58</td><td>02df06efe2</td><td>具体题目追问</td><td class="intent-text">Ok</td></tr><tr><td>2026-07-30 12:01:44</td><td>d1587dfd4d</td><td>具体题目追问</td><td class="intent-text">Does the audio sounds the same</td></tr><tr><td>2026-07-30 03:00:58</td><td>f2511580c3</td><td>具体题目追问</td><td class="intent-text">Entonces si puede quedar como una fraccion?</td></tr><tr><td>2026-07-30 02:57:28</td><td>f2511580c3</td><td>具体题目追问</td><td class="intent-text">Cuál sería el área total?</td></tr><tr><td>2026-07-30 02:54:56</td><td>f2511580c3</td><td>具体题目追问</td><td class="intent-text">El área del triángulo.</td></tr><tr><td>2026-07-30 02:20:18</td><td>78046d453b</td><td>具体题目追问</td><td class="intent-text">What do you want on the table?</td></tr><tr><td>2026-07-29 10:15:22</td><td>9ef0eb4942</td><td>具体题目追问</td><td class="intent-text">I want it to be a quiz like that.</td></tr><tr><td>2026-07-29 10:14:24</td><td>9ef0eb4942</td><td>具体题目追问</td><td class="intent-text">Can you just like make me a quiz and I'll just do it by myself?</td></tr><tr><td>2026-07-29 10:13:30</td><td>9ef0eb4942</td><td>具体题目追问</td><td class="intent-text">Introduce data geometry and surface area.</td></tr><tr><td>2026-07-29 08:46:20</td><td>55cee79675</td><td>要求解答或核对</td><td class="intent-text">Um, no, I just wanted the answer.</td></tr><tr><td>2026-07-29 04:05:27</td><td>bed959b33f</td><td>追问原因或解释</td><td class="intent-text">How to find multiplicities</td></tr><tr><td>2026-07-28 17:17:36</td><td>200af69d28</td><td>追问原因或解释</td><td class="intent-text">OK and how does it work? What does the real meaning behind the phrase?</td></tr><tr><td>2026-07-28 17:17:06</td><td>200af69d28</td><td>追问原因或解释</td><td class="intent-text">What's a pinky promise and how does it work?</td></tr><tr><td>2026-07-28 14:57:01</td><td>abb257441a</td><td>具体题目追问</td><td class="intent-text">No, thank you.</td></tr><tr><td>2026-07-28 14:56:01</td><td>abb257441a</td><td>具体题目追问</td><td class="intent-text">What is the easiest way of finding the area?</td></tr><tr><td>2026-07-28 12:34:31</td><td>52c31c13a0</td><td>具体题目追问</td><td class="intent-text">Nope.</td></tr><tr><td>2026-07-28 12:33:35</td><td>52c31c13a0</td><td>具体题目追问</td><td class="intent-text">I don't see a single thing.</td></tr><tr><td>2026-07-28 12:33:06</td><td>52c31c13a0</td><td>具体题目追问</td><td class="intent-text">Is it possible you didn't put it up?</td></tr><tr><td>2026-07-28 12:32:35</td><td>52c31c13a0</td><td>具体题目追问</td><td class="intent-text">No, can you just draw the mechanism?</td></tr><tr><td>2026-07-28 12:31:41</td><td>52c31c13a0</td><td>步骤导航</td><td class="intent-text">Yeah, can you drop out draw out the step-by-step mechanism, please?</td></tr><tr><td>2026-07-28 12:30:36</td><td>52c31c13a0</td><td>追问原因或解释</td><td class="intent-text">How do I solve question E?</td></tr><tr><td>2026-07-28 12:22:20</td><td>52c31c13a0</td><td>具体题目追问</td><td class="intent-text">I had the reagent of D-I-B-A-L dash H, and I don't add like -78 degrees Celsius, so I don't know what it represents.</td></tr><tr><td>2026-07-28 12:21:37</td><td>52c31c13a0</td><td>具体题目追问</td><td class="intent-text">Like, what does that represent as a reagent?</td></tr><tr><td>2026-07-28 12:21:07</td><td>52c31c13a0</td><td>具体题目追问</td><td class="intent-text">No, I actually don't see any difference.</td></tr><tr><td>2026-07-28 12:20:37</td><td>52c31c13a0</td><td>具体题目追问</td><td class="intent-text">Sorry, can you move the 2nd one?</td></tr><tr><td>2026-07-28 12:17:49</td><td>52c31c13a0</td><td>追问原因或解释</td><td class="intent-text">For the 1st one, I'm just confused as to why the N replaces the oxygen and how the double bond remains, because I thought that it would be a hydroxide group and then attached to the NHNH 2.</td></tr><tr><td>2026-07-28 06:57:55</td><td>3db072f180</td><td>具体题目追问</td><td class="intent-text">What does Agua Monero mean?</td></tr><tr><td>2026-07-28 04:26:18</td><td>833a16bf2a</td><td>具体题目追问</td><td class="intent-text">Thank you.</td></tr><tr><td>2026-07-28 04:25:27</td><td>833a16bf2a</td><td>追问原因或解释</td><td class="intent-text">You're a great teaching tool and how, how often can I use you per day?</td></tr><tr><td>2026-07-28 04:24:26</td><td>833a16bf2a</td><td>具体题目追问</td><td class="intent-text">Thank you.</td></tr><tr><td>2026-07-28 04:23:02</td><td>833a16bf2a</td><td>具体题目追问</td><td class="intent-text">The undo is just also undoing everything we've taught them, which is to do, you know, brackets and then order of operations, do that always in order, and now I'm telling them to do it the other way round.</td></tr><tr><td>2026-07-28 04:21:28</td><td>833a16bf2a</td><td>具体题目追问</td><td class="intent-text">I've tried that with them and they still don't get it.</td></tr><tr><td>2026-07-28 04:19:57</td><td>833a16bf2a</td><td>追问原因或解释</td><td class="intent-text">They don't want to, they don't understand why it's a balanced thing that the equal sign is just to balance the equation.</td></tr><tr><td>2026-07-27 17:09:01</td><td>1ab9472482</td><td>具体题目追问</td><td class="intent-text">Yes, please.</td></tr><tr><td>2026-07-27 17:08:19</td><td>1ab9472482</td><td>具体题目追问</td><td class="intent-text">I don't know.</td></tr><tr><td>2026-07-26 22:26:24</td><td>4a67c1c156</td><td>具体题目追问</td><td class="intent-text">Ob du mir so Aufgaben machen könntest und ich muss dann die Antwort sagen.</td></tr><tr><td>2026-07-26 11:23:30</td><td>0ba0f94f37</td><td>具体题目追问</td><td class="intent-text">Expand</td></tr><tr><td>2026-07-26 11:22:45</td><td>0ba0f94f37</td><td>具体题目追问</td><td class="intent-text">Type in on what you just said, I need it for a powerpoint</td></tr><tr><td>2026-07-26 11:21:01</td><td>0ba0f94f37</td><td>具体题目追问</td><td class="intent-text">Both</td></tr><tr><td>2026-07-26 03:01:47</td><td>ba885ad046</td><td>具体题目追问</td><td class="intent-text">breafly with everything</td></tr><tr><td>2026-07-26 03:01:04</td><td>ba885ad046</td><td>具体题目追问</td><td class="intent-text">make a file</td></tr><tr><td>2026-07-26 03:00:36</td><td>ba885ad046</td><td>具体题目追问</td><td class="intent-text">cash flow and ratio</td></tr><tr><td>2026-07-26 01:53:32</td><td>fd5d9dcedc</td><td>具体题目追问</td><td class="intent-text">It's fixing it.</td></tr><tr><td>2026-07-26 01:52:10</td><td>fd5d9dcedc</td><td>要求解答或核对</td><td class="intent-text">What is the answer</td></tr><tr><td>2026-07-25 04:48:24</td><td>1a1f0599a2</td><td>具体题目追问</td><td class="intent-text">Yes</td></tr><tr><td>2026-07-25 04:46:59</td><td>1a1f0599a2</td><td>具体题目追问</td><td class="intent-text">No because Br is on a wedge but not on the left. It’s on top in the middle</td></tr><tr><td>2026-07-25 04:45:17</td><td>1a1f0599a2</td><td>追问原因或解释</td><td class="intent-text">So how do I draw the Newman projection?</td></tr><tr><td>2026-07-25 04:44:15</td><td>1a1f0599a2</td><td>具体题目追问</td><td class="intent-text">Yes</td></tr><tr><td>2026-07-25 04:42:55</td><td>1a1f0599a2</td><td>具体题目追问</td><td class="intent-text">No</td></tr><tr><td>2026-07-25 04:41:36</td><td>1a1f0599a2</td><td>具体题目追问</td><td class="intent-text">No</td></tr><tr><td>2026-07-25 04:40:17</td><td>1a1f0599a2</td><td>追问原因或解释</td><td class="intent-text">I still don’t understand how to draw the Newman projection</td></tr><tr><td>2026-07-25 04:39:08</td><td>1a1f0599a2</td><td>具体题目追问</td><td class="intent-text">Yes</td></tr><tr><td>2026-07-25 04:38:31</td><td>1a1f0599a2</td><td>具体题目追问</td><td class="intent-text">Yes</td></tr><tr><td>2026-07-25 04:37:18</td><td>1a1f0599a2</td><td>具体题目追问</td><td class="intent-text">Yes</td></tr><tr><td>2026-07-25 04:35:41</td><td>1a1f0599a2</td><td>追问原因或解释</td><td class="intent-text">How to make Newman projection</td></tr><tr><td>2026-07-24 22:35:10</td><td>5351103579</td><td>具体题目追问</td><td class="intent-text">If cos sin tan (1) then cos sin tan =(x)</td></tr><tr><td>2026-07-24 22:33:29</td><td>5351103579</td><td>具体题目追问</td><td class="intent-text">I want to find the value of cos sin tan(x)</td></tr><tr><td>2026-07-24 21:17:20</td><td>7126484def</td><td>具体题目追问</td><td class="intent-text">cest quoi le role du c et aussi comment elle se transforme qd les signes change</td></tr><tr><td>2026-07-24 21:15:06</td><td>7126484def</td><td>具体题目追问</td><td class="intent-text">canonique</td></tr><tr><td>2026-07-24 21:14:10</td><td>7126484def</td><td>具体题目追问</td><td class="intent-text">la courbe graphique</td></tr><tr><td>2026-07-24 05:25:59</td><td>723ada7671</td><td>要求解答或核对</td><td class="intent-text">Wanna know the answer quick</td></tr><tr><td>2026-07-23 23:35:59</td><td>870f89fbff</td><td>具体题目追问</td><td class="intent-text">But they...</td></tr><tr><td>2026-07-23 23:35:18</td><td>870f89fbff</td><td>具体题目追问</td><td class="intent-text">Hi, I came on at Nasrai.</td></tr><tr><td>2026-07-23 23:34:50</td><td>870f89fbff</td><td>具体题目追问</td><td class="intent-text">Punjul, Bengal.</td></tr><tr><td>2026-07-23 23:34:35</td><td>870f89fbff</td><td>具体题目追问</td><td class="intent-text">Yes?</td></tr><tr><td>2026-07-23 23:34:10</td><td>870f89fbff</td><td>具体题目追问</td><td class="intent-text">Las Rai, Ante, granny, Sat, Bhai, hi, Punjab, movie.</td></tr><tr><td>2026-07-23 23:33:24</td><td>870f89fbff</td><td>具体题目追问</td><td class="intent-text">Oh, you'll, you'll be, you'll be, you'll be.</td></tr><tr><td>2026-07-23 23:32:52</td><td>870f89fbff</td><td>具体题目追问</td><td class="intent-text">Kim Jong, so I can't be a midman, so I can be at one.</td></tr><tr><td>2026-07-23 23:31:48</td><td>870f89fbff</td><td>具体题目追问</td><td class="intent-text">Please play me with my language, like my languages.</td></tr><tr><td>2026-07-23 23:31:19</td><td>870f89fbff</td><td>具体题目追问</td><td class="intent-text">I want you to speak my.</td></tr><tr><td>2026-07-23 23:30:57</td><td>870f89fbff</td><td>追问原因或解释</td><td class="intent-text">If you explain me with my Olympic, I will understand more.</td></tr><tr><td>2026-07-23 23:30:32</td><td>870f89fbff</td><td>步骤导航</td><td class="intent-text">Continue</td></tr><tr><td>2026-07-23 23:29:13</td><td>870f89fbff</td><td>追问原因或解释</td><td class="intent-text">I don't understand.</td></tr><tr><td>2026-07-23 23:29:00</td><td>870f89fbff</td><td>追问原因或解释</td><td class="intent-text">Can you explain about? Why is London too?</td></tr><tr><td>2026-07-23 23:28:21</td><td>870f89fbff</td><td>追问原因或解释</td><td class="intent-text">Send me how to do?</td></tr><tr><td>2026-07-23 23:27:48</td><td>870f89fbff</td><td>追问原因或解释</td><td class="intent-text">No need to explain, just send me the answer.</td></tr><tr><td>2026-07-23 23:27:09</td><td>870f89fbff</td><td>具体题目追问</td><td class="intent-text">Huh</td></tr><tr><td>2026-07-23 23:26:34</td><td>870f89fbff</td><td>要求解答或核对</td><td class="intent-text">Can you solve this my problem?</td></tr><tr><td>2026-07-23 11:02:12</td><td>171e7f43ac</td><td>具体题目追问</td><td class="intent-text">답만</td></tr><tr><td>2026-07-23 10:29:40</td><td>7613322787</td><td>步骤导航</td><td class="intent-text">Step by step.</td></tr><tr><td>2026-07-22 11:32:03</td><td>e124057319</td><td>追问原因或解释</td><td class="intent-text">How vaccines help like cell membrane structure mitochondria microorganisms as a frnd and foe</td></tr><tr><td>2026-07-22 09:26:01</td><td>c296540d41</td><td>具体题目追问</td><td class="intent-text">Give me the solution first</td></tr><tr><td>2026-07-22 05:30:13</td><td>df2e037399</td><td>步骤导航</td><td class="intent-text">Let's just do a step-by-step quickly.</td></tr><tr><td>2026-07-21 18:58:15</td><td>41e20f8a70</td><td>具体题目追问</td><td class="intent-text">Please can you return it I can see their responsibility</td></tr><tr><td>2026-07-21 18:55:59</td><td>41e20f8a70</td><td>追问原因或解释</td><td class="intent-text">Explain the responsibility of the buyers and sellers and the view following the incontinence EXWFOBCIFNDDP</td></tr><tr><td>2026-07-21 18:50:55</td><td>41e20f8a70</td><td>追问原因或解释</td><td class="intent-text">Why were incoterms developed</td></tr><tr><td>2026-07-21 18:46:43</td><td>41e20f8a70</td><td>具体题目追问</td><td class="intent-text">Developed is same meaning as important?</td></tr><tr><td>2026-07-21 18:44:43</td><td>41e20f8a70</td><td>追问原因或解释</td><td class="intent-text">Why were incoterms developed</td></tr><tr><td>2026-07-21 18:43:39</td><td>41e20f8a70</td><td>追问原因或解释</td><td class="intent-text">Why were in good times developed</td></tr><tr><td>2026-07-21 18:34:24</td><td>41e20f8a70</td><td>追问原因或解释</td><td class="intent-text">Draw a simple international supply chain showing the movement of goods from all materials to the final consume</td></tr><tr><td>2026-07-21 18:24:34</td><td>41e20f8a70</td><td>具体题目追问</td><td class="intent-text">Yes thank you</td></tr><tr><td>2026-07-21 18:23:42</td><td>41e20f8a70</td><td>追问原因或解释</td><td class="intent-text">Briefly explain the role of each of the following manufacture exporter rate the border customs import</td></tr><tr><td>2026-07-21 18:19:19</td><td>41e20f8a70</td><td>要求解答或核对</td><td class="intent-text">Can u arrange the following in the correct order</td></tr><tr><td>2026-07-21 09:44:56</td><td>65a1fbc790</td><td>追问原因或解释</td><td class="intent-text">I'm curious about how we get it three times and plus one formula</td></tr><tr><td>2026-07-20 15:46:06</td><td>8156596f3b</td><td>具体题目追问</td><td class="intent-text">I just want the sketch right now.</td></tr><tr><td>2026-07-20 12:40:23</td><td>511ea06b13</td><td>具体题目追问</td><td class="intent-text">What is the maximum profit in dollars</td></tr><tr><td>2026-07-20 12:39:16</td><td>511ea06b13</td><td>具体题目追问</td><td class="intent-text">Using desmos</td></tr><tr><td>2026-07-20 12:37:11</td><td>511ea06b13</td><td>具体题目追问</td><td class="intent-text">Find the maximum profit in dollars</td></tr><tr><td>2026-07-20 08:38:15</td><td>cbeb5cf8a7</td><td>要求解答或核对</td><td class="intent-text">Could you help me solve it to get the answer</td></tr><tr><td>2026-07-17 20:59:08</td><td>25b121e355</td><td>具体题目追问</td><td class="intent-text">Não, eu te mandei uma foto. São quatro estruturas para tu nomeares, nomeia Solia, nome, mete o nome, lambe, mete o nome sucessivamente, só. a te pedir não dá muita volta</td></tr><tr><td>2026-07-17 20:58:21</td><td>25b121e355</td><td>具体题目追问</td><td class="intent-text">Eu só quero que você desligue a estrutura, o nome da estrutura é essa L o nome da estrutura LC número da estrutura.</td></tr><tr><td>2026-07-16 22:08:13</td><td>f1f0d073a4</td><td>具体题目追问</td><td class="intent-text">My entire time in college algebra and pre-calculus, every single time there's a negative number with it being squared, it always turns it into a positive because the negative times the negative is positive, and this is to include without it being enclosed in parentheses.</td></tr><tr><td>2026-07-16 22:06:22</td><td>f1f0d073a4</td><td>具体题目追问</td><td class="intent-text">Is that just a role that comes with exponential functions that the negative sign in front of the exponent, it only applies after the exponent has been completed on that number?</td></tr><tr><td>2026-07-16 22:01:46</td><td>f1f0d073a4</td><td>具体题目追问</td><td class="intent-text">So if the negative was in closed with () then it would be positive 9?</td></tr><tr><td>2026-07-16 15:55:16</td><td>183e76eca2</td><td>具体题目追问</td><td class="intent-text">Both.</td></tr><tr><td>2026-07-16 11:39:02</td><td>a9fd048c88</td><td>追问原因或解释</td><td class="intent-text">Why is the first question answer negative</td></tr><tr><td>2026-07-16 11:37:49</td><td>a9fd048c88</td><td>追问原因或解释</td><td class="intent-text">Why are question one and two answer negative</td></tr><tr><td>2026-07-16 11:37:06</td><td>a9fd048c88</td><td>追问原因或解释</td><td class="intent-text">How can</td></tr><tr><td>2026-07-16 11:36:55</td><td>a9fd048c88</td><td>追问原因或解释</td><td class="intent-text">Why is the answer positive or negative?</td></tr><tr><td>2026-07-16 07:59:16</td><td>f731d7246c</td><td>追问原因或解释</td><td class="intent-text">Show me
+Solution of all parts</td></tr><tr><td>2026-07-16 07:07:42</td><td>3b72069d9c</td><td>具体题目追问</td><td class="intent-text">After reducing it to a depressed polynomial, would you get the zeros if you created it into its smaller factored form, which would be X -4 and X -2.</td></tr><tr><td>2026-07-16 07:06:10</td><td>3b72069d9c</td><td>追问原因或解释</td><td class="intent-text">How do I find the zeros in the from the synthetic division?</td></tr><tr><td>2026-07-15 23:19:15</td><td>0e81106f54</td><td>步骤导航</td><td class="intent-text">I can't see the step-by-step on the whiteboard</td></tr><tr><td>2026-07-15 23:17:38</td><td>0e81106f54</td><td>追问原因或解释</td><td class="intent-text">Can you show me a video of you illustrating how this reaction happened?</td></tr><tr><td>2026-07-15 23:16:32</td><td>0e81106f54</td><td>追问原因或解释</td><td class="intent-text">Can you show how bro me got put on the last carbon next to the double bar with arrows?</td></tr><tr><td>2026-07-15 23:13:55</td><td>0e81106f54</td><td>具体题目追问</td><td class="intent-text">HVS and MBS</td></tr><tr><td>2026-07-15 06:56:27</td><td>2053805358</td><td>具体题目追问</td><td class="intent-text">Crossed belt and the other belt.</td></tr></tbody></table></div></section><div class="footer">Generated from BigQuery and server feedback logs · Last updated through 2026-08-03</div>
+<div class="footer">Generated from BigQuery and server feedback logs · Last updated through 2026-08-03</div></div></body></html>
