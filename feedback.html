@@ -1122,6 +1122,7 @@ background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:12px;line-he
 .platform-share-track{height:8px;margin:12px 0 14px;border-radius:999px;background:#e8eef7;overflow:hidden}
 .platform-share-track span{display:block;height:100%;min-width:3px;border-radius:999px;background:linear-gradient(90deg,#2563eb,#60a5fa)}
 .platform-card dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0}.platform-card dl div{min-width:0}.platform-card dt{font-size:11px;color:#64748b}.platform-card dd{margin:4px 0 0;color:#0f172a;font-size:15px;font-weight:800}
+.platform-quote-section{scroll-margin-top:18px}.platform-quote-section[data-platform="Web"]{border-top:4px solid #7c3aed}.platform-quote-section[data-platform="iOS"]{border-top:4px solid #2563eb}
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .container>.hero{margin-top:0}
 @media(max-width:900px){.subject-distribution-layout{grid-template-columns:1fr}.subject-summary{grid-template-columns:1fr 1fr}.subject-summary>div:last-child{grid-column:1/-1}}
@@ -1691,16 +1692,20 @@ background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:12px;line-he
 <div class="explorer-status"><strong aria-live="polite" id="feedback-count">14,829 / 14,829 条</strong><span>每页 25 条</span></div>
 <div class="table-scroll explorer-table-scroll"><table class="compact-table explorer-table"><thead><tr><th>反馈时间</th><th>评分</th><th>Tag</th><th>用户反馈</th><th>国家</th><th>地区</th><th>年级</th><th>渠道</th><th>学科</th><th>实验组</th><th>Tutor 状态</th><th>匹配状态</th><th>平台</th></tr></thead><tbody id="feedback-table-body"></tbody></table></div>
 <div class="explorer-pagination"><button id="feedback-prev" type="button">上一页</button><span aria-live="polite" id="feedback-page">第 1 页</span><button id="feedback-next" type="button">下一页</button></div>
-</section><section class="panel"><div class="panel-head"><div><h2>5-Star Text Feedback</h2>
-<p>展示全部 349 条 5 星文本反馈，不隐藏任何评价；英文和非英文有语义文字评论均补充中文翻译，纯 emoji / 无明确语义 emoji 评价不翻译。</p></div></div>
+</section><section class="panel platform-quote-section" data-platform="Web" id="five-star-web">
+<div class="panel-head"><div><h2>Web 五星文字好评</h2>
+<p>独立展示全部 5 条 Web 5 星文字反馈；有明确语义的非中文评价均补充中文翻译，纯 emoji / 无明确语义 emoji 评价不翻译。</p></div></div>
 <div class="quote-grid"><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>US · Web · Unknown grade · Unknown subject</em></div>
 <p>great until It stopped my lesson to get the app whist I only have a computer to work on pretty sad.</p><div class="quote-translation">中文：一开始很好，但后来课程被中断，并要求我下载 App；可我只有电脑可用，挺遗憾的。</div><footer>2026-10-17 08:34:54</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>IN · Web · Unknown grade · Unknown subject</em></div>
 <p>Well done</p><div class="quote-translation">中文：做得很好。</div><footer>2026-10-17 03:56:49</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>TR · Web · Unknown grade · Unknown subject</em></div>
-<p>I loved how interactive it was</p><div class="quote-translation">中文：我很喜欢这种互动方式。</div><footer>2026-10-17 03:32:24</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Nigeria · iOS · others · Unknown subject</em></div>
-<p>Great</p><div class="quote-translation">中文：很棒。</div><footer>2026-10-17 03:12:45</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Ghana · iOS · highSchool · Unknown subject</em></div>
-<p>I liked everything about this</p><div class="quote-translation">中文：这里的一切我都很喜欢。</div><footer>2026-10-17 02:32:57</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>IN · Web · Unknown grade · Unknown subject</em></div>
+<p>I loved how interactive it was</p><div class="quote-translation">中文：我很喜欢这种互动方式。</div><footer>2026-10-17 03:32:24</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>IN · Web · Unknown grade · Unknown subject</em></div>
 <p>I like how everything works so perfect</p><div class="quote-translation">中文：我喜欢它各方面都运行得如此完美。</div><footer>2026-10-17 02:16:00</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>IN · Web · Unknown grade · Unknown subject</em></div>
-<p>It was very understandable</p><div class="quote-translation">中文：讲解非常容易理解。</div><footer>2026-10-17 01:02:23</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Bhutan · iOS · university · Unknown subject</em></div>
+<p>It was very understandable</p><div class="quote-translation">中文：讲解非常容易理解。</div><footer>2026-10-17 01:02:23</footer></div></div></section><section class="panel platform-quote-section" data-platform="iOS" id="five-star-ios">
+<div class="panel-head"><div><h2>iOS 五星文字好评</h2>
+<p>独立展示全部 344 条 iOS 5 星文字反馈；有明确语义的非中文评价均补充中文翻译，纯 emoji / 无明确语义 emoji 评价不翻译。</p></div></div>
+<div class="quote-grid"><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Nigeria · iOS · others · Unknown subject</em></div>
+<p>Great</p><div class="quote-translation">中文：很棒。</div><footer>2026-10-17 03:12:45</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Ghana · iOS · highSchool · Unknown subject</em></div>
+<p>I liked everything about this</p><div class="quote-translation">中文：这里的一切我都很喜欢。</div><footer>2026-10-17 02:32:57</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Bhutan · iOS · university · Unknown subject</em></div>
 <p>Very helpful</p><div class="quote-translation">中文：非常有帮助。</div><footer>2026-10-16 21:33:23</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>Pakistan · iOS · university · Unknown subject</em></div>
 <p>Loveee it</p><div class="quote-translation">中文：太喜欢了。</div><footer>2026-10-16 21:15:08</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>United States · iOS · university · Unknown subject</em></div>
 <p>Great explanation. Easy to understand and follow.</p><div class="quote-translation">中文：讲解很棒，容易理解，也很容易跟上。</div><footer>2026-10-16 21:06:25</footer></div><div class="quote-card praise"><div class="quote-top"><span>★★★★★</span><em>India · iOS · university · psychology</em></div>
