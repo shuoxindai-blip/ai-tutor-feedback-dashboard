@@ -1099,22 +1099,28 @@ font-weight:700;line-height:1.6}
 .penetration-note{margin:0 0 14px;padding:10px 12px;border-radius:10px;
 background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:12px;line-height:1.6}
 .penetration-table td,.penetration-table th{white-space:nowrap}
-.subject-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px}
-.subject-summary>div{padding:12px 14px;border:1px solid #dbeafe;border-radius:12px;background:#f8fbff}
-.subject-summary span{display:block;color:#64748b;font-size:11px;font-weight:700;letter-spacing:.03em;margin-bottom:5px}
-.subject-summary b{display:block;color:#0f172a;font-size:18px;line-height:1.25}
-.subject-distribution-layout{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(390px,.88fr);gap:22px;align-items:start}
-.subject-bars{margin:0;padding:16px;border:1px solid #e2e8f0;border-radius:14px;background:#fbfdff}
-.subject-bars figcaption{font-size:13px;font-weight:800;color:#334155;margin-bottom:14px}
-.subject-bars ol{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.subject-distribution-panel{width:min(100%,760px);margin-right:auto;padding:18px 20px}
+.subject-distribution-panel .panel-head{margin-bottom:13px}.subject-distribution-panel .panel-head p{max-width:650px}
+.subject-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0 0 13px}
+.subject-summary>div{min-width:0;padding:0 12px;border-left:1px solid #dbeafe}
+.subject-summary>div:first-child{padding-left:0;border-left:0}
+.subject-summary span{display:block;color:#64748b;font-size:10px;font-weight:700;letter-spacing:.03em;margin-bottom:3px}
+.subject-summary b{display:block;color:#0f172a;font-size:16px;line-height:1.25;font-variant-numeric:tabular-nums}
+.subject-bars{margin:0;padding:13px 14px;border:1px solid #e2e8f0;border-radius:12px;background:#fbfdff}
+.subject-bars figcaption{font-size:12px;font-weight:800;color:#334155;margin-bottom:10px}
+.subject-bars ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .subject-bar-row{min-width:0}
-.subject-bar-label{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:5px;font-size:12px;color:#334155}
-.subject-bar-label b{overflow-wrap:anywhere}.subject-bar-label span{font-weight:800;color:#1d4ed8;white-space:nowrap}
-.subject-bar-track{height:9px;border-radius:999px;background:#e8eef7;overflow:hidden}
+.subject-bar-label{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px;font-size:11px;color:#334155}
+.subject-bar-label b{overflow-wrap:anywhere}.subject-bar-label span{font-size:10px;font-weight:700;color:#1d4ed8;white-space:nowrap;font-variant-numeric:tabular-nums}
+.subject-bar-track{height:6px;border-radius:999px;background:#e8eef7;overflow:hidden}
 .subject-bar-track span{display:block;height:100%;min-width:3px;border-radius:999px;background:linear-gradient(90deg,#2563eb,#60a5fa)}
-.subject-bar-meta{margin-top:4px;color:#64748b;font-size:10px}
-.subject-table-wrap{margin:0}.subject-table td,.subject-table th{white-space:nowrap}.subject-table th:first-child,.subject-table td:first-child{white-space:normal;min-width:150px}
-.subject-method-note{margin:14px 0 0;color:#64748b;font-size:11px;line-height:1.65}
+.subject-rest{margin:10px 0 0;color:#64748b;font-size:10px}
+.subject-details{margin-top:10px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;overflow:hidden}
+.subject-details summary{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:44px;padding:0 13px;color:#1e40af;font-size:11px;font-weight:800;cursor:pointer;list-style:none}
+.subject-details summary::-webkit-details-marker{display:none}.subject-details summary::after{content:"＋";font-size:16px;line-height:1;color:#64748b}.subject-details[open] summary::after{content:"−"}
+.subject-details summary small{margin-left:auto;color:#64748b;font-size:10px;font-weight:600}.subject-details[open] summary{border-bottom:1px solid #e2e8f0}
+.subject-table-wrap{margin:0;max-height:320px;overflow:auto}.subject-table td,.subject-table th{white-space:nowrap}.subject-table th:first-child,.subject-table td:first-child{white-space:normal;min-width:150px}
+.subject-method-note{margin:10px 0 0;color:#64748b;font-size:10px;line-height:1.55}
 .platform-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .platform-card{padding:16px;border:1px solid #dbeafe;border-radius:14px;background:#f8fbff}
 .platform-card-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
@@ -1125,8 +1131,8 @@ background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:12px;line-he
 .platform-quote-section{scroll-margin-top:18px}.platform-quote-section[data-platform="Web"]{border-top:4px solid #7c3aed}.platform-quote-section[data-platform="iOS"]{border-top:4px solid #2563eb}
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .container>.hero{margin-top:0}
-@media(max-width:900px){.subject-distribution-layout{grid-template-columns:1fr}.subject-summary{grid-template-columns:1fr 1fr}.subject-summary>div:last-child{grid-column:1/-1}}
-@media(max-width:640px){.lite-badge{font-size:11px}.outage-note{font-size:12px}.container>.hero{margin-top:0}.penetration-note{font-size:11px}.subject-summary,.platform-grid{grid-template-columns:1fr}.platform-card dl{grid-template-columns:1fr 1fr}.platform-card dl div:last-child{grid-column:1/-1}.subject-summary>div:last-child{grid-column:auto}.subject-bars{padding:13px}.subject-table-wrap{overflow-x:auto}.subject-method-note{font-size:10px}}
+@media(max-width:900px){.subject-distribution-panel{width:100%}}
+@media(max-width:640px){.lite-badge{font-size:11px}.outage-note{font-size:12px}.container>.hero{margin-top:0}.penetration-note{font-size:11px}.platform-grid{grid-template-columns:1fr}.platform-card dl{grid-template-columns:1fr 1fr}.platform-card dl div:last-child{grid-column:1/-1}.subject-distribution-panel{padding:16px}.subject-summary>div{padding:0 8px}.subject-summary>div:first-child{padding-left:0}.subject-summary span{font-size:9px}.subject-summary b{font-size:14px}.subject-bar-label{align-items:flex-start}.subject-bar-label span{max-width:150px;text-align:right;white-space:normal}.subject-bars{padding:12px}.subject-details summary small{display:none}.subject-table-wrap{overflow:auto}.subject-method-note{font-size:10px}}
 </style>
 <link href="data:," rel="icon"/><meta content="AI Tutor feedback dashboard through 2026-10-19 with new-user Tutor penetration and subject distribution, excluding the 2026-09-12 through 2026-09-14 model outage window." name="description"/></head>
 <body data-blackout-dates="2026-09-12,2026-09-13,2026-09-14"><div class="container"><section class="hero"><div><div class="eyebrow">Feedback + Penetration + Subject Mix</div>
@@ -1176,61 +1182,34 @@ background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:12px;line-he
 <td>142 / 1,142 = <b>12.4%</b></td></tr></tbody></table></div>
 </section><section class="panel subject-distribution-panel" id="new-user-subject-distribution">
 <div class="panel-head"><div><h2>新用户 Tutor 学科分布</h2>
-<p>421 On1 + 424 On 新用户中实际使用 Tutor 的用户；基于 Solve_Success 解题记录，按解题次数占比排序，已排除 9/12–9/14 异常行为。</p></div></div>
+<p>421 On1 + 424 On 新用户 Tutor cohort；基于 Solve_Success，已排除 9/12–9/14 异常行为。</p></div></div>
 <div aria-label="学科分布汇总" class="subject-summary">
 <div><span>有效解题</span><b>536,773</b></div>
-<div><span>有学科记录的 Tutor 用户</span><b>1,346</b></div>
-<div><span>第一大学科</span><b>代数 · 27.5%</b></div>
+<div><span>Tutor 用户</span><b>1,346</b></div>
+<div><span>第一大学科</span><b>代数 27.5%</b></div>
 </div>
-<div class="subject-distribution-layout">
 <figure aria-describedby="subject-chart-note" aria-labelledby="subject-chart-title" class="subject-bars" role="img">
-<figcaption id="subject-chart-title">各学科解题次数占比</figcaption>
+<figcaption id="subject-chart-title">各学科解题次数占比 · Top 5</figcaption>
 <ol><li aria-label="代数：27.5%，147,398 次解题，816 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>代数</b><span>27.5%</span></div>
+<div class="subject-bar-label"><b>代数</b><span>27.5% · 147,398 次 · 816 人</span></div>
 <div aria-hidden="true" class="subject-bar-track"><span style="width:27.4600%"></span></div>
-<div class="subject-bar-meta">147,398 次解题 · 816 位用户</div>
 </li><li aria-label="其他学科（长尾汇总）：15.9%，85,315 次解题，827 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>其他学科（长尾汇总）</b><span>15.9%</span></div>
+<div class="subject-bar-label"><b>其他学科（长尾汇总）</b><span>15.9% · 85,315 次 · 827 人</span></div>
 <div aria-hidden="true" class="subject-bar-track"><span style="width:15.8941%"></span></div>
-<div class="subject-bar-meta">85,315 次解题 · 827 位用户</div>
 </li><li aria-label="化学：11.4%，61,177 次解题，415 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>化学</b><span>11.4%</span></div>
+<div class="subject-bar-label"><b>化学</b><span>11.4% · 61,177 次 · 415 人</span></div>
 <div aria-hidden="true" class="subject-bar-track"><span style="width:11.3972%"></span></div>
-<div class="subject-bar-meta">61,177 次解题 · 415 位用户</div>
 </li><li aria-label="生物科学：9.5%，51,088 次解题，391 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>生物科学</b><span>9.5%</span></div>
+<div class="subject-bar-label"><b>生物科学</b><span>9.5% · 51,088 次 · 391 人</span></div>
 <div aria-hidden="true" class="subject-bar-track"><span style="width:9.5176%"></span></div>
-<div class="subject-bar-meta">51,088 次解题 · 391 位用户</div>
 </li><li aria-label="概率与统计：9.4%，50,221 次解题，413 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>概率与统计</b><span>9.4%</span></div>
+<div class="subject-bar-label"><b>概率与统计</b><span>9.4% · 50,221 次 · 413 人</span></div>
 <div aria-hidden="true" class="subject-bar-track"><span style="width:9.3561%"></span></div>
-<div class="subject-bar-meta">50,221 次解题 · 413 位用户</div>
-</li><li aria-label="健康科学与专业：8.7%，46,615 次解题，386 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>健康科学与专业</b><span>8.7%</span></div>
-<div aria-hidden="true" class="subject-bar-track"><span style="width:8.6843%"></span></div>
-<div class="subject-bar-meta">46,615 次解题 · 386 位用户</div>
-</li><li aria-label="几何：4.3%，23,105 次解题，396 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>几何</b><span>4.3%</span></div>
-<div aria-hidden="true" class="subject-bar-track"><span style="width:4.3044%"></span></div>
-<div class="subject-bar-meta">23,105 次解题 · 396 位用户</div>
-</li><li aria-label="微积分：4.1%，21,887 次解题，278 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>微积分</b><span>4.1%</span></div>
-<div aria-hidden="true" class="subject-bar-track"><span style="width:4.0775%"></span></div>
-<div class="subject-bar-meta">21,887 次解题 · 278 位用户</div>
-</li><li aria-label="物理：3.5%，18,683 次解题，400 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>物理</b><span>3.5%</span></div>
-<div aria-hidden="true" class="subject-bar-track"><span style="width:3.4806%"></span></div>
-<div class="subject-bar-meta">18,683 次解题 · 400 位用户</div>
-</li><li aria-label="其他（原始分类）：2.9%，15,648 次解题，667 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>其他（原始分类）</b><span>2.9%</span></div>
-<div aria-hidden="true" class="subject-bar-track"><span style="width:2.9152%"></span></div>
-<div class="subject-bar-meta">15,648 次解题 · 667 位用户</div>
-</li><li aria-label="三角学：2.9%，15,636 次解题，173 位用户" class="subject-bar-row">
-<div class="subject-bar-label"><b>三角学</b><span>2.9%</span></div>
-<div aria-hidden="true" class="subject-bar-track"><span style="width:2.9130%"></span></div>
-<div class="subject-bar-meta">15,636 次解题 · 173 位用户</div>
 </li></ol>
+<p class="subject-rest">其余 6 个展示分类合计 26.4%</p>
 </figure>
+<details class="subject-details">
+<summary><span>查看全部 11 个学科</span><small>解题次数、占比、用户数</small></summary>
 <div class="table-scroll subject-table-wrap"><table class="compact-table subject-table">
 <caption class="sr-only">新用户 Tutor 学科分布精确数值</caption>
 <thead><tr><th>学科</th><th>解题次数</th><th>占比</th><th>用户数</th></tr></thead>
@@ -1257,7 +1236,7 @@ background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:12px;line-he
 <td>667</td></tr><tr><td><b>三角学</b></td>
 <td>15,636</td><td><b>2.9%</b></td>
 <td>173</td></tr></tbody></table></div>
-</div>
+</details>
 <p class="subject-method-note" id="subject-chart-note">占比以 536,773 条有效 Solve_Success 记录为分母；同一用户可能覆盖多个学科，因此各学科用户数不可相加。“其他学科（长尾汇总）”汇总第 11 名及之后的学科。</p>
 </section><section class="side-cards">
 <div class="region-card us"><h3>US</h3><div class="kv"><span>Feedback</span><b>11,084</b></div>
